@@ -1,0 +1,9 @@
+<input type="text" id="id_cnpj" name="cnpj" placeholder="00.000.000/0000-00"
+value="{{ form.cnpj.value|default_if_none:'' }}"
+class="form-control {% if form.cnpj.errors %}is-invalid{% endif %}">
+
+<label for="id_cnpj">CNPJ</label>
+
+{% for error in form.cnpj.errors %}
+    <div class="invalid-feedback">{{ error }}</div>
+{% endfor %}

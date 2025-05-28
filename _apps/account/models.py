@@ -1,0 +1,96 @@
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.db import models
+from django.utils import timezone
+from phonenumber_field.modelfields import PhoneNumberField
+
+
+class CustomUserManager(BaseUserManager):
+    def _create_user(self, email, password, **extra_fields):
+        if not email:
+            raise ValueError('Por favor, forneça um e-mail válido!')
+        
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save()
+        return user
+    
+    def create_user(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('user_type', 'cliente')
+        extra_fields.setdefault('is_superuser', False)
+        extra_fields.setdefault('is_staff', False)
+        return self._create_user(email, password, **extra_fields)
+    
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('user_type', 'admin')
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_staff', True)
+        return self._create_user(email, password, **extra_fields)
+    
+class User(AbstractBaseUser, PermissionsMixin):
+    USER_TYPE_CHOICES = (
+        ('admin', 'Administrador'),
+        ('funcionario', 'Funcionário'),
+        ('cliente', 'Cliente'),
+    )
+
+    email = models.EmailField(unique=True)
+
+    first_name = models.CharField(max_length=50, blank=True, verbose_name='Nome')
+    last_name = models.CharField(max_length=50, blank=True, verbose_name='Sobrenome')
+
+    phone = PhoneNumberField(
+        blank=True, 
+        verbose_name='Telefone', 
+        help_text='Digite um número de telefone válido com DDD (ex: +5511999998888)',
+        error_messages={
+            'invalid': 'Digite um número de telefone válido com DDD (ex: +5511999998888)'
+        }
+    )
+
+    cpf = models.CharField(
+        max_length=11,
+        blank=True,
+        verbose_name='CPF',
+        help_text='Digite apenas os 11 números do CPF (ex: 12345678000)',
+    )
+
+    is_active = models.BooleanField(
+        default=False, 
+        verbose_name='Conta ativa?',
+        help_text='Se marcado, o usuário poderá acessar ao site normalmente.'
+    )
+
+    is_staff = models.BooleanField(
+        default=False, 
+        verbose_name='Acesso ao painel administrativo?',
+        help_text='Se marcado, esse usuário terá acesso a esse painel administrativo.'
+    )
+    
+    is_superuser = models.BooleanField(
+        default=False, 
+        verbose_name='Permissões de administrador?', 
+        help_text='Se marcado, esse usuário terá acesso total ao sistema.'
+    )
+
+    user_type = models.CharField(
+        max_length=50,
+        choices=USER_TYPE_CHOICES,
+        default='cliente',
+        verbose_name='Tipo de usuário'
+    )
+
+    date_joined = models.DateTimeField(default=timezone.now, verbose_name='Data de cadastro')
+
+    USERNAME_FIELD = 'email'
+    EMAIL_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    objects = CustomUserManager()
+
+    class Meta:
+        verbose_name = 'Usuário'
+        verbose_name_plural = 'Usuários'
+
+    def get_full_name(self):
+        return self.first_name or self.email.split('@')[0]
