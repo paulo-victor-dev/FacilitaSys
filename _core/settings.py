@@ -75,12 +75,7 @@ DATABASES = {
 
 # Authentication configs
 
-#AUTH_USER_MODEL = 'account.User'
-
-LOGIN_URL = 'account:login'
-LOGIN_REDIRECT_URL = 'product:catalog'
-
-LOGOUT_REDIRECT_URL = 'account:login'
+AUTH_USER_MODEL = 'account.User'
 
 
 # Email configs

@@ -1,5 +1,15 @@
 from django.db import models
 
+class Brand(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    class Meta:
+        verbose_name = 'Marca'
+        verbose_name_plural = 'Marcas'
+
+    def __str__(self):
+        return self.name
+
 
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -47,7 +57,9 @@ class Size(models.Model):
 
 
 class Product(models.Model):
-    reference = models.IntegerField(unique=True, verbose_name='Referência', null=True)
+    bar_code = models.IntegerField(unique=True, verbose_name='Código de barras')
+
+    brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name='product_brand', verbose_name='Marca')
 
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='product_category', verbose_name='Categoria')
 
@@ -66,12 +78,10 @@ class Product(models.Model):
         verbose_name = 'Produto'
 
     def __str__(self):
-        return f"{self.category} {self.model} {self.type}"
+        return f"{self.brand} {self.category} {self.model}"
 
 
 class ProductVariant(models.Model):
-    sku = models.IntegerField(unique=True, verbose_name='SKU', null=True)
-
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='variant_product', verbose_name='Produtos')
 
     color = models.ForeignKey(Color, on_delete=models.PROTECT, related_name='variant_color', verbose_name='Cores')

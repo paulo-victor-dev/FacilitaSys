@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Product, Category, ProductModel, Type, Color, Size, ProductVariant, VariantImage
+from .models import Product, Brand, Category, ProductModel, Color, Size, ProductVariant, VariantImage
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -19,6 +19,12 @@ class ProductVariantAdmin(admin.ModelAdmin):
     inlines = [VariantImageInLine]
 
 
+@admin.register(Brand)
+class BrandAdmin(admin.ModelAdmin):
+    list_display = ('name', 'id')
+    search_fields = ('name', 'id')
+
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'id')
@@ -27,12 +33,6 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(ProductModel)
 class ProductModelAdmin(admin.ModelAdmin):
-    list_display = ('name', 'id')
-    search_fields = ('name', 'id')
-
-
-@admin.register(Type)
-class TypeAdmin(admin.ModelAdmin):
     list_display = ('name', 'id')
     search_fields = ('name', 'id')
 

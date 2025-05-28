@@ -1,9 +1,0 @@
-<input type="text" id="id_last_name" name="last_name" placeholder="last_name"
-last_name
-class="form-control {% if form.last_name.errors %}is-invalid{% endif %}">
-
-<label for="id_last_name">Sobrenome</label>
-
-{% for error in form.last_name.errors %}
-    <div class="invalid-feedback">{{ error }}</div>
-{% endfor %}

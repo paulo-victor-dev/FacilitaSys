@@ -1,10 +1,10 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordResetForm
+from django.contrib.auth import forms as auth_forms
 
 from .models import User
 
 
-class CustomLoginForm(AuthenticationForm):
+class LoginForm(auth_forms.AuthenticationForm):
     def clean(self):
         email = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
@@ -25,7 +25,7 @@ class CustomLoginForm(AuthenticationForm):
         return super().clean()
 
 
-class CustomUserCreationForm(UserCreationForm):
+class UserCreationForm(auth_forms.UserCreationForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email', 'cnpj', 'phone', 'password1', 'password2')
@@ -42,11 +42,11 @@ class CustomUserCreationForm(UserCreationForm):
             raise forms.ValidationError('Este e-mail já está cadastrado.')
         return email
     
-    def clean_cnpj(self):
-        cnpj = self.cleaned_data.get('cnpj')
-        if not cnpj:
+    def clean_cpf(self):
+        cpf = self.cleaned_data.get('cpf')
+        if not cpf:
             raise forms.ValidationError('Este campo é obrigatório.')
-        return cnpj
+        return cpf
     
     def clean_phone(self):
         phone = self.cleaned_data.get('phone')
@@ -55,7 +55,7 @@ class CustomUserCreationForm(UserCreationForm):
         return phone
     
 
-class CustomPasswordResetForm(PasswordResetForm):
+class PasswordResetForm(auth_forms.PasswordResetForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if not User.objects.filter(email=email).exists():

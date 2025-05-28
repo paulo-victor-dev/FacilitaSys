@@ -34,10 +34,16 @@ class User(AbstractBaseUser, PermissionsMixin):
         ('cliente', 'Cliente'),
     )
 
-    email = models.EmailField(unique=True)
-
     first_name = models.CharField(max_length=50, blank=True, verbose_name='Nome')
     last_name = models.CharField(max_length=50, blank=True, verbose_name='Sobrenome')
+    email = models.EmailField(unique=True)
+
+    cpf = models.CharField(
+        max_length=11,
+        blank=True,
+        verbose_name='CPF',
+        help_text='Digite apenas os 11 números do CPF (ex: 12345678000)',
+    )
 
     phone = PhoneNumberField(
         blank=True, 
@@ -46,13 +52,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         error_messages={
             'invalid': 'Digite um número de telefone válido com DDD (ex: +5511999998888)'
         }
-    )
-
-    cpf = models.CharField(
-        max_length=11,
-        blank=True,
-        verbose_name='CPF',
-        help_text='Digite apenas os 11 números do CPF (ex: 12345678000)',
     )
 
     is_active = models.BooleanField(
@@ -93,4 +92,4 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = 'Usuários'
 
     def get_full_name(self):
-        return self.first_name or self.email.split('@')[0]
+        return self.first_name
