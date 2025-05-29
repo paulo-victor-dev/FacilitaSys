@@ -25,13 +25,13 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault('user_type', 'admin')
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_active', True)
         return self._create_user(email, password, **extra_fields)
     
 class User(AbstractBaseUser, PermissionsMixin):
     USER_TYPE_CHOICES = (
         ('admin', 'Administrador'),
         ('funcionario', 'Funcionário'),
-        ('cliente', 'Cliente'),
     )
 
     first_name = models.CharField(max_length=50, blank=True, verbose_name='Nome')
@@ -75,7 +75,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     user_type = models.CharField(
         max_length=50,
         choices=USER_TYPE_CHOICES,
-        default='cliente',
+        default='funcionario',
         verbose_name='Tipo de usuário'
     )
 

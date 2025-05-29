@@ -28,7 +28,7 @@ class LoginForm(auth_forms.AuthenticationForm):
 class UserCreationForm(auth_forms.UserCreationForm):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email', 'cnpj', 'phone', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'email', 'cpf', 'phone', 'password1', 'password2')
 
     def clean_first_name(self):
         first_name = self.cleaned_data.get('first_name')
