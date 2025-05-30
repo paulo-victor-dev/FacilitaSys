@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Links -->
-    {% include 'base_comp/_base_links.html' %}
+    {% include 'base_includes/_base_links.html' %}
 
-    <!-- Titulo -->
+    <!-- Title -->
     <title>FacilitaSys | {% block title %}{% endblock %}</title>
 </head>
 <body>
+    
     {% if user.is_authenticated %}
         {% block content %}{% endblock %}
 
