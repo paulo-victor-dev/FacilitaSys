@@ -11,12 +11,33 @@
     <title>FacilitaSys | {% block title %}{% endblock %}</title>
 </head>
 <body>
-    
     {% if user.is_authenticated %}
-        {% block content %}{% endblock %}
+        <div class="row min-vh-100">
+            <div class="col-auto min-vh-100 border">
+                {% include 'base_includes/_sidebar.html' %}
+            </div>
+
+            <div class="col p-0">
+                <div class="row-auto">
+                    {% include 'base_includes/_navbar.html' %}
+                </div>
+
+                <div class="row-auto min-vh-100 border">
+                    {% block main_content %}{% endblock %}
+                </div>
+
+                <div class="row-auto border">
+                    {% include 'base_includes/_footer.html' %}
+                </div>
+            </div>
+        </div>
+ 
 
     {% else %}
-        {% block account_content %}{% endblock %}
+        <main class="account_content">
+            {% block account_content %}{% endblock %}
+        </main>
+
     {% endif %}
 </body>
 </html>

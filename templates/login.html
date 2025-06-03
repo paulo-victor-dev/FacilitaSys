@@ -7,5 +7,45 @@
 {% endblock %}
 
 {% block account_content %}
-   
+   <div class="container vh-100">
+      <div class="row align-items-center justify-content-center h-100 p-0">
+         <div class="col-auto">
+
+            <!-- Logo -->
+            <div class="d-flex justify-content-center mb-3">
+               <img src="{% static 'img/logo_facilitasys_com_letras.png' %}" alt="logo_facilitasys_com_letras" width="160" height="110">
+            </div>
+            <!-- /Logo -->
+
+            <div class="text-center mb-4">
+               <h5 class="fw-normal mb-3">Informe seus dados para acessar sua conta</h5>
+            </div>
+
+            <form method="post">
+               {% csrf_token %}
+
+               <!-- Errors -->
+               {% include 'account_includes/_errors.html' %}
+
+               <div class="mt-4">
+                  <!-- Email field -->
+                  <div class="form-floating mb-3">
+                     {% include 'account_includes/_email_field.html' %}
+                  </div>
+                  
+                  <!-- Password field -->
+                  <div class="form-floating">
+                     {% include 'account_includes/_password_field.html' %}
+                  </div>
+               </div>
+
+               <div class="my-3 text-end">
+                  <a href="{% url 'account:password_reset' %}" class="text-decoration-none text-dark">Esqueceu sua senha?</a>
+               </div>
+
+               <button class="btn btn-primary fw-semibold w-100" type="submit">ENTRAR</button>
+            </form>
+         </div>
+      </div>
+   </div>   
 {% endblock %}
