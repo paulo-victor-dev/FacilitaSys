@@ -1,0 +1,111 @@
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px ;
+    background-color: #FFF;
+    border-right: 1px solid gainsboro;
+    transition: all 0.45s ease;
+}
+
+nav.close {
+    width: 73px;
+}
+
+nav .logo {
+    display: flex;
+    align-items: center;
+}
+
+nav .logo_name {
+    font-size: 22px;
+    font-weight: 600;
+    color: #362a68;
+    margin-left: 14px;
+    transition: all 0.22s ease;
+}
+
+nav.close .logo_name {
+    opacity: 0;
+    pointer-events: none;
+}
+
+nav .logo_image {
+    display: flex;
+    justify-content: center;
+    min-width: 45px;
+}
+
+nav .logo_image img {
+    width: 40px;
+    object-fit: cover;
+}
+
+nav .menu_itens {
+    margin-top: 40px;
+    height: calc(100% - 90px);
+    display: flex;
+    flex-direction: column;
+}
+
+.menu_itens li {
+    list-style: none;
+}
+
+.menu_itens li a {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    text-decoration: none;
+    position: relative;
+}
+
+.nav_links li a:hover:before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background-color: #2d6872;
+}
+
+.menu_itens li a .material-symbols-outlined {
+    font-size: 26px;
+    min-width: 45px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: gray;
+}
+
+.menu_itens li a .link_name {
+    font-size: 18px;
+    font-weight: 400;
+    color: gray;
+    transition: all 0.22s ease;
+}
+
+nav.close li a .link_name {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.nav_links li a:hover .material-symbols-outlined,
+.nav_links li a:hover .link_name {
+    color: #2d6872;
+}
+
+.nav_links li:hover {
+    background-color: #4e818a3b;
+    border-left: 3px solid #2d6872;
+    transition: all 0.1s ease;
+    
+}
+
+
+
+

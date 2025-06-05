@@ -1,5 +1,13 @@
-<nav class="navbar">
-    <div class="container-fluid">
-        <a href="#" class="navbar-brand">Navbar</a>
+{% load static %}
+
+<div class="top">
+    <span id="btn_menu" class="material-symbols-outlined">menu</span>
+
+    <div class="search_box">
+        <span id="search_icon" class="material-symbols-outlined">search</span>
+        <input type="text" placeholder="Pesquisar...">
     </div>
-</nav>
+
+    <img src="{% static 'img/profile.jpg' %}" alt="">
+</div>
+

@@ -8,36 +8,28 @@
     {% include 'base_includes/_base_links.html' %}
 
     <!-- Title -->
-    <title>FacilitaSys | {% block title %}{% endblock %}</title>
+    <title>FacilitaSys | {% block page_title %}{% endblock %}</title>
 </head>
 <body>
     {% if user.is_authenticated %}
-        <div class="row min-vh-100">
-            <div class="col-auto min-vh-100 border">
-                {% include 'base_includes/_sidebar.html' %}
+        {% include 'base_includes/_sidebar.html' %}
+
+        <main class="main_content">
+            {% include 'base_includes/_navbar.html' %}
+
+            <div class="content_body">
+                <div class="content_title">
+                    <span class="text">{% block content_title %}{% endblock %}</span>
+                </div>
+
+                {% block main_content %}{% endblock %}
             </div>
-
-            <div class="col p-0">
-                <div class="row-auto">
-                    {% include 'base_includes/_navbar.html' %}
-                </div>
-
-                <div class="row-auto min-vh-100 border">
-                    {% block main_content %}{% endblock %}
-                </div>
-
-                <div class="row-auto border">
-                    {% include 'base_includes/_footer.html' %}
-                </div>
-            </div>
-        </div>
- 
+        </main>
 
     {% else %}
         <main class="account_content">
             {% block account_content %}{% endblock %}
         </main>
-
     {% endif %}
 </body>
 </html>

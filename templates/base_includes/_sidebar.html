@@ -1,42 +1,63 @@
 {% load static %}
 
-<div class="wrapper">
-    <aside id="sidebar">
-        <!-- Sidebar Logo -->
-        <div class="sidebar-logo">
-            <a href="{% url 'root_redirect' %}">FacilitaSys</a>
+<nav>
+    <div class="logo">
+        <div class="logo_image">
+            <img src="{% static 'img/logo_facilitasys.png' %}" alt="logo_facilitasys">
         </div>
 
-        <!-- Sidebar itens -->
-        <ul class="sidebar-nav">
-            <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-bar-chart-line"></i>
-                    <span>Dashboard</span>
+        <span class="logo_name">FacilitaSys</span>
+    </div>
+    <div class="menu_itens">
+        <ul class="nav_links">
+            <li>
+                <a href="#">
+                    <span class="material-symbols-outlined">analytics</span>
+                    <span class="link_name">Dashboard</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-clipboard-data"></i>
-                    <span>Pedidos</span>
+            <li>
+                <a href="#">
+                    <span class="material-symbols-outlined">person</span>
+                    <span class="link_name">Clientes</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-box-seam"></i>
-                    <span>Produtos</span>
+            <li>
+                <a href="#">
+                    <span class="material-symbols-outlined">warehouse</span>
+                    <span class="link_name">Fornecedores</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
-                    <i class="bi bi-people"></i>
-                    <span>Usuários</span>
+            <li>
+                <a href="#">
+                    <span class="material-symbols-outlined">assignment</span>
+                    <span class="link_name">Pedidos</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <span class="material-symbols-outlined">inventory_2</span>
+                    <span class="link_name">Produtos</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <span class="material-symbols-outlined">box</span>
+                    <span class="link_name">Inventário</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <span class="material-symbols-outlined">group</span>
+                    <span class="link_name">Usuários</span>
                 </a>
             </li>
         </ul>
-        <!-- /Sidebar itens -->
-    </aside>
-</div>
+    </div>
+</nav>
