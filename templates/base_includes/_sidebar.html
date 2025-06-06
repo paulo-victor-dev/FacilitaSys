@@ -1,63 +1,55 @@
 {% load static %}
 
-<nav>
-    <div class="logo">
-        <div class="logo_image">
-            <img src="{% static 'img/logo_facilitasys.png' %}" alt="logo_facilitasys">
+<aside class="">
+    <ul class="sidebar_itens">
+        <div class="sidebar_top">
+            <img class="logo_image" src="{% static 'img/logo_facilitasys.png' %}" alt="logo_facilitasys">
+            <span class="logo_text">FacilitaSys</span>
         </div>
 
-        <span class="logo_name">FacilitaSys</span>
-    </div>
-    <div class="menu_itens">
-        <ul class="nav_links">
-            <li>
-                <a href="#">
-                    <span class="material-symbols-outlined">analytics</span>
-                    <span class="link_name">Dashboard</span>
-                </a>
-            </li>
+        <hr class="sidebar_divider">
+    
+        <li>
+            <a href="#">                    
+                <span id="link_icon" class="material-icons-sharp">analytics</span>
+                <span class="link_text">Dashboard</span>        
+            </a>
+        </li>
 
-            <li>
-                <a href="#">
-                    <span class="material-symbols-outlined">person</span>
-                    <span class="link_name">Clientes</span>
-                </a>
-            </li>
+        <li>
+            <a href="#">                    
+                <span id="link_icon" class="material-icons-sharp">people</span>
+                <span class="link_text">Usuários</span>        
+            </a>
+        </li>
 
-            <li>
-                <a href="#">
-                    <span class="material-symbols-outlined">warehouse</span>
-                    <span class="link_name">Fornecedores</span>
-                </a>
-            </li>
+        <li>
+            <a href="#">                    
+                <span id="link_icon" class="material-icons-sharp">factory</span>
+                <span class="link_text">Fornecedores</span>        
+            </a>
+        </li>
 
-            <li>
-                <a href="#">
-                    <span class="material-symbols-outlined">assignment</span>
-                    <span class="link_name">Pedidos</span>
-                </a>
-            </li>
+        <li>
+            <a href="#">                    
+                <span id="link_icon" class="material-icons-sharp">assignment</span>
+                <span class="link_text">Pedidos</span>        
+            </a>
+        </li>
 
-            <li>
-                <a href="#">
-                    <span class="material-symbols-outlined">inventory_2</span>
-                    <span class="link_name">Produtos</span>
-                </a>
-            </li>
+        <li>
+            <a href="#">                    
+                <span id="link_icon" class="material-icons-sharp">inventory_2</span>
+                <span class="link_text">Produtos</span>        
+            </a>
+        </li>
 
-            <li>
-                <a href="#">
-                    <span class="material-symbols-outlined">box</span>
-                    <span class="link_name">Inventário</span>
-                </a>
-            </li>
+        <li>
+            <a href="#">                    
+                <span id="link_icon" class="material-icons-sharp">point_of_sale</span>
+                <span class="link_text">PDV</span>        
+            </a>
+        </li>
+    </ul>
+</aside>
 
-            <li>
-                <a href="#">
-                    <span class="material-symbols-outlined">group</span>
-                    <span class="link_name">Usuários</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>

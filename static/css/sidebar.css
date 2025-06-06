@@ -62,17 +62,7 @@ nav .menu_itens {
     position: relative;
 }
 
-.nav_links li a:hover:before {
-    content: "";
-    position: absolute;
-    left: -7px;
-    height: 5px;
-    width: 5px;
-    border-radius: 50%;
-    background-color: #2d6872;
-}
-
-.menu_itens li a .material-symbols-outlined {
+.menu_itens li a #link_icon {
     font-size: 26px;
     min-width: 45px;
     height: 100%;
@@ -94,18 +84,14 @@ nav.close li a .link_name {
     pointer-events: none;
 }
 
-.nav_links li a:hover .material-symbols-outlined,
+.nav_links li a:hover #link_icon,
 .nav_links li a:hover .link_name {
     color: #2d6872;
 }
 
-.nav_links li:hover {
+.nav_links li a:hover {
     background-color: #4e818a3b;
-    border-left: 3px solid #2d6872;
+    border-left: 4px solid #2d6872;
     transition: all 0.1s ease;
-    
 }
-
-
-
 

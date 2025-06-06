@@ -2,16 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 
 /* Variables */
-@import url("./variables.css");
+/* @import url("./variables.css"); */
 
 /* Sidebar */
-@import url("./sidebar.css");
+@import url("./_sidebar.css");
 
 /* Navbar */
-@import url("./navbar.css");
+@import url("./_navbar.css");
 
 /* Content */
-@import url("./content.css");
+@import url("./_content.css");
 
 
 * {
@@ -22,6 +22,19 @@
 
 body {
     font-family: "Poppins", sans-serif;
-    min-width: 100vh;
     background-color: #FFF;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 250px;
+    min-height: 100vh;
+    background-color: beige;
+}
+
+.main_content {
+    display: flex;
+    margin: 18px;
+    min-height: 100vh;
 }

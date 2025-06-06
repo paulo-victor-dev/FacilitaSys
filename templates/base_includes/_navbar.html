@@ -1,13 +1,40 @@
 {% load static %}
 
-<div class="top">
-    <span id="btn_menu" class="material-symbols-outlined">menu</span>
-
-    <div class="search_box">
-        <span id="search_icon" class="material-symbols-outlined">search</span>
-        <input type="text" placeholder="Pesquisar...">
+<nav>
+    <div class="menu">
+        <span id="btn_menu" class="material-icons-sharp">menu</span>
     </div>
 
-    <img src="{% static 'img/profile.jpg' %}" alt="">
-</div>
+    <div class="dropdown">
+        <div class="user">
+            <a class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                
+                <div class="user_photo">PV</div>
 
+                <div class="user_info">
+                    <span class="user_name">Paulo Victor</span>
+                    
+                    <span class="user_function">Administrador</span>
+                </div>
+            </a>
+
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">
+                    <span id="drop_icon"  class="material-icons-sharp">manage_accounts</span>
+                    <span class="drop_text">
+                        Configurações
+                    </span>
+                </a></li>
+
+                <li><hr class="dropdown-divider"></li>
+
+                <li><a class="dropdown-item" href="#">
+                    <span id="drop_icon" class="material-icons-sharp">logout</span>
+                    <span class="drop_text">
+                        Sair
+                    </span>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
