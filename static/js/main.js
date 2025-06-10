@@ -1,8 +1,8 @@
 const body = document.querySelector("body"),
-      sidebar = body.querySelector("nav"),
-      menu = body.querySelector("#btn_menu");
+      sidebar = body.querySelector(".sidebar"),
+      btn_toggle = body.querySelector(".btn_toggle");
 
-menu.addEventListener("click", () => {
+btn_toggle.addEventListener("click", () => {
     sidebar.classList.toggle("close");
     
 });

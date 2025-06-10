@@ -12,25 +12,28 @@
 </head>
 <body>
     {% if user.is_authenticated %}
-        <div class="wrapper">
+        <main class="main_area">
             {% include 'base_includes/_sidebar.html' %}
 
-            <div class="main_area">
+            <div class="main_content">
                 {% include 'base_includes/_navbar.html' %}
+            
 
-                <main class="main_content">
-                    <div class="content_title">
-                        <span class="content_title_text">{% block content_title %}{% endblock %}</span>
-                    </div>
-                    
-                    {% block main_content %}{% endblock %}
-                </main>
+                <div class="content_title">
+                    {% block content_title %}{% endblock %}
+                </div>
+
+                <div class="content_body">
+                    {% block content_body %}{% endblock %}
+                </div>
             </div>
-        </div>
+        </main>
+        
     {% else %}
         <main class="account_content">
             {% block account_content %}{% endblock %}
         </main>
+
     {% endif %}
 </body>
 </html>

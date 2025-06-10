@@ -1,75 +1,55 @@
-.main_content {
-    position: relative;
-    left: 250px;
-    height: 100vh;
-    width: calc(100% - 250px);
-    background-color: #FFF;
-    padding: 10px 14px;
-    transition: all 0.45s ease;
-}
-
-nav.close ~ .main_content {
-    left: 73px;
-    width: calc(100% - 73px);
-}
-
-.main_content .top {
+nav {
     position: fixed;
     display: flex;
-    top: 0;
-    left: 250px;
-    width: calc(100% - 250px);
-    justify-content: space-between;
     align-items: center;
-    padding: 10px 14px;
-    background-color: #FFF;
-    transition: all 0.45s ease;
+    justify-content: space-between;
+    top: 0;
+    width: calc(100% - 250px);
+    height: 70px;
+    z-index: 1;
+    background-color: red;
+    transition: all 0.35s ease;
 }
 
-nav.close ~ .main_content .top {
-    left: 73px;
-    width: calc(100% - 73px);
-}
-
-.main_content .top #btn_menu {
-    font-size: 30px;
-    color: gray;
-    cursor: pointer;
-}
-
-.main_content .top .search_box {
-    position: relative;
-    height: 45px;
-    max-width: 600px;
-    width: 100%;
-    margin: 0 30px;
-}
-
-.top .search_box input {
-    position: absolute;
-    border: 1px solid gainsboro;
-    background-color: #FFF;
-    padding: 0 25px 0 50px;
-    border-radius: 5px;
+.user_area {
+    display: flex;
     height: 100%;
-    width: 100%;
-    font-size: 15px;
-    font-weight: 400;
-    outline: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-right: 18px;
 }
 
-.top .search_box #search_icon {
-    position: absolute;
-    left: 15px;
-    font-size: 22px;
-    z-index: 10;
-    top: 50%;
-    transform: translateY(-50%);
-    color: gray;
+.user_area .user_info {
+    display: flex;
+    flex-direction: column;
 }
 
-.top img {
-    width: 40px;
+.user_area .user_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    color: var(--user-icon-text-color);
+    background-color: var(--user-icon-bg-color);
     border-radius: 50%;
+    font-weight: 600;
+    box-shadow: 0 0 2px 0 rgba(0,0,0,0.5);
 }
 
+.user_info .user_name {
+    font-size: 16px;
+}
+
+.user_info .user_role {
+    font-size: 13px;
+    opacity: 0.5;
+}
+
+
+/* Sidebar close events */
+.sidebar.close ~ nav {
+    /* width: calc(100% - 70px);
+    transition: all 0.35s ease; */
+}

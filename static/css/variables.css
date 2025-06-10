@@ -1,3 +1,10 @@
 :root {
-    --border-color: #;
+    --sidebar-bg-color: #324669;
+    --itens-color: #fff;
+    --itens-hover-color: #324669;
+    --itens-hover-bg-color: #f0f0f0;
+    --user-icon-bg-color: #4682B4;
+    --user-icon-text-color: #fff;
+    --toggle-color: #324669;
+    --divider-color: #fff;
 }
