@@ -15,16 +15,22 @@
         <main class="main_area">
             {% include 'base_includes/_sidebar.html' %}
 
-            <div class="main_content">
+            <div class="content_area">
                 {% include 'base_includes/_navbar.html' %}
-            
 
-                <div class="content_title">
-                    {% block content_title %}{% endblock %}
-                </div>
-
-                <div class="content_body">
-                    {% block content_body %}{% endblock %}
+                <div class="content">
+                    <div class="content_title_area">
+                        <span class="content_title_name">
+                            {% block content_title %}{% endblock %}
+                        </span>
+                        
+                        {% block search %}{% endblock %}
+                        
+                    </div>
+    
+                    <div class="content_body">
+                        {% block content_body %}{% endblock %}
+                    </div>
                 </div>
             </div>
         </main>

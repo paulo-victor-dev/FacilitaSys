@@ -13,6 +13,8 @@
 /* Content */
 @import url("./content.css");
 
+/* Dashboard */
+@import url("./dashboard.css");
 
 * {
     margin: 0;

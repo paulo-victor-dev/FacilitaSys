@@ -7,11 +7,81 @@
 {% endblock %}
 
 {% block content_title %}
-   Dashboard título
+   Dashboard
 {% endblock %}
 
 {% block content_body %}
-   <div>
-      Dashboard conteúdo
+   <div class="card_area">
+      <div class="card">
+         <span class="card_icon material-icons-sharp">attach_money</span>
+         
+         <div class="card_info">
+            <span class="card_title">
+               Vendas
+            </span>
+            <span class="card_body">
+               R$ 1500,00
+            </span>
+         </div>
+      </div>
+
+      <div class="card">
+         <span class="card_icon material-icons-sharp">shopping_cart</span>
+
+         <div class="card_info">
+            <span class="card_title">
+               Pedidos
+            </span>
+            <span class="card_body">
+               15
+            </span>
+         </div>
+      </div>
+
+      <div class="card">
+         <span class="card_icon material-icons-sharp">groups</span>
+
+         <div class="card_info">
+            <span class="card_title">
+               Usuários
+            </span>
+            <span class="card_body">
+               30
+            </span>
+         </div>
+      </div>
+
+      <div class="card">
+         <span class="card_icon material-icons-sharp">inventory_2</span>
+
+         <div class="card_info">
+            <span class="card_title">
+               Produtos
+            </span>
+            <span class="card_body">
+               215
+            </span>
+         </div>
+      </div>
    </div>
+{% endblock %}
+
+{% block search %}
+   <form class="search_area">
+      {% csrf_token %}
+
+      <select class="filter_menu" name="filter">
+         <option value="all" selected>ID</option>
+         <option value="all">Nome</option>
+         <option value="all">CPF</option>
+      </select>
+
+      <div class="search_group">
+         <input type="text" name="search" placeholder="Pesquisar...">
+         
+         <button type="submit">
+            <span class="search_icon material-icons-sharp" role="button">search</span>
+         </button>
+      </div>
+   </form>
 {% endblock %}

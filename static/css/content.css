@@ -1,12 +1,108 @@
-.main_content {
-    margin-left: 250px;
-    margin-top: 70px;
-    transition: margin-left 0.35s ease;
+.content_area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 75px 0 0 250px;
+    transition: margin-left 0.35s;
+}
+
+.content_area .content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+    min-height: 100vh;
+    background-color: var(--content-bg-color);
+}
+
+.content .content_title_area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 6px 0 rgba(0,0,0,0.05);
+    background-color: var(--navbar-bg-color);
+}
+
+.content_title_area .content_title_name {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.content_area .search_area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    gap: 10px;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.search_area .search_group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.search_area .filter_menu {
+    font-size: 14px;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    padding: 5px;
+    height: 100%;
+    cursor: pointer;
+    background-color: var(--navbar-bg-color);
+}
+
+.search_area input {
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 100%;
+    background-color: var(--navbar-bg-color);
+}
+
+.search_area button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    height: 30px;
+    width: 30px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    cursor: pointer;
+    rotate: 90deg;
+    transition: background-color 0.1s;
+    background-color: var(--user-icon-bg-color);
+}
+
+.search_area .search_icon {
+    color: var(--navbar-bg-color);
+    font-size: 25px;
 }
 
 
+/* Hover */
+.search_area button:hover {
+    background-color: #5498ca;
+    transition: background-color 0.1s;
+}
+
+/* Focus */
+.search_area input:focus,
+.search_area .filter_menu:focus {
+    outline: none;
+}
+
 /* Sidebar close events */
-.sidebar.close ~ .main_content {
+.sidebar.close ~ .content_area {
     margin-left: 70px;
-    transition: margin-left 0.35s ease;
+    transition: margin-left 0.35s;
 }

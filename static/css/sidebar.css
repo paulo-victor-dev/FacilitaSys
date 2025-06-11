@@ -19,11 +19,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    right: -14px;
+    right: -16px;
     top: 2.5%;
     font-size: 25px;
-    height: 25px;
-    width: 25px;
+    height: 30px;
+    width: 30px;
     border-radius: 8px;
     border: 2px solid var(--toggle-color);
     background-color: #fff;
@@ -60,7 +60,7 @@
     border-radius: 5px;
     background-color: var(--divider-color);
     height: 1px;
-    margin: 24px 0 12px 0;
+    margin: 20px 0 12px 0;
 }
 
 .menu_area {
@@ -86,7 +86,7 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    padding-left: 6px;
+    padding-left: 8px;
 }
 
 .item_link .item_icon {
@@ -102,10 +102,10 @@
     transition: opacity 0.2s ease;
 }
 
-/* Sidebar itens Hover */
+/* Hover */
 .item:hover {
     background-color: var(--itens-hover-bg-color);
-    transition: background-color 0.2s;
+    transition: background-color 0.2s ease;
 }
 
 .item:hover .item_link .item_icon,
