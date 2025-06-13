@@ -26,24 +26,6 @@
     border-radius: 5px;
 }
 
-.form_date .date_filter1 {
-    padding: 5px;
-    font-size: 14px;
-    border: 1px solid rgba(0,0,0,0.2);
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    height: 100%;
-    background-color: var(--navbar-bg-color);
-}
-
-.form_date .date_filter2 {
-    padding: 5px;
-    font-size: 14px;
-    border: 1px solid rgba(0,0,0,0.2);
-    height: 100%;
-    background-color: var(--navbar-bg-color);
-}
-
 .card_area {
     display: flex;
     align-items: stretch;
@@ -127,14 +109,8 @@
 }
 
 .card_content_area .card_content {
-    font-size: 25px;
+    font-size: 28px;
     font-weight: 500;
-}
-
-.card_content_area .card_subtitle {
-    font-size: 14px;
-    font-weight: 500;
-    opacity: 0.5;
 }
 
 

@@ -23,6 +23,10 @@ MY_APPS = [
     '_apps.dashboard',
 ]
 
+EXT_APPS = [
+    'django_flatpickr',
+]
+
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -32,7 +36,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-INSTALLED_APPS = MY_APPS + DJANGO_APPS
+INSTALLED_APPS = MY_APPS + EXT_APPS + DJANGO_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
