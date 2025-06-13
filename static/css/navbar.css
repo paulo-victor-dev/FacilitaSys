@@ -18,7 +18,7 @@ nav {
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    padding-right: 18px;
+    padding-right: 10px;
     cursor: pointer;
 }
 
@@ -49,6 +49,10 @@ nav {
     opacity: 0.5;
 }
 
+.user_area .user_dropdown_icon {
+    transition: transform 0.25s;
+}
+
 .navbar .dropdown_menu {
     opacity: 0;
     pointer-events: none;
@@ -57,8 +61,8 @@ nav {
     justify-content: center;
     position: absolute;
     top: 68px;
-    right: 5px;
-    width: 170px;
+    right: 15px;
+    width: 180px;
     border-radius: 5px;
     box-shadow: 0 0 8px 0 rgba(0,0,0,0.12);
     background-color: var(--dropdownmenu-bg-color);
@@ -114,13 +118,17 @@ nav {
 
 
 /* User dropdown_menu events */
-.user_area.active ~ .dropdown_menu{
+.user_area.active ~ .dropdown_menu {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
     transition: opacity 0.25s, transform 0.25s ease;
 }
 
+.user_area.active .user_dropdown_icon {
+    transform: rotate(180deg);
+    transition: transform 0.25s;
+}
 
 
 /* Sidebar close events */

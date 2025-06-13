@@ -1,47 +1,145 @@
-.card_area {
+.content_area .open_date_modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.1s;
+    background-color: var(--user-icon-bg-color);
+}
+
+.open_date_modal .date_modal_icon {
+    color: var(--navbar-bg-color);
+    font-size: 25px;
+}
+
+.content_area .form_date {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 5px;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.form_date .date_filter1 {
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    height: 100%;
+    background-color: var(--navbar-bg-color);
+}
+
+.form_date .date_filter2 {
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid rgba(0,0,0,0.2);
+    height: 100%;
+    background-color: var(--navbar-bg-color);
+}
+
+.card_area {
+    display: flex;
+    align-items: stretch;
     flex-wrap: wrap;
     gap: 10px;
 }
 
 .card {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    width: 180px;
-    gap: 10px;
+    flex: 1 1 300px;
+    min-width: 260px;
+    max-width: 100%;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 0 6px 0 rgba(0,0,0,0.08);
     background-color: var(--navbar-bg-color);
 }
 
-.card .card_icon {
+.card .card_top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.card_top .card_title {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.card_top .period {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 60px;
-    width: 60px;
-    font-size: 50px;
+    font-size: 13px;
+    font-weight: 500;
+    height: 20px;
+    border-radius: 10px;
+    padding: 10px;
     color: var(--navbar-bg-color);
     background-color: var(--user-icon-bg-color);
-    border-radius: 50%;
-    padding: 5px;
+}
+
+.card .card_divider {
+    border: none;
+    height: 1px;
+    width: 100%;
+    margin: 15px 0 15px 0;
+    opacity: 0.2;
+    background-color: black;
 }
 
 .card .card_info {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
-.card_info .card_title { 
-    font-size: 19px;
+.card_info .icon_area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-color: var(--user-icon-bg-color);
+}
+
+.icon_area .card_icon {
+    font-size: 35px;
+    color: var(--navbar-bg-color);
+}
+
+.card_info .card_content_area {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.card_content_area .card_content {
+    font-size: 25px;
     font-weight: 500;
 }
 
-.card_info .card_body { 
-    font-size: 17px;
+.card_content_area .card_subtitle {
+    font-size: 14px;
+    font-weight: 500;
     opacity: 0.5;
+}
+
+
+/* Hover */
+.open_date_modal:hover {
+    background-color: #5498ca;
+    transition: background-color 0.1s;
 }

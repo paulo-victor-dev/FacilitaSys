@@ -13,61 +13,125 @@
 {% block content_body %}
    <div class="card_area">
       <div class="card">
-         <span class="card_icon material-icons-sharp">attach_money</span>
-         
-         <div class="card_info">
+         <div class="card_top">
             <span class="card_title">
                Vendas
             </span>
-            <span class="card_body">
-               R$ 1500,00
+            <span class="period">
+               Mensal
             </span>
+         </div>
+
+         <hr class="card_divider">
+
+         <div class="card_info">
+            <div class="icon_area">
+               <span class="card_icon material-icons-sharp">attach_money</span>
+            </div>
+
+            <div class="card_content_area">
+               <span class="card_content">
+                  R$ 1500,00
+               </span>
+
+               <span class="card_subtitle">
+                  Vendas por mês
+               </span>
+            </div>
          </div>
       </div>
 
       <div class="card">
-         <span class="card_icon material-icons-sharp">shopping_cart</span>
-
-         <div class="card_info">
+         <div class="card_top">
             <span class="card_title">
                Pedidos
             </span>
-            <span class="card_body">
-               15
+            <span class="period">
+               Mensal
             </span>
+         </div>
+
+         <hr class="card_divider">
+
+         <div class="card_info">
+            <div class="icon_area">
+               <span class="card_icon material-icons-sharp">shopping_cart</span>
+            </div>
+
+            <div class="card_content_area">
+               <span class="card_content">
+                  128
+               </span>
+
+               <span class="card_subtitle">
+                  Pedidos por mês
+               </span>
+            </div>
          </div>
       </div>
 
       <div class="card">
-         <span class="card_icon material-icons-sharp">groups</span>
+         <div class="card_top">
+            <span class="card_title">
+               Giro de estoque
+            </span>
+            <span class="period">
+               Mensal
+            </span>
+         </div>
+
+         <hr class="card_divider">
 
          <div class="card_info">
-            <span class="card_title">
-               Usuários
-            </span>
-            <span class="card_body">
-               30
-            </span>
+            <div class="icon_area">
+               <span class="card_icon material-icons-sharp">inventory_2</span>
+            </div>
+
+            <div class="card_content_area">
+               <span class="card_content">
+                  5
+               </span>
+
+               <span class="card_subtitle">
+                  Renovações por mês
+               </span>
+            </div>
          </div>
       </div>
 
       <div class="card">
-         <span class="card_icon material-icons-sharp">inventory_2</span>
+         <div class="card_top">
+            <span class="card_title">
+               Clientes
+            </span>
+            <span class="period">
+               Mensal
+            </span>
+         </div>
+
+         <hr class="card_divider">
 
          <div class="card_info">
-            <span class="card_title">
-               Produtos
-            </span>
-            <span class="card_body">
-               215
-            </span>
+            <div class="icon_area">
+               <span class="card_icon material-icons-sharp">groups</span>
+            </div>
+
+            <div class="card_content_area">
+               <span class="card_content">
+                  142
+               </span>
+
+               <span class="card_subtitle">
+                  Clientes por mês
+               </span>
+            </div>
          </div>
       </div>
    </div>
 {% endblock %}
 
 {% block search %}
-   <form class="search_area">
+   <!-- <form class="form_search">
       {% csrf_token %}
 
       <select class="filter_menu" name="filter">
@@ -80,8 +144,28 @@
          <input type="text" name="search" placeholder="Pesquisar...">
          
          <button type="submit">
-            <span class="search_icon material-icons-sharp" role="button">search</span>
+            <span class="search_icon material-icons-sharp">search</span>
          </button>
       </div>
+   </form> -->
+
+   <button class="open_date_modal" type="button">
+      <span class="date_modal_icon material-icons-sharp">edit_calendar</span>
+   </button>
+
+   <form class="form_date">
+      {% csrf_token %}
+
+      <div>
+         
+      </div>
+      <label>
+         De: <input class="start_date" type="date" name="start_date">
+      </label>
+
+      <label>
+         Até: <input class="end_date" type="date" name="end_date">
+      </label>
+
    </form>
 {% endblock %}
