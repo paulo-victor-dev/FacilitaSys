@@ -7,45 +7,46 @@
 {% endblock %}
 
 {% block account_content %}
-   <div class="container vh-100">
-      <div class="row align-items-center justify-content-center h-100 p-0">
-         <div class="col-auto">
+   <div class="login_area">
+      <form class="login_form" method="post">
+         {% csrf_token %}
 
-            <!-- Logo -->
-            <div class="d-flex justify-content-center mb-3">
-               <img src="{% static 'img/logo_facilitasys_completo.png' %}" alt="logo_facilitasys_com_letras" width="160" height="110">
+         <h3 class="login_title">Login</h3>
+
+         {% if form.non_field_errors %}
+            <div class="errors">
+               {% for error in form.non_field_errors %}
+                  {{ error }}
+               {% endfor %}
             </div>
-            <!-- /Logo -->
+         {% endif %}
 
-            <div class="text-center mb-4">
-               <h5 class="fw-normal mb-3">Informe seus dados para acessar sua conta</h5>
-            </div>
+         <div class="fields_area">
+            <label class="email_field">
+               <span class="email_text">E-mail</span>
+               <input class="email_input" type="email" name="username">
+            </label>
+            {% for error in form.username.errors %}
+               <div class="field_error">{{ error }}</div>
+            {% endfor %}
+   
+            <label class="password_field">
+               <span class="password_text">Senha</span>
+               <input class="password_input" type="password" name="password">
+            </label>
+            {% for error in form.password.errors %}
+               <div class="field_error">{{ error }}</div>
+            {% endfor %}
 
-            <form method="post">
-               {% csrf_token %}
-
-               <!-- Errors -->
-               {% include 'account_includes/_errors.html' %}
-
-               <div class="mt-4">
-                  <!-- Email field -->
-                  <div class="form-floating mb-3">
-                     {% include 'account_includes/_email_field.html' %}
-                  </div>
-                  
-                  <!-- Password field -->
-                  <div class="form-floating">
-                     {% include 'account_includes/_password_field.html' %}
-                  </div>
-               </div>
-
-               <div class="my-3 text-end">
-                  <a href="{% url 'account:password_reset' %}" class="text-decoration-none text-dark">Esqueceu sua senha?</a>
-               </div>
-
-               <button class="btn btn-primary fw-semibold w-100" type="submit">ENTRAR</button>
-            </form>
+            <button class="submit_btn" type="submit">ENTRAR</button>
          </div>
-      </div>
-   </div>   
+
+
+         <div class="register">
+            <span class="register_text">
+               Ainda não tem uma conta? <a class="register_link" href="#">Cadastre-se</a>
+            </span>
+         </div>
+      </form>
+   </div>
 {% endblock %}
