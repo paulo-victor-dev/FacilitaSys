@@ -1,6 +1,6 @@
 {% load static %}
 
-<aside class="sidebar">
+<aside class="sidebar close">
     <span class="btn_toggle material-icons-sharp">chevron_left</span>
 
     <div class="logo_area">
@@ -14,14 +14,14 @@
     <div class="menu_area">
         <ul class="menu_itens">
             <li class="item">
-                <a class="item_link" href="#">
+                <a class="item_link" href="{% url 'dashboard:overview' %}">
                     <span class="item_icon material-icons-sharp">dashboard</span>
                     <span class="item_name">Dashboard</span>
                 </a>
             </li>
 
             <li class="item">
-                <a class="item_link" href="#">
+                <a class="item_link" href="{% url 'account:users' %}">
                     <span class="item_icon material-icons-sharp">people</span>
                     <span class="item_name">Usuários</span>
                 </a>

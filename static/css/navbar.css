@@ -99,12 +99,26 @@ nav {
     padding: 5px;
 }
 
-.dropdown_link .dropdown_item_icon {
+.dropdown_item .dropdown_link_btn {
+    display: flex;
+    align-items: center;
+    height: 38px;
+    width: 100%;
+    gap: 8px;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.dropdown_link .dropdown_item_icon,
+.dropdown_link_btn .dropdown_item_icon {
     font-size: 21px;
     color: black;
 }
 
-.dropdown_link .dropdown_item_name {
+.dropdown_link .dropdown_item_name,
+.dropdown_link_btn .dropdown_item_name {
     font-size: 14px;
     color: black;
 }

@@ -24,7 +24,7 @@ MY_APPS = [
 ]
 
 EXT_APPS = [
-    'django_flatpickr',
+
 ]
 
 DJANGO_APPS = [
@@ -81,6 +81,8 @@ DATABASES = {
 # Authentication configs
 
 AUTH_USER_MODEL = 'account.User'
+LOGIN_URL = 'account:login'
+LOGIN_REDIRECT_URL = 'dashboard:overview'
 
 
 # Email configs

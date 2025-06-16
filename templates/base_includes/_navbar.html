@@ -6,11 +6,11 @@
 
         <div class="user_info">
             <div class="user_name">
-                Paulo Victor
+                {{ user.get_full_name }}
             </div>
     
             <div class="user_role">
-                Administrador
+                {{ user.get_user_type_display }}
             </div>
         </div>
 
@@ -31,10 +31,15 @@
             </li>
 
             <li class="dropdown_item">
-                <a class="dropdown_link" href="#">
-                    <span class="dropdown_item_icon material-icons-sharp">logout</span>
-                    <span class="dropdown_item_name">Sair</span>
-                </a>
+                <form class="form_logout" method="post" action="{% url 'account:logout' %}">
+                    {% csrf_token %}
+
+                    <button class="dropdown_link_btn" type="submit">
+                        <span class="dropdown_item_icon material-icons-sharp">logout</span>
+
+                        <span class="dropdown_item_name">Sair</span>
+                    </button>
+                </form>
             </li>
         </ul>
     </div>

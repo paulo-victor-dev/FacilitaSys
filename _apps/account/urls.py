@@ -8,7 +8,10 @@ app_name = 'account'
 urlpatterns = [
     # Authentication
     path('login/', LoginView.as_view(), name='login'),
-    path('logout/', LogouView.as_view(), name='logout'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+
+    # Users list
+    path('users/', UsersListView.as_view(), name='users'),
 
     # Password reset
     path('password_reset/', PasswordResetView.as_view(), name='password_reset'),

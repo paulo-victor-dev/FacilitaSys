@@ -10,7 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Root redirect
-    path('', RedirectView.as_view(url='dashboard/'), name='root_redirect'),
+    path('', RedirectView.as_view(url='dashboard/overview/'), name='root_redirect'),
 
     # Apps
     path('account/', include(('_apps.account.urls', 'account'), namespace='account')),

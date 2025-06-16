@@ -1,18 +1,25 @@
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import views as auth_views
+from django.views.generic import ListView
 
 from .forms import LoginForm, PasswordResetForm
+from .models import User
 
 
 class LoginView(auth_views.LoginView):
     authentication_form = LoginForm
     template_name = 'login.html'
-    success_url = reverse_lazy('dashboard')
 
 
-class LogouView(auth_views.LogoutView):
+class LogoutView(auth_views.LogoutView):
     next_page = reverse_lazy('account:login')
-        
+
+
+class UsersListView(LoginRequiredMixin, ListView):
+    model = User
+    template_name = 'users.html'
+
 
 class PasswordResetView(auth_views.PasswordResetView):
     form_class = PasswordResetForm

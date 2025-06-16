@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block page_title %}
+   Usuários
+{% endblock %}
+
+{% block content_title %}
+   Usuários
+{% endblock %}
+
+{% block content_body %}
+    <div>Usuários content</div>
+{% endblock %}
+
+{% block search %}
+    <form class="form_search">
+      {% csrf_token %}
+
+      <select class="filter_menu" name="filter">
+         <option value="all" selected>ID</option>
+         <option value="all">Nome</option>
+         <option value="all">CPF</option>
+      </select>
+
+      <div class="search_group">
+         <input type="text" name="search" placeholder="Pesquisar...">
+         
+         <button type="submit">
+            <span class="search_icon material-icons-sharp">search</span>
+         </button>
+      </div>
+   </form>
+{% endblock %}

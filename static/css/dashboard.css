@@ -1,31 +1,3 @@
-.content_area .open_date_modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    height: 30px;
-    width: 30px;
-    padding: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.1s;
-    background-color: var(--user-icon-bg-color);
-}
-
-.open_date_modal .date_modal_icon {
-    color: var(--navbar-bg-color);
-    font-size: 25px;
-}
-
-.content_area .form_date {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px;
-    height: 100%;
-    border-radius: 5px;
-}
-
 .card_area {
     display: flex;
     align-items: stretch;
@@ -113,9 +85,49 @@
     font-weight: 500;
 }
 
+.content_area .form_period {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    height: 100%;
+}
+
+.form_period .period_dropdown {
+    font-size: 14px;
+    height: 100%;
+    padding: 5px;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: var(--navbar-bg-color);
+}
+
+.form_period button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    height: 30px;
+    width: 30px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.1s;
+    background-color: var(--user-icon-bg-color);
+}
+
+.form_period .period_icon {
+    color: var(--navbar-bg-color);
+    font-size: 25px;
+}
+
 
 /* Hover */
-.open_date_modal:hover {
-    background-color: #5498ca;
-    transition: background-color 0.1s;
+
+
+/* Focus */
+.form_period .period_dropdown:focus {
+    outline: none;
 }
