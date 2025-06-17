@@ -8,11 +8,11 @@ class UserAdmin(BaseUserAdmin):
     model = User
 
     # List fields
-    list_display = ('first_name', 'email', 'user_type', 'date_joined', 'is_active')
+    list_display = ('first_name', 'email', 'user_type', 'document', 'date_joined', 'is_active')
 
     list_filter = ('user_type', 'is_active')
 
-    search_fields = ('first_name', 'email', 'last_name')
+    search_fields = ('first_name', 'email', 'last_name', 'document')
 
     ordering = ('first_name',)
 
@@ -32,7 +32,7 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2', 'first_name', 'last_name', 'user_type', 'is_active', 'is_staff', 'is_superuser')
+            'fields': ('email', 'password1', 'password2', 'first_name', 'last_name', 'document', 'user_type', 'is_active', 'is_staff', 'is_superuser')
         }),
     )
 

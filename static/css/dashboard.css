@@ -14,8 +14,8 @@
     max-width: 100%;
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 0 0 6px 0 rgba(0,0,0,0.08);
-    background-color: var(--navbar-bg-color);
+    box-shadow: 0 0 6px 0 var(--box-shadow-01);
+    background-color: var(--bg-color1);
 }
 
 .card .card_top {
@@ -39,8 +39,8 @@
     height: 20px;
     border-radius: 10px;
     padding: 10px;
-    color: var(--navbar-bg-color);
-    background-color: var(--user-icon-bg-color);
+    color: var(--text-color1);
+    background-color: var(--bg-color3);
 }
 
 .card .card_divider {
@@ -49,7 +49,7 @@
     width: 100%;
     margin: 15px 0 15px 0;
     opacity: 0.2;
-    background-color: black;
+    background-color: var(--bg-color5);
 }
 
 .card .card_info {
@@ -66,12 +66,12 @@
     height: 70px;
     width: 70px;
     border-radius: 50%;
-    background-color: var(--user-icon-bg-color);
+    background-color: var(--bg-color3);
 }
 
 .icon_area .card_icon {
     font-size: 35px;
-    color: var(--navbar-bg-color);
+    color: var(--text-color1);
 }
 
 .card_info .card_content_area {
@@ -98,10 +98,10 @@
     height: 100%;
     padding: 5px;
     cursor: pointer;
-    border: 1px solid rgba(0,0,0,0.2);
+    border: 1px solid var(--box-shadow-01);
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    background-color: var(--navbar-bg-color);
+    background-color: var(--bg-color1);
 }
 
 .form_period button {
@@ -114,17 +114,14 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.1s;
-    background-color: var(--user-icon-bg-color);
+    transition: background-color var(--transition-015);
+    background-color: var(--bg-color3);
 }
 
 .form_period .period_icon {
-    color: var(--navbar-bg-color);
+    color: var(--bg-color1);
     font-size: 25px;
 }
-
-
-/* Hover */
 
 
 /* Focus */

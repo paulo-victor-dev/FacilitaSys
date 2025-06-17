@@ -14,7 +14,7 @@ class LoginForm(auth_forms.AuthenticationForm):
                 user = User.objects.get(email=email)
                 
                 if not user.check_password(password):
-                    raise forms.ValidationError('Por favor, entre com um email e senha corretos.')
+                    raise forms.ValidationError('Email ou senha incorretos.')
                 
             except User.DoesNotExist:
                 raise forms.ValidationError('Nenhuma conta foi encontrada com este email.')

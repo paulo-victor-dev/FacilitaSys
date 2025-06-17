@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     margin: 75px 0 0 250px;
-    transition: margin-left 0.35s;
+    transition: margin-left var(--transition-035);
 }
 
 .content_area .content {
@@ -12,7 +12,7 @@
     padding: 10px;
     gap: 10px;
     min-height: 100vh;
-    background-color: var(--content-bg-color);
+    background-color: var(--bg-color2);
 }
 
 .content .content_title_area {
@@ -22,8 +22,8 @@
     height: 60px;
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 0 0 6px 0 rgba(0,0,0,0.05);
-    background-color: var(--navbar-bg-color);
+    box-shadow: 0 0 6px 0 var(--box-shadow-01);
+    background-color: var(--bg-color1);
 }
 
 .content_title_area .content_title_name {
@@ -50,22 +50,22 @@
 
 .form_search .filter_menu {
     font-size: 14px;
-    border: 1px solid rgba(0,0,0,0.2);
+    border: 1px solid var(--box-shadow-01);
     border-radius: 5px;
     padding: 5px;
     height: 100%;
     cursor: pointer;
-    background-color: var(--navbar-bg-color);
+    background-color: var(--bg-color1);
 }
 
 .form_search input {
     padding: 5px;
     font-size: 14px;
-    border: 1px solid rgba(0,0,0,0.2);
+    border: 1px solid var(--box-shadow-01);
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     height: 100%;
-    background-color: var(--navbar-bg-color);
+    background-color: var(--bg-color1);
 }
 
 .form_search button {
@@ -79,20 +79,20 @@
     border-top-left-radius: 5px;
     cursor: pointer;
     rotate: 90deg;
-    transition: background-color 0.1s;
-    background-color: var(--user-icon-bg-color);
+    transition: background-color var(--transition-015);
+    background-color: var(--bg-color3);
 }
 
 .form_search .search_icon {
-    color: var(--navbar-bg-color);
+    color: var(--bg-color1);
     font-size: 25px;
 }
 
 
 /* Hover */
 .form_search button:hover {
-    background-color: #5498ca;
-    transition: background-color 0.1s;
+    background-color: var(--bg-color6);
+    transition: background-color var(--transition-015);
 }
 
 /* Focus */
@@ -104,5 +104,5 @@
 /* Sidebar close events */
 .sidebar.close ~ .content_area {
     margin-left: 70px;
-    transition: margin-left 0.35s;
+    transition: margin-left var(--transition-035);
 }

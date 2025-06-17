@@ -11,10 +11,14 @@
       <form class="login_form" method="post">
          {% csrf_token %}
 
-         <h3 class="login_title">Login</h3>
+         <div class="login_title_area">
+            <span class="login_title">Login</span>
+         </div>
+
+         <hr class="login_divider">
 
          {% if form.non_field_errors %}
-            <div class="errors">
+            <div class="non_field_errors">
                {% for error in form.non_field_errors %}
                   {{ error }}
                {% endfor %}
@@ -22,30 +26,44 @@
          {% endif %}
 
          <div class="fields_area">
-            <label class="email_field">
-               <span class="email_text">E-mail</span>
-               <input class="email_input" type="email" name="username">
-            </label>
-            {% for error in form.username.errors %}
-               <div class="field_error">{{ error }}</div>
-            {% endfor %}
-   
-            <label class="password_field">
-               <span class="password_text">Senha</span>
-               <input class="password_input" type="password" name="password">
-            </label>
-            {% for error in form.password.errors %}
-               <div class="field_error">{{ error }}</div>
-            {% endfor %}
+            <div class="input_area">
+               <input class="{% if form.username.errors or form.non_field_errors %}invalid_input{% endif %}"
+               type="email"
+               name="username"
+               id="email_input"
+               placeholder=""
+               value="{{ form.username.value|default_if_none:'' }}">
 
-            <button class="submit_btn" type="submit">ENTRAR</button>
-         </div>
+               <label for="email_input">Email</label>
 
+               <span class="field_icon material-icons-sharp">person</span>
 
-         <div class="register">
-            <span class="register_text">
-               Ainda não tem uma conta? <a class="register_link" href="#">Cadastre-se</a>
-            </span>
+               {% for error in form.username.errors %}
+                  <div class="field_error">{{ error }}</div>
+               {% endfor %}
+            </div>
+
+            <div class="input_area">
+               <input class="{% if form.password.errors or form.non_field_errors %}invalid_input{% endif %}" 
+               type="password"
+               name="password" 
+               id="password_input" 
+               placeholder=""
+               value="{{ form.password.value|default_if_none:'' }}">
+
+               <label for="password_input">Senha</label>
+
+               <span class="field_icon material-icons-sharp">lock</span>
+               
+               {% for error in form.password.errors %}
+                  <div class="field_error">{{ error }}</div>
+               {% endfor %}
+            </div>
+            
+            <button class="submit_btn" type="submit">
+               Entrar
+               <span class="submit_icon material-icons-sharp">login</span>
+            </button>
          </div>
       </form>
    </div>

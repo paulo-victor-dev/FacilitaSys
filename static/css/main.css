@@ -1,9 +1,7 @@
 /* Font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 
-/* Variables */
-@import url("./variables.css");
-
+/* Login */
 @import url("./login.css");
 
 /* Sidebar */
@@ -17,6 +15,31 @@
 
 /* Dashboard */
 @import url("./dashboard.css");
+
+:root {
+    --bg-color1: #fff;
+    --bg-color2: #f0f4f5;
+    --bg-color3: #4682B4;
+    --bg-color4: #324669;
+    --bg-color5: #000000;
+    --bg-color6: #5498ca;
+
+    --text-color1: #fff;
+    --text-color2: #000000;
+    --text-color3: #324669;
+    --text-color4: #4682B4;
+    
+    --box-shadow-01: rgba(0, 0, 0, 0.1);
+    --box-shadow-03: rgba(0, 0, 0, 0.3);
+    --box-shadow-05: rgba(0, 0, 0, 0.5);
+
+    --transition-015: 0.15s ease;
+    --transition-025: 0.25s ease;
+    --transition-03: 0.3s ease;
+    --transition-035: 0.35s ease;
+
+    --error-color: #ff3c2e;
+}
 
 * {
     margin: 0;

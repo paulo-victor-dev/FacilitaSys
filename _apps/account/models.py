@@ -32,11 +32,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     USER_TYPE_CHOICES = (
         ('admin', 'Administrador'),
         ('funcionario', 'Funcionário'),
+        ('cliente', 'Cliente'),
     )
 
     first_name = models.CharField(max_length=50, blank=True, verbose_name='Nome')
     last_name = models.CharField(max_length=50, blank=True, verbose_name='Sobrenome')
-    email = models.EmailField(unique=True)
+    
+    email = models.EmailField(unique=True, verbose_name='Email')
+
+    document = models.CharField(max_length=14, unique=True, blank=True, null=True, verbose_name='CPF/CNPJ')
 
     is_active = models.BooleanField(
         default=False, 

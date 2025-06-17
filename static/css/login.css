@@ -1,3 +1,8 @@
+.account_content {
+    padding: 15px;
+    background-color: var(--bg-color2);
+}
+
 .account_content .login_area {
     display: flex;
     align-items: center;
@@ -10,10 +15,34 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 400px;
     border-radius: 8px;
-    gap: 10px;
     padding: 15px;
-    box-shadow: 0 0 6px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 0 6px 0 var(--box-shadow-01);
+    background-color: var(--bg-color1);
+}
+
+.login_form .login_title_area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.login_form .login_divider {
+    border: none;
+    border-radius: 10px;
+    margin: 8px 0 20px 0;
+    width: 100%;
+    height: 1px;
+    opacity: 0.2;
+    background-color: var(--bg-color5);
+}
+
+.login_form .login_title {
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--text-color4);
 }
 
 .login_form .fields_area {
@@ -21,5 +50,118 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
     gap: 10px;
+}
+
+.fields_area .input_area {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.input_area input {
+    font-size: 16px;
+    height: 55px;
+    padding: 10px 50px 10px 20px;
+    border-radius: 30px;
+    border: 1px solid var(--box-shadow-03);
+    outline: none;
+    transition: all var(--transition-015);
+    background-color: transparent;
+}
+
+.input_area label {
+    position: absolute;
+    pointer-events: none;
+    top: 16px;
+    left: 20px;
+    color: var(--box-shadow-05);
+    transition: all var(--transition-015);
+}
+
+.input_area .field_icon {
+    position: absolute;
+    pointer-events: none;
+    top: 15px;
+    right: 20px;
+    color: var(--box-shadow-05);
+    transition: all var(--transition-015);
+}
+
+.fields_area .submit_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 30px;
+    color: var(--text-color1);
+    transition: all var(--transition-015);
+    background-color: var(--bg-color3);
+}
+
+
+/* Errors */
+.login_form .non_field_errors {
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    padding: 0 10px 10px;
+    border-radius: 5px;
+    color: var(--error-color);
+}
+
+.fields_area .input_area .field_error {
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    padding-left: 10px;
+    color: var(--error-color);
+}
+
+.input_area input.invalid_input {
+    border: 1px solid var(--error-color);
+}
+
+.input_area input.invalid_input ~ label,
+.input_area input.invalid_input ~ .field_icon {
+    color: var(--error-color);
+}
+
+
+/* Focus */
+.input_area input:focus {
+    border: 1px solid var(--bg-color3);
+    transition: all var(--transition-015);
+}
+
+.input_area input:focus ~ label,
+.input_area input:not(:placeholder-shown) ~ label {
+    top: -11px;
+    left: 25px;
+    padding: 0 5px;
+    font-size: 15px;
+    color: var(--text-color4);
+    transition: all var(--transition-015);
+    background-color: var(--bg-color1);
+}
+
+.input_area input:focus ~ .field_icon {
+    color: var(--text-color4);
+    transition: all var(--transition-015);
+}
+
+/* Hover */
+.login_form .submit_btn:hover {
+    background-color: var(--bg-color6);
+    transition: all var(--transition-015);
 }
