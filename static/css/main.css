@@ -23,11 +23,17 @@
     --bg-color4: #324669;
     --bg-color5: #000000;
     --bg-color6: #5498ca;
+    --bg-color7: #b6d7a8;
+    --bg-color8: #ea9999;
 
     --text-color1: #fff;
     --text-color2: #000000;
     --text-color3: #324669;
     --text-color4: #4682B4;
+    --text-color5: #274e13;
+    --text-color6: #990000;
+
+    --border-color1: #cecece;
     
     --box-shadow-01: rgba(0, 0, 0, 0.1);
     --box-shadow-03: rgba(0, 0, 0, 0.3);
@@ -48,4 +54,10 @@
     list-style-type: none;
     text-decoration: none;
     font-family: "Poppins", sans-serif;
+}
+
+.main_area {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }

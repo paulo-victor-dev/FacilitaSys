@@ -11,7 +11,8 @@
     flex-direction: column;
     padding: 10px;
     gap: 10px;
-    min-height: 100vh;
+    height: 100%;
+    overflow: hidden;
     background-color: var(--bg-color2);
 }
 
@@ -86,6 +87,73 @@
 .form_search .search_icon {
     color: var(--bg-color1);
     font-size: 25px;
+}
+
+/* Table */
+.table_area {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    min-height: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 6px 0 var(--box-shadow-03);
+    background-color: var(--bg-color1);
+}
+
+table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    background-color: transparent;
+}
+
+thead tr {
+    position: sticky;
+    font-size: 15px;
+    font-weight: 500;
+    top: 0;
+    height: 30px;
+    padding: 12px;
+    z-index: 1;
+    background-color: var(--bg-color2);
+}
+
+tbody tr {
+    font-size: 13px;
+    opacity: 0.8;
+    border-top: 1px solid var(--border-color1);
+}
+
+th {
+    height: 30px;
+    padding: 12px;
+}
+
+.row_icon_area {
+    text-align: center;
+}
+
+.row_icon_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.status.active {
+    text-align: center;
+    border-radius: 5px;
+    color: var(--text-color5);
+    background-color: var(--bg-color7);
+}
+
+.status.inactive {
+    text-align: center;
+    border-radius: 5px;
+    color: var(--text-color6);
+    background-color: var(--bg-color8);
 }
 
 

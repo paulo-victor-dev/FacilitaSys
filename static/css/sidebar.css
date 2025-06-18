@@ -9,7 +9,7 @@
     padding: 12px;
     background-color: var(--bg-color4);
     transition: all var(--transition-035);
-    z-index: 2;
+    z-index: 3;
 }
 
 .sidebar .btn_toggle {

@@ -32,34 +32,386 @@
 {% endblock %}
 
 {% block content_body %}
-   <table>
-      <thead>
-         <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>CPF/CNPJ</th>
-            <th>Tipo de usuário</th>
-            <th>Conta ativa?</th>
-         </tr>
-      </thead>
-      <tbody>
-         {% for user in User.objects.all %}
-         <tr>
-            <th>{{ user.pk }}</th>
-            <th>{{ user.get_full_name }}</th>
-            <th>{{ user.email }}</th>
-            <th>{{ user.document }}</th>
-            <th>{{ user.user_type }}</th>
-            <th>
-               {% if user.is_active %}
-                  Ativa
-               {% else %}
-                  inativa
-               {% endif %}
-            </th>
-         </tr>
-         {% endfor %}
-      </tbody>
-   </table>
+   <div class="table_area">
+      <!-- <table>
+         <thead>
+            <tr>
+               <th>ID</th>
+               <th>NOME</th>
+               <th>EMAIL</th>
+               <th>CPF/CNPJ</th>
+               <th>TIPO DE USUÁRIO</th>
+               <th>STATUS</th>
+               <th></th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for user in user_list %}
+               <tr>
+                  <th>{{ user.pk }}</th>
+                  <th>{{ user.get_full_name }}</th>
+                  <th>{{ user.email }}</th>
+                  <th>
+                     {% if user.document %}
+                        {{ user.document }}
+                     {% else %}
+                        -
+                     {% endif %}
+                  </th>
+                  <th>{{ user.get_user_type_display }}</th>
+                  <th>
+                  {% if user.is_active %}
+                     <p class="status active">Ativa</p>
+                  {% else %}
+                     <p class="status inactive">Inativa</p>
+                  {% endif %}
+                  </th>
+                  <th class="row_icon_area">
+                     <button class="row_icon_btn" type="button">
+                        <span class="material-icons-sharp">more_vert</span>
+                     </button>
+                  </th>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table> -->
+      <table>
+         <thead>
+            <tr>
+               <th>ID</th>
+               <th>NOME</th>
+               <th>EMAIL</th>
+               <th>CPF/CNPJ</th>
+               <th>TIPO DE USUÁRIO</th>
+               <th>STATUS</th>
+               <th></th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+            <tr>
+               <th>1</th>
+               <th>Paulo v</th>
+               <th>Paulo@teste.com</th>
+               <th>
+                  12345678989
+               </th>
+               <th>Administrador</th>
+               <th>
+               Ativa
+               </th>
+               <th class="row_icon_area">
+                  <button class="row_icon_btn" type="button">
+                     <span class="material-icons-sharp">more_vert</span>
+                  </button>
+               </th>
+            </tr>
+         </tbody>
+      </table>
+   </div>
 {% endblock %}
