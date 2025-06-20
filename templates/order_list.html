@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+   Pedidos
+{% endblock %}
+
+{% block content_title %}
+   Pedidos
+{% endblock %}
+
+{% block search %}
+    <form class="form_search">
+      {% csrf_token %}
+
+      <select class="filter_menu" name="filter">
+         <option value="id" selected>ID</option>
+         <option value="customer_name">Cliente</option>
+         <option value="status">Status</option>
+      </select>
+
+      <div class="search_group">
+         <input type="text" name="search" placeholder="Pesquisar...">
+         
+         <button type="submit">
+            <span class="search_icon material-icons-sharp">search</span>
+         </button>
+      </div>
+   </form>
+{% endblock %}
+
+{% block content_body %}
+   <div class="table_area">
+      <table>
+         <thead>
+            <tr>
+               <th>ID</th>
+               <th>CLIENTE</th>
+               <th>QTD. ITENS</th>
+               <th>TOTAL</th>
+               <th>STATUS</th>
+               <th></th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for order in orders %}
+               <tr>
+                  <th>{{ order.pk }}</th>
+                  <th>{{ order.customer }}</th>
+                  <th>{{ order.total_itens }}</th>
+                  <th>R$ {{ order.total }}</th>
+                  <th>
+                     {% if order.get_status_display == 'Finalizado' %}
+                        <p class="status active">{{ order.get_status_display }}</p>
+
+                     {% elif order.get_status_display == 'Cancelado' %}
+                        <p class="status inactive">{{ order.get_status_display }}</p>
+
+                     {% else %}
+                        <p class="status pendent">{{ order.get_status_display }}</p>
+                     {% endif %}
+                  </th>
+                  <th class="row_icon_area">
+                     <button class="row_icon_btn" type="button">
+                        <span class="material-icons-sharp">more_vert</span>
+                     </button>
+                  </th>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </div>
+{% endblock %}

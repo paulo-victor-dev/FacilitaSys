@@ -21,6 +21,7 @@ MY_APPS = [
     '_apps.account',
     '_apps.product',
     '_apps.dashboard',
+    '_apps.order',
 ]
 
 EXT_APPS = [

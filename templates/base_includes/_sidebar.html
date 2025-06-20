@@ -21,6 +21,20 @@
             </li>
 
             <li class="item">
+                <a class="item_link" href="{% url 'order:order_list' %}">
+                    <span class="item_icon material-icons-sharp">assignment</span>
+                    <span class="item_name">Pedidos</span>
+                </a>
+            </li>
+
+            <li class="item">
+                <a class="item_link" href="{% url 'product:product_list' %}">
+                    <span class="item_icon material-icons-sharp">inventory_2</span>
+                    <span class="item_name">Produtos</span>
+                </a>
+            </li>
+
+            <li class="item">
                 <a class="item_link" href="{% url 'account:users' %}">
                     <span class="item_icon material-icons-sharp">people</span>
                     <span class="item_name">Usuários</span>
@@ -29,22 +43,8 @@
 
             <li class="item">
                 <a class="item_link" href="#">
-                    <span class="item_icon material-icons-sharp">assignment</span>
-                    <span class="item_name">Pedidos</span>
-                </a>
-            </li>
-
-            <li class="item">
-                <a class="item_link" href="#">
                     <span class="item_icon material-icons-sharp">factory</span>
                     <span class="item_name">Fornecedores</span>
-                </a>
-            </li>
-
-            <li class="item">
-                <a class="item_link" href="#">
-                    <span class="item_icon material-icons-sharp">warehouse</span>
-                    <span class="item_name">Estoque</span>
                 </a>
             </li>
         </ul>

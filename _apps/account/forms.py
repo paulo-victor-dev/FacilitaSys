@@ -17,7 +17,7 @@ class LoginForm(auth_forms.AuthenticationForm):
                     raise forms.ValidationError('Email ou senha incorretos.')
                 
             except User.DoesNotExist:
-                raise forms.ValidationError('Nenhuma conta foi encontrada com este email.')
+                raise forms.ValidationError('Email ou senha incorretos.')
 
         return super().clean()
 

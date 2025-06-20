@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+   Usuários
+{% endblock %}
+
+{% block content_title %}
+   Usuários
+{% endblock %}
+
+{% block search %}
+    <form class="form_search">
+      {% csrf_token %}
+
+      <select class="filter_menu" name="filter">
+         <option value="name">Nome</option>
+         <option value="cpf/cnpj" selected>CPF/CNPJ</option>
+         <option value="email">Email</option>
+      </select>
+
+      <div class="search_group">
+         <input type="text" name="search" placeholder="Pesquisar...">
+         
+         <button type="submit">
+            <span class="search_icon material-icons-sharp">search</span>
+         </button>
+      </div>
+   </form>
+{% endblock %}
+
+{% block content_body %}
+   <div class="table_area">
+      <table>
+         <thead>
+            <tr>
+               <th>NOME</th>
+               <th>EMAIL</th>
+               <th>CPF/CNPJ</th>
+               <th>TIPO DE USUÁRIO</th>
+               <th>STATUS</th>
+               <th></th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for user in users %}
+               <tr>
+                  <th>{{ user.get_full_name }}</th>
+                  <th>{{ user.email }}</th>
+                  <th>
+                     {% if user.document %}
+                        {{ user.document }}
+                     {% else %}
+                        -
+                     {% endif %}
+                  </th>
+                  <th>{{ user.get_user_type_display }}</th>
+                  <th>
+                  {% if user.is_active %}
+                     <p class="status active">Ativo</p>
+                  {% else %}
+                     <p class="status inactive">Inativo</p>
+                  {% endif %}
+                  </th>
+                  <th class="row_icon_area">
+                     <button class="row_icon_btn" type="button">
+                        <span class="material-icons-sharp">more_vert</span>
+                     </button>
+                  </th>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </div>
+{% endblock %}

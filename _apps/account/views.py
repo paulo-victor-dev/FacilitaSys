@@ -18,7 +18,8 @@ class LogoutView(auth_views.LogoutView):
 
 class UsersListView(LoginRequiredMixin, ListView):
     model = User
-    template_name = 'users.html'
+    template_name = 'user_list.html'
+    context_object_name = 'users'
 
 
 class PasswordResetView(auth_views.PasswordResetView):

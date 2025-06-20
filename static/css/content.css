@@ -3,10 +3,13 @@
     display: flex;
     flex-direction: column;
     margin: 75px 0 0 250px;
+    height: calc(100% - 75px);
+    overflow: hidden;
     transition: margin-left var(--transition-035);
 }
 
-.content_area .content {
+.content {
+    flex: 1;
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -89,11 +92,18 @@
     font-size: 25px;
 }
 
+.content_body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 /* Table */
 .table_area {
     flex: 1 1 auto;
     overflow-y: auto;
     min-height: 0;
+    height: 500px;
     border-radius: 5px;
     box-shadow: 0 0 6px 0 var(--box-shadow-03);
     background-color: var(--bg-color1);
@@ -108,24 +118,34 @@ table {
 
 thead tr {
     position: sticky;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     top: 0;
     height: 30px;
     padding: 12px;
     z-index: 1;
-    background-color: var(--bg-color2);
+    color: var(--text-color1);
+    background-color: var(--bg-color3);
 }
 
 tbody tr {
-    font-size: 13px;
+    font-size: 14px;
     opacity: 0.8;
     border-top: 1px solid var(--border-color1);
+    border-bottom: 1px solid var(--border-color1);
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--bg-color2);
 }
 
 th {
     height: 30px;
+    max-width: 200px;
     padding: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .row_icon_area {
@@ -154,6 +174,13 @@ th {
     border-radius: 5px;
     color: var(--text-color6);
     background-color: var(--bg-color8);
+}
+
+.status.pendent {
+    text-align: center;
+    border-radius: 5px;
+    color: var(--text-color7);
+    background-color: var(--bg-color9);
 }
 
 

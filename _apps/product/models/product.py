@@ -6,9 +6,9 @@ from .abstracts import *
 
 class Product(TimeStampModel, ActiveModel, models.Model):
     PRODUCT_TYPE_CHOICES = (
-        ('unidade', 'Un'),
-        ('quilo', 'Kg'),
-        ('peça', 'Pç'),
+        ('unidade', 'Un.'),
+        ('quilo', 'Kg.'),
+        ('peça', 'Pç.'),
     )
 
     PRODUCT_FORMAT_CHOICES = (

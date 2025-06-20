@@ -1,51 +1,85 @@
 .account_content {
     padding: 15px;
+    overflow: hidden;
     background-color: var(--bg-color2);
 }
 
-.account_content .login_area {
+.login_area {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
 }
 
-.login_area .login_form {
+.form_area {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 400px;
+    width: 480px;
     border-radius: 8px;
-    padding: 15px;
+    padding: 30px;
+    gap: 20px;
     box-shadow: 0 0 6px 0 var(--box-shadow-01);
     background-color: var(--bg-color1);
 }
 
-.login_form .login_title_area {
+.login_logo {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 35px;
+}
+
+.img_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 6px;
+    background-color: var(--bg-color4);
+}
+
+.login_logo_img {
+    width: 32px;
+}
+
+.login_logo_text {
+    font-size: 35px;
+    font-weight: 600;
+    color: var(--text-color3);
+    
+}
+
+.login_title_area {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
 }
 
-.login_form .login_divider {
-    border: none;
-    border-radius: 10px;
-    margin: 8px 0 20px 0;
-    width: 100%;
-    height: 1px;
-    opacity: 0.2;
-    background-color: var(--bg-color5);
-}
-
-.login_form .login_title {
-    font-size: 36px;
+.login_title {
+    font-size: 25px;
     font-weight: 600;
-    color: var(--text-color4);
 }
 
-.login_form .fields_area {
+.login_subtitle {
+    font-size: 16px;
+    opacity: 0.58;
+}
+
+.login_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.fields_area {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -66,7 +100,7 @@
     font-size: 16px;
     height: 55px;
     padding: 10px 50px 10px 20px;
-    border-radius: 30px;
+    border-radius: 8px;
     border: 1px solid var(--box-shadow-03);
     outline: none;
     transition: all var(--transition-015);
@@ -103,17 +137,23 @@
     height: 40px;
     margin-top: 10px;
     border: none;
-    border-radius: 30px;
+    border-radius: 8px;
     color: var(--text-color1);
     transition: all var(--transition-015);
-    background-color: var(--bg-color3);
+    background-color: var(--bg-color4);
+}
+
+.login_footer {
+    font-size: 15px;
+    opacity: 0.58;
+    margin-top: 5px;
 }
 
 
 /* Errors */
 .login_form .non_field_errors {
     display: flex;
-    justify-content: start;
+    justify-content: center;
     width: 100%;
     padding: 0 10px 10px;
     border-radius: 5px;
@@ -124,7 +164,7 @@
     display: flex;
     justify-content: start;
     width: 100%;
-    padding-left: 10px;
+    padding-left: 2px;
     color: var(--error-color);
 }
 
@@ -140,7 +180,7 @@
 
 /* Focus */
 .input_area input:focus {
-    border: 1px solid var(--bg-color3);
+    border: 1px solid var(--bg-color4);
     transition: all var(--transition-015);
 }
 
@@ -150,13 +190,13 @@
     left: 25px;
     padding: 0 5px;
     font-size: 15px;
-    color: var(--text-color4);
+    color: var(--text-color3);
     transition: all var(--transition-015);
     background-color: var(--bg-color1);
 }
 
 .input_area input:focus ~ .field_icon {
-    color: var(--text-color4);
+    color: var(--text-color3);
     transition: all var(--transition-015);
 }
 
