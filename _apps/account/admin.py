@@ -23,7 +23,7 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Informações do usuário', {
-            'fields': ('first_name', 'last_name', 'user_type', 'is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')
+            'fields': ('first_name', 'last_name', 'document', 'user_type', 'is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')
         }),
         ('Datas', {'fields': ('date_joined', 'last_login')})
     )

@@ -1,10 +1,8 @@
-from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import FormView
-
-from .forms import DatePeriodForm
+from django.views.generic import TemplateView
 
 
-class DashboardView(LoginRequiredMixin, FormView):
+
+class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'dashboard.html'
-    form_class = DatePeriodForm
+ 

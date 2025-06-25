@@ -8,14 +8,23 @@
    Pedidos
 {% endblock %}
 
+{% block modal_title %}
+   Adicionar pedido
+{% endblock %}
+
+{% block modal_body %}
+   
+{% endblock %}
+
 {% block search %}
-    <form class="form_search">
+<div class="search_area">
+   <form class="form_search" method="get">
       {% csrf_token %}
 
       <select class="filter_menu" name="filter">
          <option value="id" selected>ID</option>
-         <option value="customer_name">Cliente</option>
-         <option value="status">Status</option>
+         <option value="full_name">Cliente</option>
+         <option value="creation_date">Data</option>
       </select>
 
       <div class="search_group">
@@ -26,6 +35,17 @@
          </button>
       </div>
    </form>
+
+   <div class="btn_area">
+      <button class="add_btn">
+         <span class="add_icon material-icons-sharp">add</span>
+      </button>
+      
+      <a class="report_btn" href="{% url 'order:order_list_export' %}">
+         <span class="report_icon material-icons-sharp">file_download</span>
+      </a>
+   </div>
+</div>
 {% endblock %}
 
 {% block content_body %}
@@ -37,6 +57,7 @@
                <th>CLIENTE</th>
                <th>QTD. ITENS</th>
                <th>TOTAL</th>
+               <th>DATA</th>
                <th>STATUS</th>
                <th></th>
             </tr>
@@ -45,9 +66,10 @@
             {% for order in orders %}
                <tr>
                   <th>{{ order.pk }}</th>
-                  <th>{{ order.customer }}</th>
+                  <th>{{ order.customer.get_full_name }}</th>
                   <th>{{ order.total_itens }}</th>
                   <th>R$ {{ order.total }}</th>
+                  <th>{{ order.creation_date|date:"d/m/Y" }}</th>
                   <th>
                      {% if order.get_status_display == 'Finalizado' %}
                         <p class="status active">{{ order.get_status_display }}</p>
@@ -63,6 +85,12 @@
                      <button class="row_icon_btn" type="button">
                         <span class="material-icons-sharp">more_vert</span>
                      </button>
+                  </th>
+               </tr>
+            {% empty %}
+               <tr>
+                  <th>
+                     <p>Nenhum pedido encontrado</p>
                   </th>
                </tr>
             {% endfor %}

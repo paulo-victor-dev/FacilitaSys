@@ -2,6 +2,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import views as auth_views
 from django.views.generic import ListView
+from django.db.models import Q, Value, F, CharField
+from django.db.models.functions import Concat
 
 from .forms import LoginForm, PasswordResetForm
 from .models import User
@@ -20,6 +22,27 @@ class UsersListView(LoginRequiredMixin, ListView):
     model = User
     template_name = 'user_list.html'
     context_object_name = 'users'
+
+    def get_queryset(self):
+        queryset = User.objects.annotate(
+            full_name=Concat(
+                F('first_name'),
+                Value(' '),
+                F('last_name')
+            )
+        )
+
+        search = self.request.GET.get('search')
+        search_filter = self.request.GET.get('filter')
+
+        if search and search_filter:
+            lookup = f'{search_filter}__icontains'
+
+            queryset = queryset.filter(
+                Q(**{lookup: search})
+            )
+
+        return queryset
 
 
 class PasswordResetView(auth_views.PasswordResetView):

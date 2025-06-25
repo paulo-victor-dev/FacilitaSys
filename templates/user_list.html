@@ -9,23 +9,35 @@
 {% endblock %}
 
 {% block search %}
-    <form class="form_search">
-      {% csrf_token %}
+   <div class="search_area">
+      <form class="form_search">
+        {% csrf_token %}
+  
+        <select class="filter_menu" name="filter">
+           <option value="full_name">Nome</option>
+           <option value="document" selected>CPF/CNPJ</option>
+           <option value="email">Email</option>
+        </select>
+  
+        <div class="search_group">
+           <input type="text" name="search" placeholder="Pesquisar...">
+           
+           <button type="submit">
+              <span class="search_icon material-icons-sharp">search</span>
+           </button>
+        </div>
+     </form>
 
-      <select class="filter_menu" name="filter">
-         <option value="name">Nome</option>
-         <option value="cpf/cnpj" selected>CPF/CNPJ</option>
-         <option value="email">Email</option>
-      </select>
-
-      <div class="search_group">
-         <input type="text" name="search" placeholder="Pesquisar...">
+     <div class="btn_area">
+         <button class="add_btn">
+            <span class="add_icon material-icons-sharp">add</span>
+         </button>
          
-         <button type="submit">
-            <span class="search_icon material-icons-sharp">search</span>
+         <button class="report_btn">
+            <span class="report_icon material-icons-sharp">file_download</span>
          </button>
       </div>
-   </form>
+   </div>
 {% endblock %}
 
 {% block content_body %}
