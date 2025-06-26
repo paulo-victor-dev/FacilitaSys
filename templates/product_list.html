@@ -8,6 +8,24 @@
    Produtos
 {% endblock %}
 
+{% block modal_title %}
+   Adicionar Produto
+{% endblock %}
+
+{% block modal_body %}
+   <form class="modal_form">
+      <div>
+         <span>Categoria</span>
+
+         <input type="text" name="" id="">
+
+         <ul>
+            <li></li>
+         </ul>
+      </div>
+   </form>
+{% endblock %}
+
 {% block search %}
    <div class="search_area">
       <form class="form_search" method="get">
@@ -68,10 +86,10 @@
                      <p class="status inactive">Inativo</p>
                   {% endif %}
                   </th>
-                  <th class="row_icon_area">
-                     <button class="row_icon_btn" type="button">
-                        <span class="material-icons-sharp">more_vert</span>
-                     </button>
+                  <th class="th_icon_area">
+                     <a class="th_icon_area_link" href="#">
+                        <span class="th_icon material-icons-sharp">edit</span>
+                     </a>
                   </th>
                </tr>
             {% empty %}

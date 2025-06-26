@@ -31,7 +31,7 @@ class Order(TimeStampModel, models.Model):
     total = models.DecimalField(default=0, max_digits=8, decimal_places=2, verbose_name='Total')
 
     def __str__(self):
-        return f'Pedido {self.id} - {self.status}'
+        return f'Pedido {self.id}'
     
     def clean(self):
         super().clean()

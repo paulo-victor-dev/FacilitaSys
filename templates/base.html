@@ -38,13 +38,13 @@
                     <div class="modal_top">
                         <span class="modal_title">{% block modal_title %}{% endblock %}</span>
 
-                        <span class="material-icons-sharp">close</span>
+                        <span class="modal_close_icon material-icons-sharp">close</span>
                     </div>
 
                     <hr class="modal_divider">
 
                     <div class="modal_body">
-                        oi{% block modal_body %}{% endblock %}
+                        {% block modal_body %}{% endblock %}
                     </div>
                 </div>
             </div>

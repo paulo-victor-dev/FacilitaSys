@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+   Pedidos
+{% endblock %}
+
+{% block content_title %}
+   Detalhes
+{% endblock %}
+
+{% block content_body %}
+    <div class="detail_area">
+        <span class="detail_title">{{ order }}</span>
+
+        <div>
+            {{ order.customer.get_fullname }}
+        </div>
+    </div>
+{% endblock %}
+

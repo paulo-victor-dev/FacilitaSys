@@ -12,9 +12,6 @@ nav {
     transition: all var(--transition-035);
 }
 
-
-
-
 .user_area {
     display: flex;
     height: 100%;

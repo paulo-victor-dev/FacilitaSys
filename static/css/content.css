@@ -130,35 +130,75 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    background-color: var(--bg-color1);
 }
 
 
 /* Modal */
 .modal_bg {
     position: absolute;
+    opacity: 0;
+    pointer-events: none;
     width: 100%;
     height: 100%;
-    opacity: 0.5;
     z-index: 1000;
-    background-color: black;
+    transition: opacity var(--transition-015);
+    background-color: var(--box-shadow-05);
 }
 
 .modal_area {
     position: absolute;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 380px;
+    max-width: 400px;
+    max-height: 500px;
     width: 100%;
+    height: 100%;
     padding: 15px;
     border-radius: 8px;
+    transition: opacity var(--transition-015);
     background-color: var(--bg-color1);
-    box-shadow: 0 0 6px 0 var(--box-shadow-03);
 }
 
+.modal_top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
 
+.modal_title {
+    font-size: 18px;
+    font-weight: 600;
+}
 
+.modal_close_icon {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.modal_divider {
+    border: none;
+    width: 100%;
+    height: 1px;
+    margin: 10px 0 15px;
+    background-color: var(--border-color1);
+}
+
+.modal_body, .modal_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.modal_form {
+  
+}
 
 /* Table */
 .table_area {
@@ -202,26 +242,40 @@ tbody tr:nth-child(even) {
 }
 
 th {
+    position: relative;
     height: 30px;
     max-width: 200px;
     padding: 12px;
     white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
+    z-index: 99;
 }
 
-.row_icon_area {
-    text-align: center;
-}
-
-.row_icon_btn {
+.th_icon_area {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    height: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+.th_icon_area_link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
     cursor: pointer;
-    background-color: transparent;
+    transition: background-color var(--transition-015);
+    background-color: var(--bg-color3);
+}
+
+.th_icon_area_link .th_icon {
+    color: var(--bg-color1);
+    font-size: 22px;
 }
 
 .status.active {
@@ -249,7 +303,8 @@ th {
 /* Hover */
 .form_search button:hover,
 .add_btn:hover,
-.report_btn:hover {
+.report_btn:hover,
+.th_icon_area_link:hover {
     background-color: var(--bg-color6);
     transition: background-color var(--transition-015);
 }
@@ -266,4 +321,17 @@ th {
 .sidebar.close ~ .content_area {
     margin-left: 70px;
     transition: margin-left var(--transition-035);
+}
+
+
+/* Modal open events */
+.modal_bg.open {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity var(--transition-015);
+}
+
+.modal_bg.open .modal_area {
+    opacity: 1;
+    transition: opacity var(--transition-015);
 }

@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, View
+from django.views.generic import ListView, DetailView, View
 from django.db.models import Sum, Q, Value, F
 from django.db.models.functions import Concat
 from django.http import HttpResponse
@@ -37,6 +37,12 @@ class OrderListView(LoginRequiredMixin, ListView):
             )
 
         return queryset
+
+
+class OrderDetailView(LoginRequiredMixin, DetailView):
+    model = Order
+    template_name = 'detail_includes/order_detail.html'
+    context_object_name = 'order'    
 
 
 class ExportOrdersView(LoginRequiredMixin, View):
