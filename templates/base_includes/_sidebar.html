@@ -1,6 +1,6 @@
 {% load static %}
 
-<aside class="sidebar close">
+<aside class="sidebar">
     <span class="btn_toggle material-icons-sharp">chevron_left</span>
 
     <div class="logo_area">
@@ -27,22 +27,41 @@
                 </a>
             </li>
 
-            <li class="item">
-                <a class="item_link" href="{% url 'product:product_list' %}">
+            <li class="item submenu_dropdown">
+                <a class="item_link">
                     <span class="item_icon material-icons-sharp">inventory_2</span>
-                    <span class="item_name">Produtos</span>
+                    <span class="item_name">Estoque</span>
                 </a>
+
+                <button class="submenu_btn">
+                    <span class="submenu_icon material-icons-sharp">arrow_drop_down</span>
+                </button>
+            </li>
+            <li class="submenu">
+                <ul class="submenu_itens">
+                    <li class="submenu_item">
+                        <a class="submenu_item_link" href="{% url 'product:product_list' %}">
+                            <span class="submenu_item_name">Produtos</span>
+                        </a>
+                    </li>
+
+                    <li class="submenu_item">
+                        <a class="submenu_item_link" href="{% url 'product:product_list' %}">
+                            <span class="submenu_item_name">Movimentações</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <li class="item">
-                <a class="item_link" href="{% url 'account:users_list' %}">
+                <a class="item_link" href="{% url 'account:user_list' %}">
                     <span class="item_icon material-icons-sharp">people</span>
                     <span class="item_name">Usuários</span>
                 </a>
             </li>
 
             <li class="item">
-                <a class="item_link" href="#">
+                <a class="item_link" href="{% url 'supplier:supplier_list' %}">
                     <span class="item_icon material-icons-sharp">factory</span>
                     <span class="item_name">Fornecedores</span>
                 </a>

@@ -1,43 +1,20 @@
 {% extends 'base.html' %}
 
 {% block page_title %}
-   Usuários
+   Fornecedores
 {% endblock %}
 
 {% block content_title %}
-   Usuários
+   Fornecedores
 {% endblock %}
 
 {% block modal_title %}
-   Adicionar Usuário
+   Adicionar Fornecedor
 {% endblock %}
 
 {% block modal_body %}
    <form class="modal_form">
-      <div>
-         <span>Email</span>
-         <input type="email">
-      </div>
-
-      <div>
-         <span>Senha</span>
-         <input type="password">
-      </div>
-
-      <div>
-         <span>Nome</span>
-         <input type="text">
-      </div>
-
-      <div>
-         <span>Sobrenome</span>
-         <input type="text">
-      </div>
-
-      <div>
-         <span>CPF/CNPJ</span>
-         <input type="text">
-      </div>
+      
    </form>
 {% endblock %}
 
@@ -47,8 +24,8 @@
         {% csrf_token %}
   
         <select class="filter_menu" name="filter">
-           <option value="full_name">Nome</option>
-           <option value="document" selected>CPF/CNPJ</option>
+           <option value="name">Nome</option>
+           <option value="document" selected>CNPJ</option>
            <option value="email">Email</option>
         </select>
   
@@ -66,7 +43,7 @@
             <span class="add_icon material-icons-sharp">add</span>
          </button>
          
-         <a class="report_btn" href="{% url 'account:user_list_export' %}">
+         <a class="report_btn" href="#">
             <span class="report_icon material-icons-sharp">file_download</span>
          </a>
       </div>
@@ -80,31 +57,29 @@
             <tr>
                <th>NOME</th>
                <th>EMAIL</th>
-               <th>CPF/CNPJ</th>
-               <th>TIPO DE USUÁRIO</th>
+               <th>CNPJ</th>
                <th>STATUS</th>
                <th></th>
             </tr>
          </thead>
          <tbody>
-            {% for user in users %}
+            {% for supplier in suppliers %}
                <tr>
-                  <th>{{ user.get_full_name }}</th>
-                  <th>{{ user.email }}</th>
+                  <th>{{ supplier.name }}</th>
+                  <th>{{ supplier.email }}</th>
                   <th>
-                     {% if user.document %}
-                        {{ user.document }}
-                     {% else %}
+                    {% if supplier.document %}
+                        {{ supplier.document }}
+                    {% else %}
                         -
-                     {% endif %}
+                    {% endif %}
                   </th>
-                  <th>{{ user.get_user_type_display }}</th>
                   <th>
-                  {% if user.is_active %}
-                     <p class="status active">Ativo</p>
-                  {% else %}
-                     <p class="status inactive">Inativo</p>
-                  {% endif %}
+                    {% if supplier.is_active %}
+                        <p class="status active">Ativo</p>
+                    {% else %}
+                        <p class="status inactive">Inativo</p>
+                    {% endif %}
                   </th>
                   <th class="th_icon_area">
                      <a class="th_icon_area_link" href="#">

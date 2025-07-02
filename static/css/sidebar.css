@@ -75,9 +75,9 @@
 }
 
 .menu_itens .item {
+    display: flex;
     border-radius: 8px;
     height: 48px;
-    
 }
 
 .item .item_link {
@@ -86,6 +86,7 @@
     height: 100%;
     width: 100%;
     padding-left: 8px;
+    cursor: pointer;
 }
 
 .item_link .item_icon {
@@ -101,6 +102,62 @@
     transition: opacity var(--transition-025);
 }
 
+.submenu_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.submenu_btn .submenu_icon {
+    display: flex;
+    font-size: 24px;
+    color: var(--bg-color1);
+    transition: transform var(--transition-025);
+}
+
+.submenu {
+    height: 0px;
+    margin: -6px -12px 0 -12px;
+    overflow: hidden;
+    transition: height var(--transition-025);
+    background-color: var(--bg-color9);
+}
+
+.submenu, .submenu_itens {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.submenu_itens {
+    margin-left: 70px;
+    padding: 15px 0;
+    gap: 13px;
+}
+
+.submenu_itens .submenu_item {
+    display: flex;
+    align-items: center;
+}
+
+.submenu_item_name {
+    font-size: 15px;
+    color: var(--text-color1);
+}
+
+
+/* Submenu open events */
+.submenu_dropdown.open ~ .submenu {
+    height: 70px;
+}
+
+.submenu_dropdown.open .submenu_btn .submenu_icon {
+    transform: rotate(180deg);
+}
 
 /* Hover */
 .item:hover {
@@ -109,11 +166,16 @@
 }
 
 .item:hover .item_link .item_icon,
-.item:hover .item_link .item_name {
+.item:hover .item_link .item_name,
+.item:hover .submenu_icon {
     color: var(--text-color3);
     transition: color var(--transition-025);
 }
 
+.submenu_item_name:hover {
+    text-decoration: underline;
+    transition: text-decoration var(--transition-015);
+}
 
 /* Sidebar close events */
 .sidebar.close {
@@ -122,7 +184,8 @@
 }
 
 .sidebar.close .logo_name,
-.sidebar.close .item_name {
+.sidebar.close .item_name,
+.sidebar.close .submenu_btn {
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--transition-025);

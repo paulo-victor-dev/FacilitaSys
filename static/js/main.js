@@ -5,7 +5,8 @@ const body = document.querySelector("body"),
       dropdown_menu = body.querySelector(".dropdown_menu"),
       add_btn = body.querySelector(".add_btn"),
       modal = body.querySelector(".modal_bg"),
-      modal_close_icon = body.querySelector(".modal_close_icon");
+      modal_close_icon = body.querySelector(".modal_close_icon"),
+      dropdown_sidebar = body.querySelector(".submenu_dropdown");
 
 btn_toggle.addEventListener("click", () => {
     sidebar.classList.toggle("close");
@@ -34,4 +35,8 @@ modal_close_icon.addEventListener("click", () => {
     if (modal.classList.contains("open")) {
         modal.classList.remove("open")
     };
+});
+
+dropdown_sidebar.addEventListener('click', () => {
+    dropdown_sidebar.classList.toggle('open');
 });

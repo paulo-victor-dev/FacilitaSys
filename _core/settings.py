@@ -17,27 +17,23 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
 
 # Application definition
 
-MY_APPS = [
-    '_apps.account',
-    '_apps.product',
-    '_apps.dashboard',
-    '_apps.order',
-]
-
-EXT_APPS = [
-
-]
-
-DJANGO_APPS = [
+INSTALLED_APPS = [
+    # Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
 
-INSTALLED_APPS = MY_APPS + EXT_APPS + DJANGO_APPS
+    # My apps
+    '_apps.account',
+    '_apps.product',
+    '_apps.dashboard',
+    '_apps.order',
+    '_apps.supplier',
+    '_apps.inventory',
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

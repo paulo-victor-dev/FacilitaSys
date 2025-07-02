@@ -11,8 +11,8 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
 
     # Users list
-    path('users_list/', UsersListView.as_view(), name='users_list'),
-    path('users_list/export/', ExportUsersView.as_view(), name='users_list_export'),
+    path('user_list/', UserListView.as_view(), name='user_list'),
+    path('user_list/export/', ExportUsersView.as_view(), name='user_list_export'),
 
     # Password reset
     path('password_reset/', PasswordResetView.as_view(), name='password_reset'),

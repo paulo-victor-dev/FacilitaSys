@@ -2,6 +2,7 @@ from django.db import models
 
 from .attributes import Brand, Category, ProductModel
 from .abstracts import *
+from _apps.supplier.models import Supplier
 
 
 class Product(TimeStampModel, ActiveModel, models.Model):
@@ -49,13 +50,13 @@ class Product(TimeStampModel, ActiveModel, models.Model):
     promo_start = models.DateField(null=True, blank=True, verbose_name='Início promoção')
     promo_end = models.DateField(null=True, blank=True, verbose_name='Fim promoção') 
 
+    def __str__(self):
+        return f"{self.category} {self.brand} {self.model}"
+
     class Meta:
         verbose_name = 'Produto'
         verbose_name_plural = 'Produtos'
         ordering = ['category', 'brand', 'model']
-
-    def __str__(self):
-        return f"{self.category} {self.brand} {self.model}"
 
 
 class ProductImage(models.Model):

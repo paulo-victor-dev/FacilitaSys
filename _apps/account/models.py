@@ -75,9 +75,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = CustomUserManager()
 
+    def get_full_name(self):
+        return f'{self.first_name} {self.last_name}'
+    
     class Meta:
         verbose_name = 'Usuário'
         verbose_name_plural = 'Usuários'
-
-    def get_full_name(self):
-        return f'{self.first_name} {self.last_name}'
+        ordering = ['id']

@@ -45,6 +45,7 @@ class Order(TimeStampModel, models.Model):
     class Meta:
         verbose_name = 'Pedido'
         verbose_name_plural = 'Pedidos'
+        ordering = ['id']
     
 
 class OrderItem(models.Model):
