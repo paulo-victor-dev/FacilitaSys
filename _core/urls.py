@@ -14,10 +14,16 @@ urlpatterns = [
 
     # Apps
     path('account/', include(('_apps.account.urls', 'account'), namespace='account')),
+
     path('product/', include(('_apps.product.urls', 'product'), namespace='product')),
+
     path('dashboard/', include(('_apps.dashboard.urls', 'dashboard'), namespace='dashboard')),
+
     path('order/', include(('_apps.order.urls', 'order'), namespace='order')),
+
     path('supplier/', include(('_apps.supplier.urls', 'supplier'), namespace='supplier')),
+    
+    path('inventory/', include(('_apps.inventory.urls', 'inventory'), namespace='inventory')),
 ]
 
 if settings.DEBUG:

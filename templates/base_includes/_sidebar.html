@@ -1,6 +1,6 @@
 {% load static %}
 
-<aside class="sidebar">
+<aside class="sidebar close">
     <span class="btn_toggle material-icons-sharp">chevron_left</span>
 
     <div class="logo_area">
@@ -39,6 +39,12 @@
             </li>
             <li class="submenu">
                 <ul class="submenu_itens">
+                    <li class="submenu_title_area">
+                        <div class="submenu_title">
+                            <span class="submenu_title_name">Estoque</span>
+                        </div>
+                    </li>
+
                     <li class="submenu_item">
                         <a class="submenu_item_link" href="{% url 'product:product_list' %}">
                             <span class="submenu_item_name">Produtos</span>
@@ -46,7 +52,7 @@
                     </li>
 
                     <li class="submenu_item">
-                        <a class="submenu_item_link" href="{% url 'product:product_list' %}">
+                        <a class="submenu_item_link" href="{% url 'inventory:flow_list' %}">
                             <span class="submenu_item_name">Movimentações</span>
                         </a>
                     </li>
