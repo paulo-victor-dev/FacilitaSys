@@ -28,11 +28,12 @@ INSTALLED_APPS = [
 
     # My apps
     '_apps.account',
-    '_apps.product',
+    '_apps.product.apps.ProductConfig',
     '_apps.dashboard',
     '_apps.order',
     '_apps.supplier',
     '_apps.inventory',
+    '_apps.pdv',
 ]
 
 MIDDLEWARE = [

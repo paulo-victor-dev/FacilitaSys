@@ -13,17 +13,21 @@ class VariantProductInline(admin.TabularInline):
     model = Variant
     extra = 1
 
+class AttributeValueInline(admin.TabularInline):
+    model = AttributeValue
+    extra = 1 
+
 
 @admin.register(Variant)
 class VariantAdmin(admin.ModelAdmin):
-    list_display = ('combined_info', 'sku', 'is_active', 'creation_date', 'update_date')
+    list_display = ('_name', 'sku', 'is_active', 'creation_date', 'update_date')
     search_fields = ('product__brand__name', 'product__category__name', 'product__model__name', 'sku')
-    list_filter = ('is_active', 'attribute', 'option')
-    inlines = []
+    list_filter = ('is_active', 'option')
+    readonly_fields = ('sku',)
 
-    def combined_info(self, obj):
-        return f'{obj.product} {obj.option}'
-    combined_info.short_description = 'Descrição'
+    def _name(self, obj):
+        return obj.__str__()
+    _name.short_description = 'Descrição'
 
 
 @admin.register(Product)
@@ -58,12 +62,13 @@ class ProductAdmin(admin.ModelAdmin):
 class AttributeAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
+    inlines = [AttributeValueInline]
 
 
 @admin.register(AttributeValue)
 class AttributeValueAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
+    list_display = ('value',)
+    search_fields = ('value',)
 
 
 @admin.register(Category)

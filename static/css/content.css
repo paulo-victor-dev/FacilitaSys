@@ -207,7 +207,7 @@
     min-height: 0;
     height: 500px;
     border-radius: 5px;
-    box-shadow: 0 0 6px 0 var(--box-shadow-03);
+    box-shadow: 0 0 6px 0 var(--box-shadow-01);
     background-color: var(--bg-color1);
 }
 
@@ -299,6 +299,17 @@ th {
     background-color: var(--bg-color9);
 }
 
+
+/* PDV */
+.pdv_area {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    min-height: 0;
+    height: 500px;
+    border-radius: 5px;
+    box-shadow: 0 0 6px 0 var(--box-shadow-01);
+    background-color: var(--bg-color1);
+}
 
 /* Hover */
 .form_search button:hover,

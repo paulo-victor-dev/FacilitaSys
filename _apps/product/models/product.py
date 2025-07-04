@@ -2,7 +2,6 @@ from django.db import models
 
 from .attributes import Brand, Category, ProductModel
 from .abstracts import *
-from _apps.supplier.models import Supplier
 
 
 class Product(TimeStampModel, ActiveModel, models.Model):

@@ -24,6 +24,8 @@ urlpatterns = [
     path('supplier/', include(('_apps.supplier.urls', 'supplier'), namespace='supplier')),
     
     path('inventory/', include(('_apps.inventory.urls', 'inventory'), namespace='inventory')),
+
+    path('pdv/', include(('_apps.pdv.urls', 'pdv'), namespace='pdv')),
 ]
 
 if settings.DEBUG:

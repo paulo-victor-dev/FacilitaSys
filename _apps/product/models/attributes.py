@@ -32,25 +32,27 @@ class ProductModel(models.Model):
 
     def __str__(self):
         return self.name
-    
+
 
 class Attribute(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name='Atributo')
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = 'Atributo'
         verbose_name_plural = 'Atributos'
 
-    def __str__(self):
-        return self.name
-
 
 class AttributeValue(models.Model):
-    name = models.CharField(max_length=50, unique=True, verbose_name='Opção')
+    attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE, related_name='attribute_value', verbose_name='Atributo')
 
+    value = models.CharField(max_length=50, unique=True, verbose_name='Opção')
+
+    def __str__(self):
+        return f'{self.attribute.name}: {self.value}'
+    
     class Meta:
         verbose_name = 'Opção'
         verbose_name_plural = 'Opções'
-
-    def __str__(self):
-        return self.name
