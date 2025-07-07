@@ -155,9 +155,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 400px;
-    max-height: 500px;
+    max-height: 550px;
     width: 100%;
-    height: 100%;
+    height: auto;
     padding: 15px;
     border-radius: 8px;
     transition: opacity var(--transition-015);
@@ -194,11 +194,73 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
+    width: 100%;
+    gap: 15px;
 }
 
-.modal_form {
-  
+.modal_form .add_area {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
+
+.modal_form .add_area2 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+
+.add_area2 .select_body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.modal_form .btn_area {
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    height: 100%;
+    width: 100%;
+}
+
+.btn_area .close_btn,
+.btn_area .save_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    height: 30px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn_area .close_btn {
+    background-color: var(--bg-color3);
+}
+
+.close_btn span {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-color1);
+}
+
+.btn_area .save_btn {
+    background-color: var(--bg-color10);
+}
+
+.save_btn span {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-color1);
+}
+
+.modal_form .field_error {
+    font-size: 14px;
+}
+/*  */
 
 /* Table */
 .table_area {
@@ -298,7 +360,7 @@ th {
     color: var(--text-color7);
     background-color: var(--bg-color9);
 }
-
+/*  */
 
 /* PDV */
 .pdv_area {
@@ -310,16 +372,47 @@ th {
     box-shadow: 0 0 6px 0 var(--box-shadow-01);
     background-color: var(--bg-color1);
 }
+/*  */
+
+/* Messages */
+.message_area {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    top: 0;
+    opacity: 0;
+    transform: translatey(-40px);
+    transition: opacity var(--transition-025), transform var(--transition-025);
+    z-index: 2000;
+    background-color: red;
+}
+
+.message_area.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.message_area span {
+    
+}
+/*  */
 
 /* Hover */
 .form_search button:hover,
 .add_btn:hover,
 .report_btn:hover,
-.th_icon_area_link:hover {
+.th_icon_area_link:hover,
+.modal_form .close_btn:hover {
     background-color: var(--bg-color6);
     transition: background-color var(--transition-015);
 }
 
+.modal_form .save_btn:hover {
+    background-color: var(--bg-color11);
+    transition: background-color var(--transition-015);
+}
+/*  */
 
 /* Focus */
 .form_search input:focus,

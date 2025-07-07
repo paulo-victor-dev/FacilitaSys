@@ -14,7 +14,56 @@
 
 {% block modal_body %}
    <form class="modal_form">
+      {% csrf_token %}
+
+      <div class="add_area2">
+         <div class="add_area">
+            <span>Nome</span>
+
+            <input type="text" name="name">
+         </div>
+
+         <div class="add_area">
+            <span>Email</span>
+
+            <input type="email" name="email">
+         </div>
+      </div>
+
+       <div class="add_area">
+         <span>CNPJ</span>
+
+         <input type="text" name="document">
+      </div>
+
+      <div class="add_area2">
+         <div class="add_area">
+            <span>Telefone</span>
+
+            <input type="text" name="phone">
+         </div>
+
+         <div class="add_area">
+            <span>Status</span>
+
+            <select name="is_active">
+               <option value="active" selected>Ativo</option>
+               <option value="inactive">Inativo</option>
+            </select>
+         </div>
+      </div>
+
+
       
+      <div class="btn_area">
+         <button class="close_btn" type="button">
+            <span>CANCELAR</span>
+         </button>
+
+         <button class="save_btn" type="submit">
+            <span>SALVAR</span>
+         </button>
+      </div>
    </form>
 {% endblock %}
 

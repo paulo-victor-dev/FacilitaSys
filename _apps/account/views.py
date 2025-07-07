@@ -1,14 +1,18 @@
 from django.urls import reverse_lazy
+from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 from django.contrib.auth import views as auth_views
-from django.views.generic import ListView, View
+from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, DeleteView
+
 from django.db.models import Q, Value, F
 from django.db.models.functions import Concat
+
 from django.http import HttpResponse
 
 import io, pandas as pd
 
-from .forms import LoginForm, PasswordResetForm
+from .forms import LoginForm, UserCreationForm, PasswordResetForm
 from .models import User
 
 
@@ -46,6 +50,31 @@ class UserListView(LoginRequiredMixin, ListView):
             )
 
         return queryset
+
+
+class UserCreateView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        form = UserCreationForm(request.POST)
+        print(form)
+        if form.is_valid():
+            print('Válido!')
+            form.save()
+            return redirect('account:user_list')
+        else:
+            print("erro!")
+            return render(self.request, 'user_list.html')
+
+
+class UserDetailView(LoginRequiredMixin, DetailView):
+    model = User
+
+
+class UserUpdateView(LoginRequiredMixin, UpdateView):
+    model = User
+
+
+class UserDeleteView(LoginRequiredMixin, DeleteView):
+    model = User
 
 
 class ExportUsersView(LoginRequiredMixin, View):

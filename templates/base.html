@@ -13,6 +13,16 @@
 <body>
     {% if user.is_authenticated %}
         <main class="main_area">
+            <!-- Success message -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message_area">
+                        <span>{{ message }}</span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <!--  -->
+            
             {% include 'base_includes/_sidebar.html' %}
 
             <div class="content_area">
@@ -33,7 +43,7 @@
                 </div>
             </div>
 
-            <div class="modal_bg">
+            <div class="modal_bg open">
                 <div class="modal_area">
                     <div class="modal_top">
                         <span class="modal_title">{% block modal_title %}{% endblock %}</span>

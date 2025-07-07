@@ -1,13 +1,19 @@
 from django.views.generic import ListView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
+
 from django.db.models import Q, Value, F, CharField
 from django.db.models.functions import Concat
+
 from django.http import HttpResponse
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 
 import pandas as pd
 import io
 
 from .models.product import Product
+from .forms import ProductForm
 
 
 class ProductListView(LoginRequiredMixin, ListView):
@@ -77,6 +83,18 @@ class ExportProductsView(LoginRequiredMixin, View):
 
         return response
             
-  
+
+class ProductCreateView(LoginRequiredMixin, View):
+    def post(self, request, *args, **kwargs):
+        form = ProductForm(request.POST)
+        
+        if form.is_valid():
+            form.save()
+            messages.success(self.request, 'Produto cadastrado com sucesso!')
+            return redirect(reverse_lazy('product:product_list'))
+        else:
+            messages.error(self.request, 'Erro em cadastrar o produto!')
+            return render(request, 'product_list.html', {'form': form})
+
         
         

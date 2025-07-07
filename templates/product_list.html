@@ -13,15 +13,110 @@
 {% endblock %}
 
 {% block modal_body %}
-   <form class="modal_form">
-      <div>
-         <span>Categoria</span>
+   <form class="modal_form" method="post" action="{% url 'product:create' %}">
+      {% csrf_token %}
 
-         <input type="text" name="" id="">
+      <div class="add_area">
+         <span>Cód. Barras</span>
 
-         <ul>
-            <li></li>
-         </ul>
+         <input type="text" name="bar_code">
+
+         {% for error in form.bar_code.errors %}
+            <div class="field_error">{{ error }}</div>
+         {% endfor %}
+      </div>
+
+      <div class="add_area2">
+         <div class="add_area">
+            <span>Categoria</span>
+
+            <input type="text" name="category">
+
+            {% for error in form.category.errors %}
+               <div class="field_error">{{ error }}</div>
+            {% endfor %}
+         </div>
+
+         <div class="add_area">
+            <span>Marca</span>
+
+            <input type="text" name="brand">
+
+            {% for error in form.brand.errors %}
+               <div class="field_error">{{ error }}</div>
+            {% endfor %}
+         </div>
+      </div>
+
+      <div class="add_area">
+         <span>Modelo</span>
+
+         <input type="text" name="model">
+
+         {% for error in form.model.errors %}
+            <div class="field_error">{{ error }}</div>
+         {% endfor %}
+      </div>
+
+      <div class="add_area2">
+         <div class="select_body">
+            <span>Tipo de unidade</span>
+   
+            <select name="unit_type">
+               <option value="unidade" selected>Un.</option>
+               <option value="quilo">Kg.</option>
+               <option value="peça">Pç.</option>
+            </select>
+
+            {% for error in form.unit_type.errors %}
+               <div class="field_error">{{ error }}</div>
+            {% endfor %}
+         </div>
+
+         <div class="select_body">
+            <span>Formato</span>
+   
+            <select name="format_type">
+               <option value="simples" selected>Simples</option>
+               <option value="com_variacao">Com variação</option>
+            </select>
+
+            {% for error in form.format_type.errors %}
+               <div class="field_error">{{ error }}</div>
+            {% endfor %}
+         </div>
+      </div>
+
+      <div class="add_area2">  
+         <div class="add_area">
+            <span>Preço</span>
+   
+            <input type="number" name="price" min="1">
+
+            {% for error in form.price.errors %}
+               <div class="field_error">{{ error }}</div>
+            {% endfor %}
+         </div>
+
+         <div class="add_area">
+            <span>Quantidade</span>
+   
+            <input type="text" name="stock">
+
+            {% for error in form.stock.errors %}
+               <div class="field_error">{{ error }}</div>
+            {% endfor %}
+         </div>
+      </div>
+
+      <div class="btn_area">
+         <button class="close_btn" type="button">
+            <span>CANCELAR</span>
+         </button>
+
+         <button class="save_btn" type="submit">
+            <span>SALVAR</span>
+         </button>
       </div>
    </form>
 {% endblock %}

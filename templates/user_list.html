@@ -13,30 +13,83 @@
 {% endblock %}
 
 {% block modal_body %}
-   <form class="modal_form">
-      <div>
-         <span>Email</span>
-         <input type="email">
+   <form class="modal_form" method="post" action="{% url 'account:user_create' %}">
+      {% csrf_token %}
+
+      <div class="add_area2">
+         <div class="add_area">
+            <span>Nome</span>
+
+            <input type="text" name="first_name">
+         </div>
+
+         <div class="add_area">
+            <span>Sobrenome</span>
+
+            <input type="text" name="last_name">
+         </div>
       </div>
 
-      <div>
-         <span>Senha</span>
-         <input type="password">
-      </div>
-
-      <div>
-         <span>Nome</span>
-         <input type="text">
-      </div>
-
-      <div>
-         <span>Sobrenome</span>
-         <input type="text">
-      </div>
-
-      <div>
+      <div class="add_area">
          <span>CPF/CNPJ</span>
-         <input type="text">
+
+         <input type="text" name="document">
+      </div>
+
+      <div class="add_area2">
+         <div class="add_area">
+            <span>Email</span>
+   
+            <input type="email" name="username">
+         </div>
+   
+         <div class="add_area">
+            <span>Senha</span>
+   
+            <input type="password" name="password1">
+         </div>
+      </div>
+
+      <div class="add_area">
+         <span>Confirmar senha</span>
+
+         <input type="password" name="password2">
+      </div>
+
+      <div class="add_area2">
+         <div class="select_body">
+            <span>Tipo de usuário</span>
+   
+            <select name="user_type">
+               {% if user.is_superuser %}
+                  <option value="administrador">administrador</option>
+                  <option value="funcionario">Funcionário</option>
+                  <option value="cliente" selected>Cliente</option>
+               {% else %}
+                  <option value="funcionario">Funcionário</option>
+                  <option value="cliente" selected>Cliente</option>
+               {% endif %}   
+            </select>
+         </div>
+
+         <div class="add_area">
+            <span>Status da conta</span>
+
+            <select name="is_active">
+               <option value="active" selected>Ativo</option>
+               <option value="inactive">Inativo</option>
+            </select>
+         </div>
+      </div>
+
+      <div class="btn_area">
+         <button class="close_btn" type="button">
+            <span>CANCELAR</span>
+         </button>
+
+         <button class="save_btn" type="submit">
+            <span>SALVAR</span>
+         </button>
       </div>
    </form>
 {% endblock %}

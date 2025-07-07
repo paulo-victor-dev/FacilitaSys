@@ -4,9 +4,13 @@ const body = document.querySelector("body"),
       user_area = body.querySelector(".user_area"),
       dropdown_menu = body.querySelector(".dropdown_menu"),
       add_btn = body.querySelector(".add_btn"),
-      modal = body.querySelector(".modal_bg"),
       dropdown_sidebar = body.querySelector(".submenu_dropdown"),
-      modal_close_icon = body.querySelector(".modal_close_icon");
+      
+      modal = body.querySelector(".modal_bg"),
+      modal_close_icon = body.querySelector(".modal_close_icon"),
+      modal_close_btn = modal.querySelector(".close_btn"),
+
+      msg = body.querySelector('.message_area');
 
 // Sidebar events
 btn_toggle.addEventListener("click", () => {
@@ -56,4 +60,19 @@ modal_close_icon.addEventListener("click", () => {
         modal.classList.remove("open")
     };
 });
+
+modal_close_btn.addEventListener("click", () => {
+    if (modal.classList.contains("open")) {
+        modal.classList.remove("open")
+    };
+});
+//
+
+// Message events
+if (msg) {
+    msg.classList.add('show');
+    setTimeout(() => {
+        msg.classList.remove('show');
+    }, 3000);
+};
 //
