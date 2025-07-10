@@ -16,6 +16,12 @@
 /* Dashboard */
 @import url("./dashboard.css");
 
+/* Table */
+@import url("./table.css");
+
+/* Add */
+@import url("./add.css");
+
 :root {
     --bg-color1: #fff;
     --bg-color2: #f0f4f5;

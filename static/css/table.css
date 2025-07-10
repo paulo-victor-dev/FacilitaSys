@@ -1,0 +1,87 @@
+table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    background-color: transparent;
+}
+
+thead tr {
+    position: sticky;
+    font-size: 14px;
+    font-weight: 500;
+    top: 0;
+    height: 30px;
+    padding: 12px;
+    z-index: 1;
+    color: var(--text-color1);
+    background-color: var(--bg-color3);
+}
+
+tbody tr {
+    font-size: 14px;
+    opacity: 0.8;
+    border-top: 1px solid var(--border-color1);
+    border-bottom: 1px solid var(--border-color1);
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--bg-color2);
+}
+
+th {
+    position: relative;
+    height: 30px;
+    max-width: 200px;
+    padding: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    z-index: 99;
+}
+
+.th_icon_area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+.th_icon_area_link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color var(--transition-015);
+    background-color: var(--bg-color3);
+}
+
+.th_icon_area_link .th_icon {
+    color: var(--bg-color1);
+    font-size: 22px;
+}
+
+.status.active {
+    text-align: center;
+    border-radius: 5px;
+    color: var(--text-color5);
+    background-color: var(--bg-color7);
+}
+
+.status.inactive {
+    text-align: center;
+    border-radius: 5px;
+    color: var(--text-color6);
+    background-color: var(--bg-color8);
+}
+
+.status.pendent {
+    text-align: center;
+    border-radius: 5px;
+    color: var(--text-color7);
+    background-color: var(--bg-color9);
+}

@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
-from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 
 from django.contrib.auth import views as auth_views
 from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -12,7 +12,7 @@ from django.http import HttpResponse
 
 import io, pandas as pd
 
-from .forms import LoginForm, UserCreationForm, PasswordResetForm
+from .forms import LoginForm, UserCreationForm, UserUpdateForm
 from .models import User
 
 
@@ -52,25 +52,18 @@ class UserListView(LoginRequiredMixin, ListView):
         return queryset
 
 
-class UserCreateView(LoginRequiredMixin, View):
-    def post(self, request, *args, **kwargs):
-        form = UserCreationForm(request.POST)
-        print(form)
-        if form.is_valid():
-            print('Válido!')
-            form.save()
-            return redirect('account:user_list')
-        else:
-            print("erro!")
-            return render(self.request, 'user_list.html')
-
-
-class UserDetailView(LoginRequiredMixin, DetailView):
+class UserCreateView(LoginRequiredMixin, CreateView):
     model = User
+    form_class = UserCreationForm
+    template_name = 'add_pages/user_add.html'
+    success_url = reverse_lazy('account:user_list')
 
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = User
+    form_class = UserUpdateForm
+    template_name = 'update_pages/user_update.html'
+    success_url = reverse_lazy('account:user_list')
 
 
 class UserDeleteView(LoginRequiredMixin, DeleteView):
@@ -112,23 +105,3 @@ class ExportUsersView(LoginRequiredMixin, View):
         response['Content-Disposition'] = 'attachement; filename="Relatório_Usuários.xlsx"'
 
         return response
-
-
-class PasswordResetView(auth_views.PasswordResetView):
-    form_class = PasswordResetForm
-    email_template_name = 'account_includes/password_reset_includes/password_reset_email.html'
-    template_name = 'account_includes/password_reset_includes/password_reset_form.html'
-    success_url = reverse_lazy('account:password_reset_done')
-
-
-class PasswordResetDoneView(auth_views.PasswordResetDoneView):
-    template_name = 'account_includes/password_reset_includes/password_reset_done.html'
-
-
-class PasswordResetConfirmView(auth_views.PasswordResetConfirmView):
-    template_name = 'account_includes/password_reset_includes/password_reset_confirm.html'
-    success_url = reverse_lazy("account:password_reset_complete")
-
-
-class PasswordResetCompleteView(auth_views.PasswordResetCompleteView):
-    template_name = 'account_includes/password_reset_includes/password_reset_complete.html'

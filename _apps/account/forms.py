@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth import forms as auth_forms
 
+from validate_docbr import CPF, CNPJ
+
 from .models import User
 
 
@@ -33,17 +35,49 @@ class UserCreationForm(auth_forms.UserCreationForm):
             raise forms.ValidationError('Este campo é obrigatório.')
         return first_name
     
+    def clean_document(self):
+        document = self.cleaned_data.get('document')
+
+        if not document:
+            raise forms.ValidationError('Este campo é obrigatório.')
+
+        if CPF().validate(document) or CNPJ().validate(document):
+            return document
+        else:
+            raise forms.ValidationError('CPF/CNPJ inválido.')
+    
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError('Este e-mail já está cadastrado.')
         return email
     
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'document', 'email', 'user_type', 'is_active')
 
-class PasswordResetForm(auth_forms.PasswordResetForm):
+    def clean_first_name(self):
+        first_name = self.cleaned_data.get('first_name')
+        if not first_name:
+            raise forms.ValidationError('Este campo é obrigatório.')
+        return first_name
+    
+    def clean_document(self):
+        document = self.cleaned_data.get('document')
+
+        if not document:
+            raise forms.ValidationError('Este campo é obrigatório.')
+
+        if CPF().validate(document) or CNPJ().validate(document):
+            return document
+        else:
+            raise forms.ValidationError('CPF/CNPJ inválido.')
+    
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        print(email)
-        if not User.objects.filter(email=email).exists():
-            raise forms.ValidationError('Nenhuma conta foi encontrada com este email.')
+
+        if User.objects.filter(email=email).exclude(pk=self.instance.pk).exists():
+            raise forms.ValidationError("Este e-mail já está sendo usado por outro usuário.")
+
         return email

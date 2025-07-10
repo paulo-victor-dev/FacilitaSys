@@ -8,16 +8,6 @@
    Movimentações
 {% endblock %}
 
-{% block modal_title %}
-   Adicionar Movimentação
-{% endblock %}
-
-{% block modal_body %}
-   <form class="modal_form">
-      
-   </form>
-{% endblock %}
-
 {% block search %}
    <div class="search_area">
       <form class="form_search">
@@ -50,34 +40,32 @@
 {% endblock %}
 
 {% block content_body %}
-   <div class="table_area">
-      <table>
-         <thead>
+   <table>
+      <thead>
+         <tr>
+            <th>TIPO</th>
+            <th>ORIGEM</th>
+            <th>DESTINO</th>
+            <th>QTD. ITENS</th>
+            <th>DATA DE CRIAÇÃO</th>
+            <th></th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for flow in flows %}
             <tr>
-               <th>TIPO</th>
-               <th>ORIGEM</th>
-               <th>DESTINO</th>
-               <th>QTD. ITENS</th>
-               <th>DATA DE CRIAÇÃO</th>
-               <th></th>
+               <th>{{ flow.get_flow_type_display }}</th>
+               <th>{{ flow.get_origin_display }}</th>
+               <th>{{ flow.get_destination_display }}</th>
+               <th>{{ flow. }}</th>
+               <th>{{ flow.creation_date|date:"d/m/Y" }}</th>
+               <th class="th_icon_area">
+                  <a class="th_icon_area_link" href="#">
+                     <span class="th_icon material-icons-sharp">edit</span>
+                  </a>
+               </th>
             </tr>
-         </thead>
-         <tbody>
-            {% for flow in flows %}
-               <tr>
-                  <th>{{ flow.get_flow_type_display }}</th>
-                  <th>{{ flow.get_origin_display }}</th>
-                  <th>{{ flow.get_destination_display }}</th>
-                  <th>{{ flow. }}</th>
-                  <th>{{ flow.creation_date|date:"d/m/Y" }}</th>
-                  <th class="th_icon_area">
-                     <a class="th_icon_area_link" href="#">
-                        <span class="th_icon material-icons-sharp">edit</span>
-                     </a>
-                  </th>
-               </tr>
-            {% endfor %}
-         </tbody>
-      </table>
-   </div>
+         {% endfor %}
+      </tbody>
+   </table>
 {% endblock %}

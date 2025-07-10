@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+   Cadastrar
+{% endblock %}
+
+{% block content_title %}
+   Cadastrar usuário
+{% endblock %}
+
+{% block content_body %}
+    <form class="add_form" method="post" action="{% url 'account:user_create' %}">
+        {% csrf_token %}
+
+        <div class="add_area_plus">
+            <div class="add_area">
+                <span>Nome</span>
+                
+                <div class="input_field {% if form.first_name.errors %}invalid{% endif %}">
+                    <input type="text" name="first_name" value="{{ form.first_name.value|default_if_none:'' }}">
+                </div>
+        
+                {% for error in form.first_name.errors %}
+                    <div class="field_error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="add_area">
+                <span>Sobrenome</span>
+                
+                <div class="input_field {% if form.last_name.errors %}invalid{% endif %}">
+                    <input type="text" name="last_name" value="{{ form.first_name.value|default_if_none:'' }}">
+                </div>
+        
+                {% for error in form.last_name.errors %}
+                    <div class="field_error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="add_area">
+                <span>Documento</span>
+                
+                <div class="input_field {% if form.document.errors %}invalid{% endif %}">
+                    <input type="text" name="document" value="{{ form.document.value|default_if_none:'' }}">
+                </div>
+        
+                {% for error in form.document.errors %}
+                    <div class="field_error">{{ error }}</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="add_area_plus">
+            <div class="add_area">
+                <span>Email</span>
+                
+                <div class="input_field {% if form.email.errors %}invalid{% endif %}">
+                    <input type="text" name="email" value="{{ form.email.value|default_if_none:'' }}">
+                </div>
+    
+                {% for error in form.email.errors %}
+                    <div class="field_error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="add_area">
+                <span>Senha</span>
+                
+                <div class="input_field {% if form.password1.errors %}invalid{% endif %}">
+                    <input type="password" name="password1" value="{{ form.password1.value|default_if_none:'' }}">
+                </div>
+    
+                {% for error in form.password1.errors %}
+                    <div class="field_error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="add_area">
+                <span>Confirmar senha</span>
+                
+                <div class="input_field {% if form.password2.errors %}invalid{% endif %}">
+                    <input type="password" name="password2" value="{{ form.password2.value|default_if_none:'' }}">
+                </div>
+    
+                {% for error in form.password2.errors %}
+                    <div class="field_error">{{ error }}</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="add_area_plus">
+            <div class="add_area">
+                <span>Tipo de usuário</span>
+
+                <div class="input_field">
+                    <select name="user_type">
+                        <option value="admin">Administrador</option>
+                        <option value="funcionario">Funcionário</option>
+                        <option value="cliente" selected>Cliente</option>
+                    </select>
+                </div>
+
+                {% for error in form.user_type.errors %}
+                    <div class="field_error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="add_area">
+                <span>Status conta</span>
+
+                <div class="input_field">
+                    <select name="is_active">
+                        <option value="active" selected>Ativa</option>
+                        <option value="inactive">Inativa</option>
+                    </select>
+                </div>
+
+                {% for error in form.user_type.errors %}
+                    <div class="field_error">{{ error }}</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="btns_area">
+            <button class="btn_cad" type="submit">Cadastrar</button>
+
+            <div class="cancel_area">
+                <a class="btn_cancel" href="{% url 'account:user_list' %}">Cancelar</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}

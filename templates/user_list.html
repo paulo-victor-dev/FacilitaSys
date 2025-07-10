@@ -8,100 +8,14 @@
    Usuários
 {% endblock %}
 
-{% block modal_title %}
-   Adicionar Usuário
-{% endblock %}
-
-{% block modal_body %}
-   <form class="modal_form" method="post" action="{% url 'account:user_create' %}">
-      {% csrf_token %}
-
-      <div class="add_area2">
-         <div class="add_area">
-            <span>Nome</span>
-
-            <input type="text" name="first_name">
-         </div>
-
-         <div class="add_area">
-            <span>Sobrenome</span>
-
-            <input type="text" name="last_name">
-         </div>
-      </div>
-
-      <div class="add_area">
-         <span>CPF/CNPJ</span>
-
-         <input type="text" name="document">
-      </div>
-
-      <div class="add_area2">
-         <div class="add_area">
-            <span>Email</span>
-   
-            <input type="email" name="username">
-         </div>
-   
-         <div class="add_area">
-            <span>Senha</span>
-   
-            <input type="password" name="password1">
-         </div>
-      </div>
-
-      <div class="add_area">
-         <span>Confirmar senha</span>
-
-         <input type="password" name="password2">
-      </div>
-
-      <div class="add_area2">
-         <div class="select_body">
-            <span>Tipo de usuário</span>
-   
-            <select name="user_type">
-               {% if user.is_superuser %}
-                  <option value="administrador">administrador</option>
-                  <option value="funcionario">Funcionário</option>
-                  <option value="cliente" selected>Cliente</option>
-               {% else %}
-                  <option value="funcionario">Funcionário</option>
-                  <option value="cliente" selected>Cliente</option>
-               {% endif %}   
-            </select>
-         </div>
-
-         <div class="add_area">
-            <span>Status da conta</span>
-
-            <select name="is_active">
-               <option value="active" selected>Ativo</option>
-               <option value="inactive">Inativo</option>
-            </select>
-         </div>
-      </div>
-
-      <div class="btn_area">
-         <button class="close_btn" type="button">
-            <span>CANCELAR</span>
-         </button>
-
-         <button class="save_btn" type="submit">
-            <span>SALVAR</span>
-         </button>
-      </div>
-   </form>
-{% endblock %}
-
 {% block search %}
    <div class="search_area">
       <form class="form_search">
         {% csrf_token %}
   
         <select class="filter_menu" name="filter">
-           <option value="full_name">Nome</option>
-           <option value="document" selected>CPF/CNPJ</option>
+           <option value="full_name" selected>Nome</option>
+           <option value="document">Documento</option>
            <option value="email">Email</option>
         </select>
   
@@ -115,9 +29,9 @@
      </form>
 
      <div class="btn_area">
-         <button class="add_btn">
+         <a class="add_btn" href="{% url 'account:user_create' %}">
             <span class="add_icon material-icons-sharp">add</span>
-         </button>
+         </a>
          
          <a class="report_btn" href="{% url 'account:user_list_export' %}">
             <span class="report_icon material-icons-sharp">file_download</span>
@@ -127,46 +41,44 @@
 {% endblock %}
 
 {% block content_body %}
-   <div class="table_area">
-      <table>
-         <thead>
+   <table>
+      <thead>
+         <tr>
+            <th>NOME</th>
+            <th>EMAIL</th>
+            <th>DOCUMENTO</th>
+            <th>TIPO DE USUÁRIO</th>
+            <th>STATUS</th>
+            <th></th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for user in users %}
             <tr>
-               <th>NOME</th>
-               <th>EMAIL</th>
-               <th>CPF/CNPJ</th>
-               <th>TIPO DE USUÁRIO</th>
-               <th>STATUS</th>
-               <th></th>
-            </tr>
-         </thead>
-         <tbody>
-            {% for user in users %}
-               <tr>
-                  <th>{{ user.get_full_name }}</th>
-                  <th>{{ user.email }}</th>
-                  <th>
-                     {% if user.document %}
-                        {{ user.document }}
-                     {% else %}
-                        -
-                     {% endif %}
-                  </th>
-                  <th>{{ user.get_user_type_display }}</th>
-                  <th>
-                  {% if user.is_active %}
-                     <p class="status active">Ativo</p>
+               <th>{{ user.get_full_name }}</th>
+               <th>{{ user.email }}</th>
+               <th>
+                  {% if user.document %}
+                     {{ user.document }}
                   {% else %}
-                     <p class="status inactive">Inativo</p>
+                     -
                   {% endif %}
-                  </th>
-                  <th class="th_icon_area">
-                     <a class="th_icon_area_link" href="#">
-                        <span class="th_icon material-icons-sharp">edit</span>
-                     </a>
-                  </th>
-               </tr>
-            {% endfor %}
-         </tbody>
-      </table>
-   </div>
+               </th>
+               <th>{{ user.get_user_type_display }}</th>
+               <th>
+               {% if user.is_active %}
+                  <p class="status active">Ativo</p>
+               {% else %}
+                  <p class="status inactive">Inativo</p>
+               {% endif %}
+               </th>
+               <th class="th_icon_area">
+                  <a class="th_icon_area_link" href="{% url 'account:user_update' user.pk %}">
+                     <span class="th_icon material-icons-sharp">edit</span>
+                  </a>
+               </th>
+            </tr>
+         {% endfor %}
+      </tbody>
+   </table>
 {% endblock %}

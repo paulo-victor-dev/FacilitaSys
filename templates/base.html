@@ -13,7 +13,7 @@
 <body>
     {% if user.is_authenticated %}
         <main class="main_area">
-            <!-- Success message -->
+            <!-- Success messages -->
             {% if messages %}
                 {% for message in messages %}
                     <div class="message_area">
@@ -21,10 +21,10 @@
                     </div>
                 {% endfor %}
             {% endif %}
-            <!--  -->
-            
+  
+            <!-- Sidebar -->
             {% include 'base_includes/_sidebar.html' %}
-
+      
             <div class="content_area">
                 {% include 'base_includes/_navbar.html' %}
 
@@ -37,24 +37,8 @@
                         {% block search %}{% endblock %}
                     </div>
     
-                    <div class="content_body">
-                        {% block content_body %}{% endblock %}
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal_bg open">
-                <div class="modal_area">
-                    <div class="modal_top">
-                        <span class="modal_title">{% block modal_title %}{% endblock %}</span>
-
-                        <span class="modal_close_icon material-icons-sharp">close</span>
-                    </div>
-
-                    <hr class="modal_divider">
-
-                    <div class="modal_body">
-                        {% block modal_body %}{% endblock %}
+                    <div class="content_body {% if request.resolver_match.url_name == 'overview' %}transparent{% endif %}">
+                        {% block content_body %}{% endblock %}  
                     </div>
                 </div>
             </div>
