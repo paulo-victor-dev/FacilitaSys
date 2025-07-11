@@ -20,7 +20,7 @@
 @import url("./table.css");
 
 /* Add */
-@import url("./add.css");
+@import url("./forms.css");
 
 :root {
     --bg-color1: #fff;
@@ -33,8 +33,11 @@
     --bg-color8: #ea9999;
     --bg-color9: #ffe599;
     --bg-color9: #3b537c;
-    --bg-color10: #578f3b;
-    --bg-color11: #68a04d;
+    --bg-color10: #4b832f;
+    --bg-color11: #337711;
+    --bg-color12: #c5483f;
+    --bg-color13: #2372b3;
+    --bg-color14: #b6271d;
 
     --text-color1: #fff;
     --text-color2: #000000;

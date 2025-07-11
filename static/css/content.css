@@ -147,20 +147,28 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 12px;
     width: 100%;
     top: 0;
     opacity: 0;
-    transform: translatey(-40px);
+    transform: translatey(-30px);
     transition: opacity var(--transition-025), transform var(--transition-025);
     z-index: 2000;
-    background-color: red;
+    background-color: var(--bg-color10);
 }
 
-
+.message_area span {
+    color: var(--text-color1);
+    font-weight: 500;
+}
 
 .message_area.show {
     opacity: 1;
     transform: translateY(0);
+}
+
+.message_area.invalid {
+    background-color: var(--bg-color12);
 }
 
 /* Hover */

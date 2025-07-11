@@ -29,7 +29,7 @@
                 <span>Sobrenome</span>
                 
                 <div class="input_field {% if form.last_name.errors %}invalid{% endif %}">
-                    <input type="text" name="last_name" value="{{ form.first_name.value }}">
+                    <input type="text" name="last_name" value="{{ form.last_name.value }}">
                 </div>
         
                 {% for error in form.last_name.errors %}
@@ -41,7 +41,7 @@
                 <span>Documento</span>
                 
                 <div class="input_field {% if form.document.errors %}invalid{% endif %}">
-                    <input type="text" name="document" value="{{ form.document.value }}">
+                    <input type="text" name="document" id="doc" maxlength="18" value="{{ form.document.value }}">
                 </div>
         
                 {% for error in form.document.errors %}
@@ -96,10 +96,14 @@
         </div>
 
         <div class="btns_area">
-            <button class="btn_cad" type="submit">Atualizar</button>
-
-            <div class="cancel_area">
+            <div class="btn_group">
+                <button class="btn_submit" type="submit">Atualizar</button>
+    
                 <a class="btn_cancel" href="{% url 'account:user_list' %}">Cancelar</a>
+            </div>
+
+            <div class="btn_group">
+                <a class="btn_delete" href="{% url 'account:user_delete' user.pk %}">Deletar</a>
             </div>
         </div>
     </form>

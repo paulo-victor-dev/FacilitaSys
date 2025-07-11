@@ -13,10 +13,10 @@
 <body>
     {% if user.is_authenticated %}
         <main class="main_area">
-            <!-- Success messages -->
+            <!-- Messages -->
             {% if messages %}
                 {% for message in messages %}
-                    <div class="message_area">
+                    <div class="message_area {% if message.tags == 'error' %}invalid{% endif %}">
                         <span>{{ message }}</span>
                     </div>
                 {% endfor %}

@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 
 from django.contrib.auth import views as auth_views
-from django.views.generic import View, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import View, ListView, CreateView, UpdateView, DeleteView
 
 from django.db.models import Q, Value, F
 from django.db.models.functions import Concat
@@ -58,6 +58,10 @@ class UserCreateView(LoginRequiredMixin, CreateView):
     template_name = 'add_pages/user_add.html'
     success_url = reverse_lazy('account:user_list')
 
+    def form_valid(self, form):
+        messages.success(self.request, 'Usuário cadastrado com sucesso!')
+        return super().form_valid(form)
+
 
 class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = User
@@ -65,10 +69,24 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'update_pages/user_update.html'
     success_url = reverse_lazy('account:user_list')
 
+    def form_valid(self, form):
+        messages.success(self.request, 'Usuário atualizado com sucesso!')
+        return super().form_valid(form)
+    
 
 class UserDeleteView(LoginRequiredMixin, DeleteView):
     model = User
+    template_name = 'delete_pages/user_confirm_delete.html'
+    success_url = reverse_lazy('account:user_list')
 
+    def form_valid(self, form):
+        if self.get_object() == self.request.user:
+            messages.error(self.request, 'Não é possível excluir sua própria conta enquanto estiver logado.')
+            return self.form_invalid(form)
+
+        messages.success(self.request, 'Usuário excluído com sucesso!')
+        return super().form_valid(form)
+        
 
 class ExportUsersView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):

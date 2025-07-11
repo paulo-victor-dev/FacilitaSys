@@ -28,12 +28,15 @@ INSTALLED_APPS = [
 
     # My apps
     '_apps.account',
-    '_apps.product.apps.ProductConfig',
+    '_apps.product',
     '_apps.dashboard',
     '_apps.order',
     '_apps.supplier',
     '_apps.inventory',
     '_apps.pdv',
+
+    # External apps
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -87,6 +90,13 @@ LOGIN_REDIRECT_URL = 'dashboard:overview'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'noreply@seusite.com'
+
+
+# Phonenumber configs
+
+PHONENUMBER_DEFAULT_REGION = 'BR'
+PHONENUMBER_DB_FORMAT = 'E164'
+PHONENUMBER_DEFAULT_FORMAT = 'INTERNATIONAL'
 
 
 # Password validation

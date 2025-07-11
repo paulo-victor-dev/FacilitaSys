@@ -40,7 +40,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     email = models.EmailField(unique=True, verbose_name='Email')
 
-    document = models.CharField(max_length=14, unique=True, blank=True, null=True, verbose_name='CPF/CNPJ')
+    document = models.CharField(max_length=18, unique=True, blank=True, null=True, verbose_name='CPF/CNPJ')
 
     is_active = models.BooleanField(
         default=False, 
@@ -77,6 +77,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_full_name(self):
         return f'{self.first_name} {self.last_name}'
+    
+    def get_initials(self):
+        first_name = [l.upper() for l in self.first_name]
+        last_name = [l.upper() for l in self.last_name]
+
+        return f'{first_name[0] if first_name else ''}{last_name[0] if last_name else ''}'
     
     class Meta:
         verbose_name = 'Usuário'

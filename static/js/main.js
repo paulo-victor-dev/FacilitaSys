@@ -7,9 +7,9 @@ const body = document.querySelector("body"),
       user_area = body.querySelector(".user_area"),
       dropdown_menu = body.querySelector(".dropdown_menu"),
 
-      add_btn = body.querySelector(".add_btn"),
+      msg = body.querySelector('.message_area'),
 
-      msg = body.querySelector('.message_area');
+      input_doc = body.querySelector('#doc');
 
 // Sidebar events
 btn_toggle.addEventListener("click", () => {
@@ -43,17 +43,30 @@ document.addEventListener("click", function(event){
     };
 });
 
-// Search_area events
-if (add_btn) {
-    add_btn.addEventListener("click", () => {
-        modal.classList.toggle("open")
-    })
-};
-
 // Message events
 if (msg) {
     msg.classList.add('show');
     setTimeout(() => {
         msg.classList.remove('show');
-    }, 3000);
+    }, 3500);
+};
+
+// CPF/CNPJ mask
+if (input_doc) {
+    input_doc.addEventListener('input', () => {
+        let v = input_doc.value.replace(/\D/g, '');
+
+        if (v.length <= 11) {
+            v = v.replace(/(\d{3})(\d)/, '$1.$2');
+            v = v.replace(/(\d{3})(\d)/, '$1.$2');
+            v = v.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        } else {
+            v = v.replace(/^(\d{2})(\d)/, '$1.$2');
+            v = v.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+            v = v.replace(/\.(\d{3})(\d)/, '.$1/$2');
+            v = v.replace(/(\d{4})(\d)/, '$1-$2');
+        }
+
+        input_doc.value = v;
+    });
 };

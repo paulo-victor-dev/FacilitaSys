@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load filters %}
+
 {% block page_title %}
    Usuários
 {% endblock %}
@@ -8,15 +10,26 @@
    Usuários
 {% endblock %}
 
+{% block messages %}
+   {% if messages %}
+      {% for message in messages %}
+         <div class="message_area">
+            <span>{{ message }}</span>
+         </div>
+      {% endfor %}
+   {% endif %}
+{% endblock %}
+
+
 {% block search %}
    <div class="search_area">
       <form class="form_search">
         {% csrf_token %}
   
         <select class="filter_menu" name="filter">
-           <option value="full_name" selected>Nome</option>
-           <option value="document">Documento</option>
-           <option value="email">Email</option>
+           <option value="full_name" {% if request.GET.filter == "full_name" %}selected{% endif %}>Nome</option>
+           <option value="document" {% if request.GET.filter == "document" %}selected{% endif %}>Documento</option>
+           <option value="email" {% if request.GET.filter == "email" %}selected{% endif %}>Email</option>
         </select>
   
         <div class="search_group">
@@ -59,7 +72,7 @@
                <th>{{ user.email }}</th>
                <th>
                   {% if user.document %}
-                     {{ user.document }}
+                     {{ user.document|cpf_cnpj_mask }}
                   {% else %}
                      -
                   {% endif %}
@@ -76,6 +89,12 @@
                   <a class="th_icon_area_link" href="{% url 'account:user_update' user.pk %}">
                      <span class="th_icon material-icons-sharp">edit</span>
                   </a>
+               </th>
+            </tr>
+         {% empty %}
+            <tr>
+               <th>
+                  <p>Nenhum usuário encontrado</p>
                </th>
             </tr>
          {% endfor %}

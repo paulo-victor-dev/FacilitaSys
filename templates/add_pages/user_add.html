@@ -41,7 +41,7 @@
                 <span>Documento</span>
                 
                 <div class="input_field {% if form.document.errors %}invalid{% endif %}">
-                    <input type="text" name="document" value="{{ form.document.value|default_if_none:'' }}">
+                    <input type="text" name="document" id="doc" maxlength="18" value="{{ form.document.value|default_if_none:'' }}">
                 </div>
         
                 {% for error in form.document.errors %}
@@ -122,9 +122,9 @@
         </div>
 
         <div class="btns_area">
-            <button class="btn_cad" type="submit">Cadastrar</button>
-
-            <div class="cancel_area">
+            <div class="btn_group">
+                <button class="btn_submit" type="submit">Cadastrar</button>
+    
                 <a class="btn_cancel" href="{% url 'account:user_list' %}">Cancelar</a>
             </div>
         </div>

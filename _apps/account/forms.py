@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth import forms as auth_forms
 
+import re
+
 from validate_docbr import CPF, CNPJ
 
 from .models import User
@@ -40,9 +42,11 @@ class UserCreationForm(auth_forms.UserCreationForm):
 
         if not document:
             raise forms.ValidationError('Este campo é obrigatório.')
+        
+        doc_only_digits = re.sub(r'\D', '', document)
 
-        if CPF().validate(document) or CNPJ().validate(document):
-            return document
+        if CPF().validate(doc_only_digits) or CNPJ().validate(doc_only_digits):
+            return doc_only_digits
         else:
             raise forms.ValidationError('CPF/CNPJ inválido.')
     
@@ -68,9 +72,11 @@ class UserUpdateForm(forms.ModelForm):
 
         if not document:
             raise forms.ValidationError('Este campo é obrigatório.')
+        
+        doc_only_digits = re.sub(r'\D', '', document)
 
-        if CPF().validate(document) or CNPJ().validate(document):
-            return document
+        if CPF().validate(doc_only_digits) or CNPJ().validate(doc_only_digits):
+            return doc_only_digits
         else:
             raise forms.ValidationError('CPF/CNPJ inválido.')
     
