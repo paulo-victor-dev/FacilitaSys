@@ -1,14 +1,11 @@
-/* Font */
+/* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
 
 /* Login */
 @import url("./login.css");
 
 /* Sidebar */
-@import url("./sidebar.css");
-
-/* Navbar */
-@import url("./navbar.css");
+@import url("./_sidebar.css");
 
 /* Content */
 @import url("./content.css");
@@ -16,10 +13,10 @@
 /* Dashboard */
 @import url("./dashboard.css");
 
-/* Table */
-@import url("./table.css");
+/* Tables */
+@import url("./tables.css");
 
-/* Add */
+/* Forms */
 @import url("./forms.css");
 
 :root {
@@ -73,6 +70,6 @@
 
 .main_area {
     display: flex;
-    flex-direction: column;
     height: 100vh;
+    background-color: var(--bg-color2);
 }

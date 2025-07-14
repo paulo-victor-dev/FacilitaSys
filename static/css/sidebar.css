@@ -1,4 +1,4 @@
-.sidebar {
+aside {
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -8,11 +8,11 @@
     left: 0;
     padding: 12px;
     background-color: var(--bg-color4);
-    transition: all var(--transition-035);
+    transition: width var(--transition-035);
     z-index: 3;
 }
 
-.sidebar .btn_toggle {
+aside .btn_toggle {
     position: absolute;
     cursor: pointer;
     display: flex;
@@ -156,7 +156,7 @@
 
 /* Submenu open events */
 .submenu_dropdown.open ~ .submenu {
-    height: 70px;
+    height: 210px;
 }
 
 .submenu_dropdown.open .submenu_btn .submenu_icon {
@@ -235,6 +235,7 @@
     top: 214px;
     left: 64px;
     width: 165px;
+    border-radius: 0 5px 5px 0;
     transition: transform var(--transition-025);
 
     > .submenu_itens {
@@ -256,13 +257,12 @@
 .sidebar.close .submenu_dropdown:hover ~ .submenu,
 .sidebar.close .submenu:hover {
     opacity: 1;
-    height: 120px;
+    height: 230px;
     pointer-events: auto;
     transform: translatex(5px);
 }
 
-.sidebar.close .submenu_dropdown:after,
-.sidebar.close .submenu:after {
+.sidebar.close .submenu_dropdown:after {
     content: '';
     position: absolute;
     top: 210px;

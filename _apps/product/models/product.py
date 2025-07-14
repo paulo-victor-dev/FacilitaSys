@@ -19,11 +19,13 @@ class Product(TimeStampModel, ActiveModel, models.Model):
     bar_code = models.BigIntegerField(unique=True, verbose_name='Código de barras')
 
     # Product identity
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='product_category', verbose_name='Categoria')
+    name = models.CharField(max_length=50, unique=True, verbose_name='Nome')
 
-    brand = models.ForeignKey(Brand, on_delete=models.PROTECT, related_name='product_brand', verbose_name='Marca')
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True, related_name='product_category', verbose_name='Categoria')
 
-    model = models.ForeignKey(ProductModel, on_delete=models.PROTECT, related_name='product_model', verbose_name='Modelo')
+    brand = models.ForeignKey(Brand, on_delete=models.PROTECT, blank=True, null=True, related_name='product_brand', verbose_name='Marca')
+
+    model = models.ForeignKey(ProductModel, on_delete=models.PROTECT, blank=True, null=True, related_name='product_model', verbose_name='Modelo')
 
     unit_type = models.CharField(
         max_length=50,
@@ -50,7 +52,7 @@ class Product(TimeStampModel, ActiveModel, models.Model):
     promo_end = models.DateField(null=True, blank=True, verbose_name='Fim promoção') 
 
     def __str__(self):
-        return f"{self.category} {self.brand} {self.model}"
+        return f"{self.name}"
 
     class Meta:
         verbose_name = 'Produto'

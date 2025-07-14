@@ -7,7 +7,7 @@ from .models import Flow
 
 class FlowListView(LoginRequiredMixin, ListView):
     model = Flow
-    template_name = 'flow_list.html'
+    template_name = 'list_pages/flow_list.html'
     context_object_name = 'flows'
 
    

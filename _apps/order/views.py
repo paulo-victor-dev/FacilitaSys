@@ -12,7 +12,7 @@ from .models import Order
 
 class OrderListView(LoginRequiredMixin, ListView):
     model = Order
-    template_name = 'order_list.html'
+    template_name = 'list_pages/order_list.html'
     context_object_name = 'orders'
 
     def get_queryset(self):

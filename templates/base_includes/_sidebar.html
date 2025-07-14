@@ -1,84 +1,131 @@
 {% load static %}
 
-<aside class="sidebar close">
+<aside>
     <span class="btn_toggle material-icons-sharp">chevron_left</span>
-
-    <div class="logo_area">
-        <img class="logo_image" src="{% static 'img/logo_facilitasys.png' %}" alt="logo_facilitasys">
+    
+    <div class="itens_area">
+        <div class="user_area">
+            <div class="user_icon">
+                {{ user.get_initials }}
+            </div>
+    
+            <div class="user_details">
+                <span class="user_name">
+                    {{ user.get_full_name }}
+                </span>
         
-        <span class="logo_name">Facilitasys</span>
-    </div>
+                <span class="user_role">
+                    {{ user.get_user_type_display }}
+                </span>
+            </div>
+        </div>
+    
+        <hr>
+    
+        <div class="menu">
+            <ul>
+                <li>
+                    <a href="{% url 'dashboard:overview' %}">
+                        <span class="menu_icon material-icons-sharp">dashboard</span>
 
-    <hr class="divider">
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
 
-    <div class="menu_area">
-        <ul class="menu_itens">
-            <li class="item">
-                <a class="item_link" href="{% url 'dashboard:overview' %}">
-                    <span class="item_icon material-icons-sharp">dashboard</span>
-                    <span class="item_name">Dashboard</span>
-                </a>
-            </li>
+                <li>
+                    <a href="{% url 'dashboard:overview' %}">
+                        <span class="menu_icon material-icons-sharp">list_alt</span>
 
-            <li class="item">
-                <a class="item_link" href="{% url 'order:order_list' %}">
-                    <span class="item_icon material-icons-sharp">assignment</span>
-                    <span class="item_name">Pedidos</span>
-                </a>
-            </li>
+                        <span class="title">Pedidos</span>
+                    </a>
+                </li>
 
-            <li class="item submenu_dropdown">
-                <a class="item_link">
-                    <span class="item_icon material-icons-sharp">inventory_2</span>
-                    <span class="item_name">Estoque</span>
-                </a>
+                <li>
+                    <a id="submenu_btn1">
+                        <span class="menu_icon material-icons-sharp">inventory_2</span>
 
-                <button class="submenu_btn">
-                    <span class="submenu_icon material-icons-sharp">arrow_drop_down</span>
-                </button>
-            </li>
-            <li class="submenu">
-                <ul class="submenu_itens">
-                    <li class="submenu_title_area">
-                        <div class="submenu_title">
-                            <span class="submenu_title_name">Estoque</span>
-                        </div>
-                    </li>
+                        <span class="title">Produtos</span>
 
-                    <li class="submenu_item">
-                        <a class="submenu_item_link" href="{% url 'product:product_list' %}">
-                            <span class="submenu_item_name">Produtos</span>
-                        </a>
-                    </li>
+                        <span class="arrow material-icons-sharp" id="arrow1">expand_more</span>
+                    </a>
 
-                    <li class="submenu_item">
-                        <a class="submenu_item_link" href="{% url 'inventory:flow_list' %}">
-                            <span class="submenu_item_name">Movimentações</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+                    <ul class="submenu" id="submenu1">
+                        <li>
+                            <a href="">
+                                <span class="title">Todos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span class="title">Marcas</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span class="title">Categorias</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span class="title">Modelos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
-            <li class="item">
-                <a class="item_link" href="{% url 'account:user_list' %}">
-                    <span class="item_icon material-icons-sharp">people</span>
-                    <span class="item_name">Usuários</span>
-                </a>
-            </li>
+                <li>
+                    <a id="submenu_btn2">
+                        <span class="menu_icon material-icons-sharp">warehouse</span>
 
-            <li class="item">
-                <a class="item_link" href="{% url 'supplier:supplier_list' %}">
-                    <span class="item_icon material-icons-sharp">factory</span>
-                    <span class="item_name">Fornecedores</span>
-                </a>
-            </li>
+                        <span class="title">Estoque</span>
 
-            <li class="item">
-                <a class="item_link" href="{% url 'pdv:pdv' %}">
-                    <span class="item_icon material-icons-sharp">point_of_sale</span>
-                    <span class="item_name">PDV</span>
-                </a>
-            </li>
-        </ul>
+                        <span class="arrow material-icons-sharp" id="arrow2">expand_more</span>
+                    </a>
+
+                    <ul class="submenu" id="submenu2">
+                        <li>
+                            <a href="">
+                                <span class="title">Movimentações</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="{% url 'dashboard:overview' %}">
+                        <span class="menu_icon material-icons-sharp">group</span>
+
+                        <span class="title">Usuários</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'dashboard:overview' %}">
+                        <span class="menu_icon material-icons-sharp">factory</span>
+
+                        <span class="title">Fornecedores</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'dashboard:overview' %}">
+                        <span class="menu_icon material-icons-sharp">point_of_sale</span>
+
+                        <span class="title">PDV</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    <a href="">
+                        <span class="menu_icon material-icons-sharp">logout</span>
+
+                        <span class="title">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </aside>
+

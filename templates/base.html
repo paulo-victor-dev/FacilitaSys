@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Links -->
-    {% include 'base_includes/_base_links.html' %}
+    {% include 'base_includes/_links.html' %}
 
     <!-- Title -->
     <title>FacilitaSys | {% block page_title %}{% endblock %}</title>
@@ -25,9 +25,7 @@
             <!-- Sidebar -->
             {% include 'base_includes/_sidebar.html' %}
       
-            <div class="content_area">
-                {% include 'base_includes/_navbar.html' %}
-
+            <!-- <div class="content_area">
                 <div class="content">
                     <div class="content_title_area">
                         <span class="content_title_name">
@@ -41,12 +39,12 @@
                         {% block content_body %}{% endblock %}  
                     </div>
                 </div>
-            </div>
+            </div> -->
         </main>
         
     {% else %}
-        <main class="account_content">
-            {% block account_content %}{% endblock %}
+        <main class="login_area">
+            {% block login %}{% endblock %}
         </main>
 
     {% endif %}

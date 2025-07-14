@@ -1,46 +1,39 @@
 const body = document.querySelector("body"),
 
-      sidebar = body.querySelector(".sidebar"),
-      btn_toggle = body.querySelector(".btn_toggle"),
-      dropdown_sidebar = body.querySelector(".submenu_dropdown"),
+      sidebar = body.querySelector("aside"),
+      btn_toggle = sidebar.querySelector(".btn_toggle"),
+      arrow1 = sidebar.querySelector("#arrow1"),
+      arrow2 = sidebar.querySelector("#arrow2"),
 
-      user_area = body.querySelector(".user_area"),
-      dropdown_menu = body.querySelector(".dropdown_menu"),
+      submenu_btn1 = sidebar.querySelector("#submenu_btn1"),
+      submenu_btn2 = sidebar.querySelector("#submenu_btn2"),
+
+      submenu1 = sidebar.querySelector("#submenu1"),
+      submenu2 = sidebar.querySelector("#submenu2"),
 
       msg = body.querySelector('.message_area'),
 
       input_doc = body.querySelector('#doc');
 
-// Sidebar events
+// Sidebar close events
 btn_toggle.addEventListener("click", () => {
-    if (dropdown_sidebar.classList.contains("open")) {
-        dropdown_sidebar.classList.remove("open");
+    if (submenu_btn1.classList.contains("open") || submenu_btn2.classList.contains("open")) {
+        submenu_btn1.classList.remove("open");
+        submenu_btn2.classList.remove("open");
     };
 
     sidebar.classList.toggle("close");
 });
 
-dropdown_sidebar.addEventListener("click", () => {
-    if (sidebar.classList.contains("close")) {
-        dropdown_sidebar.classList.remove("open")
-    } else {
-        dropdown_sidebar.classList.toggle("open")
-    };
+// Sidebar submenus events
+submenu_btn1.addEventListener("click", () => {
+    submenu1.classList.toggle("open");
+    arrow1.classList.toggle("rotate");
 });
 
-// User_area events
-user_area.addEventListener("click", () => {
-    user_area.classList.toggle("active")
-});
-
-document.addEventListener("click", function(event){
-    if (
-        user_area.classList.contains("active") &&
-        !user_area.contains(event.target) &&
-        !dropdown_menu.contains(event.target)
-    ) {
-        user_area.classList.remove("active")
-    };
+submenu_btn2.addEventListener("click", () => {
+    submenu2.classList.toggle("open");
+    arrow2.classList.toggle("rotate");
 });
 
 // Message events

@@ -15,5 +15,5 @@ from .models import Supplier
 
 class SupplierListView(LoginRequiredMixin, ListView):
     model = Supplier
-    template_name = 'supplier_list.html'
+    template_name = 'list_pages/supplier_list.html'
     context_object_name = 'suppliers'

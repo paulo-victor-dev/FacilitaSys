@@ -18,7 +18,7 @@ from .forms import ProductForm
 
 class ProductListView(LoginRequiredMixin, ListView):
     model = Product
-    template_name = 'product_list.html'
+    template_name = 'list_pages/product_list.html'
     context_object_name = 'products'
 
     def get_queryset(self):
