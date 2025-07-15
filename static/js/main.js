@@ -17,9 +17,14 @@ const body = document.querySelector("body"),
 
 // Sidebar close events
 btn_toggle.addEventListener("click", () => {
-    if (submenu_btn1.classList.contains("open") || submenu_btn2.classList.contains("open")) {
-        submenu_btn1.classList.remove("open");
-        submenu_btn2.classList.remove("open");
+    if (submenu1.classList.contains("open") || submenu2.classList.contains("open")) {
+        submenu1.classList.remove("open");
+        submenu2.classList.remove("open");
+    };
+
+    if (arrow1.classList.contains("rotate") || arrow2.classList.contains("rotate")) {
+        arrow1.classList.remove("rotate");
+        arrow2.classList.remove("rotate");
     };
 
     sidebar.classList.toggle("close");
@@ -27,11 +32,21 @@ btn_toggle.addEventListener("click", () => {
 
 // Sidebar submenus events
 submenu_btn1.addEventListener("click", () => {
+   if (submenu2.classList.contains("open")) {
+        submenu2.classList.remove("open");
+        arrow2.classList.remove("rotate");
+    };
+
     submenu1.classList.toggle("open");
     arrow1.classList.toggle("rotate");
 });
 
 submenu_btn2.addEventListener("click", () => {
+    if (submenu1.classList.contains("open")) {
+        submenu1.classList.remove("open");
+        arrow1.classList.remove("rotate");
+    };
+    
     submenu2.classList.toggle("open");
     arrow2.classList.toggle("rotate");
 });

@@ -44,8 +44,9 @@
     --text-color6: #990000;
     --text-color7: #7f6000;
     --text-color8: #005eff;
+    --text-color9: #ffffffa1;
 
-    --border-color1: #cecece;
+    --border-color1: #cecece8f;
     
     --box-shadow-01: rgba(0, 0, 0, 0.1);
     --box-shadow-03: rgba(0, 0, 0, 0.3);
@@ -53,7 +54,6 @@
 
     --transition-015: 0.15s ease;
     --transition-025: 0.25s ease;
-    --transition-03: 0.3s ease;
     --transition-035: 0.35s ease;
 
     --error-color: #ff3c2e;

@@ -4,7 +4,74 @@ aside {
     flex-direction: column;
     width: 250px;
     height: 100%;
+    transition: width var(--transition-025);
     background-color: var(--bg-color4);
+}
+
+.divider {
+    border: none;
+    height: 1px;
+    background-color: var(--border-color1);
+}
+
+aside.close {
+    width: 72px;
+}
+
+aside.close .user_name,
+aside.close .user_role,
+aside.close .menu ul li a .arrow,
+aside.close .menu > ul > li > a > .title {
+    opacity: 0;
+    pointer-events: none;
+}
+
+aside.close .btn_toggle {
+    left: 65px;
+    transform: rotate(180deg);
+}
+
+aside.close .menu > ul > li > a > .title {
+    opacity: 0;
+    visibility: hidden;
+    padding: 12px;
+    border-radius: 0 5px 5px 0;
+    color: var(--text-color1);
+    transform: translateX(5px);
+
+    transition:
+    opacity var(--transition-015),
+    visibility var(--transition-025),
+    transform 0s 0.1s,
+    padding 0s 0.1s;
+
+    background-color: var(--bg-color4);
+}
+
+aside.close .menu > ul > li > a:hover > .title {
+    opacity: 1;
+    visibility: visible;
+}
+
+aside.close .submenu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 5px 5px 0;
+    transform: translateX(60px);
+    background-color: var(--bg-color4);
+    box-shadow: 0 0 6px 0 var(--box-shadow-03);
+
+    > li {
+        padding: 5px 10px;
+        width: 100%;
+    }
+
+    > li a {
+        padding: 2px 8px;
+    }
 }
 
 .btn_toggle {
@@ -16,6 +83,7 @@ aside {
     border-radius: 10px;
     cursor: pointer;
     color: var(--text-color1);
+    transition: left var(--transition-025), transform var(--transition-025);
     background-color: var(--bg-color3);
     box-shadow: 0 0 8px 0 var(--box-shadow-01);
 }
@@ -26,18 +94,13 @@ aside {
     height: 100%;
     padding: 8px 12px;
     gap: 14px;
-
-    > hr {
-        border: none;
-        height: 1px;
-        background-color: var(--border-color1);
-    }
 }
 
 .user_area {
     display: flex;
     align-items: center;
     width: 100%;
+    margin-left: 1px;
     gap: 14px;
 
     > .user_icon {
@@ -53,16 +116,22 @@ aside {
         box-shadow: 0 0 5px 0 var(--box-shadow-01);
     }
 
+    > .user_details {
+        display: flex;
+        flex-direction: column;
+        white-space: nowrap;
+    }
+
     > .user_details .user_name {
         font-size: 16px;
         color: var(--text-color1);
-
+        transition: opacity var(--transition-025);
     }
 
     > .user_details .user_role {
         font-size: 14px;
-        color: var(--text-color1);
-        opacity: 60%;
+        color: var(--text-color9);
+        transition: opacity var(--transition-025);
     }
 }
 
@@ -106,13 +175,13 @@ aside {
         font-size: 16px;
         font-weight: 600;
         color: var(--text-color1);
-        transition: color var(--transition-025);
+        transition: color var(--transition-025), opacity var(--transition-025);
     }
 
     > ul li a .arrow {
         font-size: 28px;
         color: var(--text-color1);
-        transition: color var(--transition-025), transform var(--transition-025);
+        transition: color var(--transition-025), transform var(--transition-025), opacity var(--transition-025);
     }
 
     > ul li a .arrow.rotate {
