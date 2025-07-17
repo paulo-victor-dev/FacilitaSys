@@ -5,8 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import views as auth_views
 from django.views.generic import View, ListView, CreateView, UpdateView, DeleteView
 
-from django.db.models import Q, Value, F
-from django.db.models.functions import Concat
+from django.db.models import Q
 
 from django.http import HttpResponse
 
@@ -31,25 +30,18 @@ class UserListView(LoginRequiredMixin, ListView):
     context_object_name = 'users'
 
     def get_queryset(self):
-        queryset = User.objects.annotate(
-            full_name=Concat(
-                F('first_name'),
-                Value(' '),
-                F('last_name')
-            )
-        )
+        qs = User.objects.all()
 
         search = self.request.GET.get('search')
-        search_filter = self.request.GET.get('filter')
 
-        if search and search_filter:
-            lookup = f'{search_filter}__icontains'
-
-            queryset = queryset.filter(
-                Q(**{lookup: search})
+        if search:
+            qs = qs.filter(
+                Q(first_name__icontains=search) |
+                Q(last_name__icontains=search) |
+                Q(email__icontains=search) |
+                Q(document__icontains=search)
             )
-
-        return queryset
+        return qs
 
 
 class UserCreateView(LoginRequiredMixin, CreateView):

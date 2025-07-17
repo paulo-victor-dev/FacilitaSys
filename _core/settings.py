@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     '_apps.dashboard',
     '_apps.order',
     '_apps.supplier',
-    '_apps.inventory',
+    '_apps.stock',
     '_apps.pdv',
 
     # External apps

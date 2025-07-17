@@ -8,8 +8,8 @@
     Editando - {{ user.get_full_name }}
 {% endblock %}
 
-{% block content_body %}
-    <form class="add_form" method="post" action="{% url 'account:user_update' user.pk %}">
+{% block content %}
+    <form class="_form" method="post" action="{% url 'account:user_update' user.pk %}">
         {% csrf_token %}
 
         <div class="add_area_plus">

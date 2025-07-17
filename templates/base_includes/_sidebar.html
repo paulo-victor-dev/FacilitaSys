@@ -33,7 +33,7 @@
                 </li>
 
                 <li>
-                    <a href="{% url 'dashboard:overview' %}">
+                    <a href="{% url 'order:order_list' %}">
                         <span class="menu_icon material-icons-sharp">list_alt</span>
 
                         <span class="title">Pedidos</span>
@@ -49,24 +49,32 @@
                         <span class="arrow material-icons-sharp" id="arrow1">expand_more</span>
                     </a>
 
-                    <ul class="submenu open" id="submenu1">
+                    <ul class="submenu" id="submenu1">
                         <li>
-                            <a href="">
+                            <a href="{% url 'product:product_list' %}">
+                                <span class="submenu_icon material-icons-sharp">circle</span>
+
                                 <span class="title">Todos</span>
                             </a>
                         </li>
                         <li>
                             <a href="">
+                                <span class="submenu_icon material-icons-sharp">circle</span>
+
                                 <span class="title">Marcas</span>
                             </a>
                         </li>
                         <li>
                             <a href="">
+                                <span class="submenu_icon material-icons-sharp">circle</span>
+
                                 <span class="title">Categorias</span>
                             </a>
                         </li>
                         <li>
                             <a href="">
+                                <span class="submenu_icon material-icons-sharp">circle</span>
+
                                 <span class="title">Modelos</span>
                             </a>
                         </li>
@@ -84,7 +92,9 @@
 
                     <ul class="submenu" id="submenu2">
                         <li>
-                            <a href="">
+                            <a href="{% url 'stock:flow_list' %}">
+                                <span class="submenu_icon material-icons-sharp">circle</span>
+                                
                                 <span class="title">Movimentações</span>
                             </a>
                         </li>
@@ -92,7 +102,7 @@
                 </li>
 
                 <li>
-                    <a href="{% url 'dashboard:overview' %}">
+                    <a href="{% url 'account:user_list' %}">
                         <span class="menu_icon material-icons-sharp">group</span>
 
                         <span class="title">Usuários</span>
@@ -100,7 +110,7 @@
                 </li>
 
                 <li>
-                    <a href="{% url 'dashboard:overview' %}">
+                    <a href="{% url 'supplier:supplier_list' %}">
                         <span class="menu_icon material-icons-sharp">factory</span>
 
                         <span class="title">Fornecedores</span>
@@ -108,7 +118,7 @@
                 </li>
 
                 <li>
-                    <a href="{% url 'dashboard:overview' %}">
+                    <a href="{% url 'pdv:pdv' %}">
                         <span class="menu_icon material-icons-sharp">point_of_sale</span>
 
                         <span class="title">PDV</span>
@@ -119,11 +129,15 @@
             <ul>
                 <hr class="divider">
                 <li>
-                    <a href="">
-                        <span class="menu_icon material-icons-sharp">logout</span>
+                    <form method="post" action="{% url 'account:logout' %}">
+                        {% csrf_token %}
 
-                        <span class="title">Logout</span>
-                    </a>
+                        <button type="submit">
+                            <span class="menu_icon material-icons-sharp">logout</span>
+    
+                            <span class="title">Logout</span>
+                        </button>
+                    </form>
                 </li>
             </ul>
         </div>

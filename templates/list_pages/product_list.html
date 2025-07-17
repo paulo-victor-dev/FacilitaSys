@@ -9,37 +9,36 @@
 {% endblock %}
 
 {% block search %}
-   <div class="search_area">
-      <form class="form_search" method="get">
-         {% csrf_token %}
+   <form method="get">
+      {% csrf_token %}
 
-         <select class="filter_menu" name="filter">
-            <option value="full_name" selected>Descrição</option>
-            <option value="bar_code">Cód. Barras</option>
-         </select>
-
-         <div class="search_group">
+      <div class="search_group">
+         <div class="search_input_area">
             <input type="text" name="search" placeholder="Pesquisar..." value="{{ request.GET.search }}">
-            
-            <button type="submit">
-               <span class="search_icon material-icons-sharp">search</span>
-            </button>
          </div>
-      </form>
-
-      <div class="btn_area">
-         <button class="add_btn">
-            <span class="add_icon material-icons-sharp">add</span>
-         </button>
          
-         <a class="report_btn" href="{% url 'product:product_list_export' %}">
-            <span class="report_icon material-icons-sharp">file_download</span>
-         </a>
+         <button type="submit">
+            <span class="search_icon material-icons-sharp">search</span>
+         </button>
+      </div>
+   </form>
+
+   <div class="btn_area">
+      <a href="#">
+         <span class="btn_area_icon material-icons-sharp">add</span>
+         
+         <span class="text">Cadastrar</span>
+      </a>
+      
+      <a href="{% url 'product:product_list_export' %}">
+         <span class="btn_area_icon material-icons-sharp">file_download</span>
+
+         <span class="text">Exportar</span>
+      </a>
    </div>
-</div>
 {% endblock %}
 
-{% block content_body %}
+{% block content %}
    <table>
       <thead>
          <tr>
@@ -47,7 +46,7 @@
             <th>CÓD. BARRAS</th>
             <th>TIPO</th>
             <th>PREÇO</th>
-            <th>ESTOQUE</th>
+            <th>QUANTIDADE</th>
             <th>STATUS</th>
             <th></th>
          </tr>
@@ -59,7 +58,7 @@
                <th>{{ product.bar_code }}</th>
                <th>{{ product.get_format_type_display }}</th>
                <th>R$ {{ product.price }}</th>
-               <th>{{ product.stock }}</th>
+               <th>{{ product.quantity }}</th>
                <th>
                {% if product.is_active %}
                   <p class="status active">Ativo</p>

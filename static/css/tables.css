@@ -3,6 +3,7 @@ table {
     text-align: left;
     border-collapse: collapse;
     background-color: transparent;
+    z-index: 1;
 }
 
 thead tr {
@@ -12,20 +13,18 @@ thead tr {
     top: 0;
     height: 30px;
     padding: 12px;
-    z-index: 1;
-    color: var(--text-color1);
-    background-color: var(--bg-color3);
+    color: var(--dark1);
 }
 
 tbody tr {
     font-size: 14px;
-    opacity: 0.8;
-    border-top: 1px solid var(--border-color1);
-    border-bottom: 1px solid var(--border-color1);
+    border-top: 1px solid var(--dark3);
+    border-bottom: 1px solid var(--dark3);
+    color: var(--dark1);
 }
 
 tbody tr:nth-child(even) {
-    background-color: var(--bg-color2);
+    background-color: var(--light2);
 }
 
 th {
@@ -35,7 +34,6 @@ th {
     padding: 12px;
     white-space: nowrap;
     text-overflow: ellipsis;
-    z-index: 99;
 }
 
 .th_icon_area {
@@ -57,31 +55,35 @@ th {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color var(--transition-015);
-    background-color: var(--bg-color3);
+    background-color: var(--info2);
+}
+
+.th_icon_area_link:hover {
+    background-color: var(--info1);
 }
 
 .th_icon_area_link .th_icon {
-    color: var(--bg-color1);
+    color: var(--light1);
     font-size: 22px;
 }
 
 .status.active {
     text-align: center;
     border-radius: 5px;
-    color: var(--text-color5);
-    background-color: var(--bg-color7);
+    color: var(--success3);
+    background-color: var(--success1);
 }
 
 .status.inactive {
     text-align: center;
     border-radius: 5px;
-    color: var(--text-color6);
-    background-color: var(--bg-color8);
+    color: var(--danger3);
+    background-color: var(--danger4);
 }
 
 .status.pendent {
     text-align: center;
     border-radius: 5px;
-    color: var(--text-color7);
-    background-color: var(--bg-color9);
+    color: var(--warning2);
+    background-color: var(--warning1);
 }

@@ -8,8 +8,8 @@
    Cadastrar usuário
 {% endblock %}
 
-{% block content_body %}
-    <form class="add_form" method="post" action="{% url 'account:user_create' %}">
+{% block content %}
+    <form class="_form" method="post" action="{% url 'account:user_create' %}">
         {% csrf_token %}
 
         <div class="add_area_plus">

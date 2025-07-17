@@ -1,19 +1,19 @@
 const body = document.querySelector("body"),
 
-      sidebar = body.querySelector("aside"),
-      btn_toggle = sidebar.querySelector(".btn_toggle"),
-      arrow1 = sidebar.querySelector("#arrow1"),
-      arrow2 = sidebar.querySelector("#arrow2"),
+    sidebar = body.querySelector("aside"),
+    btn_toggle = sidebar.querySelector(".btn_toggle"),
+    arrow1 = sidebar.querySelector("#arrow1"),
+    arrow2 = sidebar.querySelector("#arrow2"),
 
-      submenu_btn1 = sidebar.querySelector("#submenu_btn1"),
-      submenu_btn2 = sidebar.querySelector("#submenu_btn2"),
+    submenu_btn1 = sidebar.querySelector("#submenu_btn1"),
+    submenu_btn2 = sidebar.querySelector("#submenu_btn2"),
 
-      submenu1 = sidebar.querySelector("#submenu1"),
-      submenu2 = sidebar.querySelector("#submenu2"),
+    submenu1 = sidebar.querySelector("#submenu1"),
+    submenu2 = sidebar.querySelector("#submenu2"),
 
-      msg = body.querySelector('.message_area'),
+    msg = body.querySelector('.message_area'),
 
-      input_doc = body.querySelector('#doc');
+    input_doc = body.querySelector('#doc');
 
 // Sidebar close events
 btn_toggle.addEventListener("click", () => {
@@ -28,6 +28,22 @@ btn_toggle.addEventListener("click", () => {
     };
 
     sidebar.classList.toggle("close");
+
+    const submenus = [submenu1, submenu2];
+
+    submenus.forEach(sub => {
+        if (sidebar.classList.contains("close")) {
+            sub.style.setProperty("--submenu-duration", "0s");
+        };
+    });
+
+    if (sidebar.classList.contains("close")) {
+        setTimeout(() => {
+            submenus.forEach(sub => 
+                sub.style.setProperty("--submenu-duration", "0.35s")
+            );
+        }, 250);
+    };
 });
 
 // Sidebar submenus events
@@ -78,3 +94,31 @@ if (input_doc) {
         input_doc.value = v;
     });
 };
+
+// Input_search events
+document.addEventListener('DOMContentLoaded', () => {
+    const form_search = body.querySelector('#form_search');
+    const input_search = body.querySelector('#input_search');
+    const search_icon = body.querySelector('.search_icon');
+    const search_btn = body.querySelector('#search_btn');
+
+    if (form_search || input_search || search_icon ) {
+        function updateIcon() {
+            search_icon.innerText = input_search.value ? 'close' : 'search';
+        }
+    
+        updateIcon();
+    
+        input_search.addEventListener('input', updateIcon);
+    
+        search_icon.addEventListener('click', () => {
+            if (input_search.value) {
+                input_search.value = '';
+                updateIcon();
+                form_search.submit();
+            } else {
+                form_search.submit();
+            }
+        });
+    };
+});

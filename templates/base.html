@@ -25,25 +25,28 @@
             <!-- Sidebar -->
             {% include 'base_includes/_sidebar.html' %}
       
-            <!-- <div class="content_area">
-                <div class="content">
-                    <div class="content_title_area">
-                        <span class="content_title_name">
-                            {% block content_title %}{% endblock %}
-                        </span>
-                        
+            <!-- Content -->
+            <div class="content_area">
+                <div class="content_top">
+                    <span class="title">
+                        {% block content_title %}{% endblock %}
+                    </span>
+                </div>
+
+                <div class="content_body">
+                    <div class="search_area">
                         {% block search %}{% endblock %}
                     </div>
-    
-                    <div class="content_body {% if request.resolver_match.url_name == 'overview' %}transparent{% endif %}">
-                        {% block content_body %}{% endblock %}  
+
+                    <div class="content">
+                        {% block content %}{% endblock %}
                     </div>
                 </div>
-            </div> -->
+            </div>
         </main>
         
     {% else %}
-        <main class="login_area">
+        <main class="account_content">
             {% block login %}{% endblock %}
         </main>
 

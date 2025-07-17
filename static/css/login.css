@@ -1,7 +1,6 @@
 .account_content {
-    padding: 15px;
     overflow: hidden;
-    background-color: var(--bg-color2);
+    background-color: var(--light2);
 }
 
 .login_area {
@@ -21,7 +20,7 @@
     padding: 30px;
     gap: 20px;
     box-shadow: 0 0 6px 0 var(--box-shadow-01);
-    background-color: var(--bg-color1);
+    background-color: var(--light1);
 }
 
 .login_logo {
@@ -39,7 +38,7 @@
     height: 50px;
     width: 50px;
     border-radius: 6px;
-    background-color: var(--bg-color4);
+    background-color: var(--primary1);
 }
 
 .login_logo_img {
@@ -49,7 +48,7 @@
 .login_logo_text {
     font-size: 35px;
     font-weight: 600;
-    color: var(--text-color3);
+    color: var(--primary3);
     
 }
 
@@ -138,9 +137,9 @@
     margin-top: 10px;
     border: none;
     border-radius: 8px;
-    color: var(--text-color1);
+    color: var(--light1);
     transition: all var(--transition-015);
-    background-color: var(--bg-color4);
+    background-color: var(--primary1);
 }
 
 .login_footer {
@@ -157,7 +156,7 @@
     width: 100%;
     padding: 0 10px 10px;
     border-radius: 5px;
-    color: var(--error-color);
+    color: var(--danger2);
 }
 
 .fields_area .input_area .field_error {
@@ -165,22 +164,22 @@
     justify-content: start;
     width: 100%;
     padding-left: 2px;
-    color: var(--error-color);
+    color: var(--danger2);
 }
 
 .input_area input.invalid_input {
-    border: 1px solid var(--error-color);
+    border: 1px solid var(--danger2);
 }
 
 .input_area input.invalid_input ~ label,
 .input_area input.invalid_input ~ .field_icon {
-    color: var(--error-color);
+    color: var(--danger2);
 }
 
 
 /* Focus */
 .input_area input:focus {
-    border: 1px solid var(--bg-color4);
+    border: 1px solid var(--primary1);
     transition: all var(--transition-015);
 }
 
@@ -190,18 +189,18 @@
     left: 25px;
     padding: 0 5px;
     font-size: 15px;
-    color: var(--text-color3);
+    color: var(--primary3);
     transition: all var(--transition-015);
-    background-color: var(--bg-color1);
+    background-color: var(--light1);
 }
 
 .input_area input:focus ~ .field_icon {
-    color: var(--text-color3);
+    color: var(--primary3);
     transition: all var(--transition-015);
 }
 
 /* Hover */
 .login_form .submit_btn:hover {
-    background-color: var(--bg-color6);
+    background-color: var(--primary3);
     transition: all var(--transition-015);
 }

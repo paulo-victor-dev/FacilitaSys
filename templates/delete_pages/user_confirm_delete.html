@@ -8,8 +8,8 @@
     Excluindo - {{ user.get_full_name }}
 {% endblock %}
 
-{% block content_body %}
-    <form class="add_form" method="post">
+{% block content %}
+    <form class="_form" method="post">
         {% csrf_token %}
 
         <span>Tem certeza que deseja remover <strong>"{{ user.get_full_name }}"</strong>?</span>

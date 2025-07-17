@@ -9,38 +9,36 @@
 {% endblock %}
 
 {% block search %}
-   <div class="search_area">
-      <form class="form_search">
-        {% csrf_token %}
-  
-        <select class="filter_menu" name="filter">
-           <option value="name">Nome</option>
-           <option value="document" selected>CNPJ</option>
-           <option value="email">Email</option>
-        </select>
-  
-        <div class="search_group">
-           <input type="text" name="search" placeholder="Pesquisar..." value="{{ request.GET.search }}">
-           
-           <button type="submit">
-              <span class="search_icon material-icons-sharp">search</span>
-           </button>
-        </div>
-     </form>
+   <form class="form_search">
+      {% csrf_token %}
 
-     <div class="btn_area">
-         <button class="add_btn">
-            <span class="add_icon material-icons-sharp">add</span>
-         </button>
+      <select class="filter_menu" name="filter">
+         <option value="name">Nome</option>
+         <option value="document" selected>CNPJ</option>
+         <option value="email">Email</option>
+      </select>
+
+      <div class="search_group">
+         <input type="text" name="search" placeholder="Pesquisar..." value="{{ request.GET.search }}">
          
-         <a class="report_btn" href="#">
-            <span class="report_icon material-icons-sharp">file_download</span>
-         </a>
+         <button type="submit">
+            <span class="search_icon material-icons-sharp">search</span>
+         </button>
       </div>
+   </form>
+
+   <div class="btn_area">
+      <button class="add_btn">
+         <span class="add_icon material-icons-sharp">add</span>
+      </button>
+      
+      <a class="report_btn" href="#">
+         <span class="report_icon material-icons-sharp">file_download</span>
+      </a>
    </div>
 {% endblock %}
 
-{% block content_body %}
+{% block content %}
    <table>
       <thead>
          <tr>

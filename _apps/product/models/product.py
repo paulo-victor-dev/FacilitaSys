@@ -21,9 +21,9 @@ class Product(TimeStampModel, ActiveModel, models.Model):
     # Product identity
     name = models.CharField(max_length=50, unique=True, verbose_name='Nome')
 
-    category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True, related_name='product_category', verbose_name='Categoria')
-
     brand = models.ForeignKey(Brand, on_delete=models.PROTECT, blank=True, null=True, related_name='product_brand', verbose_name='Marca')
+
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True, related_name='product_category', verbose_name='Categoria')
 
     model = models.ForeignKey(ProductModel, on_delete=models.PROTECT, blank=True, null=True, related_name='product_model', verbose_name='Modelo')
 
@@ -44,7 +44,7 @@ class Product(TimeStampModel, ActiveModel, models.Model):
     # General infos
     description = models.TextField(max_length=255, blank=True, verbose_name='Descrição')
     price = models.DecimalField(default=0, max_digits=8, decimal_places=2, verbose_name='Preço')
-    stock = models.PositiveIntegerField(default=0, null=True, blank=True, verbose_name='Estoque')
+    quantity = models.PositiveIntegerField(default=0, null=True, blank=True, verbose_name='Quantidade')
 
     # Promo
     promo_price = models.DecimalField(default=0, max_digits=8, decimal_places=2, null=True, blank=True, verbose_name='Preço promocional')
@@ -57,7 +57,7 @@ class Product(TimeStampModel, ActiveModel, models.Model):
     class Meta:
         verbose_name = 'Produto'
         verbose_name_plural = 'Produtos'
-        ordering = ['category', 'brand', 'model']
+        #ordering = ['category', 'brand', 'model']
 
 
 class ProductImage(models.Model):

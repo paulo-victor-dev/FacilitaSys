@@ -5,7 +5,7 @@
 @import url("./login.css");
 
 /* Sidebar */
-@import url("./_sidebar.css");
+@import url("./sidebar.css");
 
 /* Content */
 @import url("./content.css");
@@ -20,21 +20,45 @@
 @import url("./forms.css");
 
 :root {
-    --bg-color1: #fff;
-    --bg-color2: #f0f4f5;
-    --bg-color3: #4682B4;
-    --bg-color4: #324669;
+    --primary1: #24324b;
+    --primary2: #2b3c5a;
+    --primary3: #324669;
+
+    --secondary1: #ffffff8f;
+
+    --success1: #b6d7a8;
+    --success2: #4b832f;
+    --success3: #337711;
+
+    --danger1: #c5483f;
+    --danger2: #f03629;
+    --danger3: #b6271d;
+    --danger4: #f5b2b2;
+
+    --info1: #4683b4;
+    --info2: #2471b1;
+
+    --warning1: #ffe599;
+    --warning2: #7f6000;
+
+    --light1: #fff;
+    --light2: #f0f4f5;
+
+    --dark1: #000;
+    --dark2: #00000052;
+    --dark3: #91919149;
+
     --bg-color5: #000000;
     --bg-color6: #5498ca;
     --bg-color7: #b6d7a8;
     --bg-color8: #ea9999;
     --bg-color9: #ffe599;
     --bg-color9: #3b537c;
-    --bg-color10: #4b832f;
-    --bg-color11: #337711;
-    --bg-color12: #c5483f;
-    --bg-color13: #2372b3;
-    --bg-color14: #b6271d;
+    --light10: #4b832f;
+    --light11: #337711;
+    --light12: #c5483f;
+    --light13: #2372b3;
+    --light14: #b6271d;
 
     --text-color1: #fff;
     --text-color2: #000000;
@@ -45,8 +69,6 @@
     --text-color7: #7f6000;
     --text-color8: #005eff;
     --text-color9: #ffffffa1;
-
-    --border-color1: #cecece8f;
     
     --box-shadow-01: rgba(0, 0, 0, 0.1);
     --box-shadow-03: rgba(0, 0, 0, 0.3);
@@ -55,8 +77,6 @@
     --transition-015: 0.15s ease;
     --transition-025: 0.25s ease;
     --transition-035: 0.35s ease;
-
-    --error-color: #ff3c2e;
 }
 
 * {
@@ -71,5 +91,5 @@
 .main_area {
     display: flex;
     height: 100vh;
-    background-color: var(--bg-color2);
+    background-color: var(--light2);
 }

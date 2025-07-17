@@ -22,38 +22,36 @@
 
 
 {% block search %}
-   <div class="search_area">
-      <form class="form_search">
-        {% csrf_token %}
-  
-        <select class="filter_menu" name="filter">
-           <option value="full_name" {% if request.GET.filter == "full_name" %}selected{% endif %}>Nome</option>
-           <option value="document" {% if request.GET.filter == "document" %}selected{% endif %}>Documento</option>
-           <option value="email" {% if request.GET.filter == "email" %}selected{% endif %}>Email</option>
-        </select>
-  
-        <div class="search_group">
-           <input type="text" name="search" placeholder="Pesquisar..." value="{{ request.GET.search }}">
-           
-           <button type="submit">
-              <span class="search_icon material-icons-sharp">search</span>
-           </button>
-        </div>
-     </form>
+   <form method="get" id="form_search">
+      {% csrf_token %}
 
-     <div class="btn_area">
-         <a class="add_btn" href="{% url 'account:user_create' %}">
-            <span class="add_icon material-icons-sharp">add</span>
-         </a>
+      <div class="search_group">
+         <div class="search_input_area">
+            <input type="text" name="search" id="input_search" placeholder="Pesquisar..." value="{{ request.GET.search }}">
+         </div>
          
-         <a class="report_btn" href="{% url 'account:user_list_export' %}">
-            <span class="report_icon material-icons-sharp">file_download</span>
-         </a>
+         <button type="submit" id="search_btn">
+            <span class="search_icon material-icons-sharp">search</span>
+         </button>
       </div>
+   </form>
+
+   <div class="btn_area">
+      <a href="{% url 'account:user_create' %}">
+         <span class="btn_area_icon material-icons-sharp">add</span>
+         
+         <span class="text">Cadastrar</span>
+      </a>
+      
+      <a href="{% url 'account:user_list_export' %}">
+         <span class="btn_area_icon material-icons-sharp">file_download</span>
+
+         <span class="text">Exportar</span>
+      </a>
    </div>
 {% endblock %}
 
-{% block content_body %}
+{% block content %}
    <table>
       <thead>
          <tr>

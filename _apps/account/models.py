@@ -40,7 +40,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     email = models.EmailField(unique=True, verbose_name='Email')
 
-    document = models.CharField(max_length=18, unique=True, blank=True, null=True, verbose_name='CPF/CNPJ')
+    document = models.CharField(max_length=18, unique=True, blank=True, null=True, verbose_name='Documento')
 
     is_active = models.BooleanField(
         default=False, 

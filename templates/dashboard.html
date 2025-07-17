@@ -10,22 +10,6 @@
    Dashboard
 {% endblock %}
 
-{% block search %}
-   <form class="form_period">
-      {% csrf_token %}
-
-      <select class="period_dropdown" name="period">
-         <option value="diario">Diário</option>
-         <option value="mensal" selected>Mensal</option>
-         <option value="anual">Anual</option>
-      </select>
-      
-      <button type="submit">
-         <span class="period_icon material-icons-sharp">autorenew</span>
-      </button>
-   </form>
-{% endblock %}
-
 {% block content_body %}
    <div class="card_area">
       <div class="card">

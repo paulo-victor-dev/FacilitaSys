@@ -32,14 +32,10 @@ class VariantAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('combined_info', 'bar_code', 'is_active', 'creation_date', 'update_date')
-    search_fields = ('brand__name', 'category__name', 'model__name')
+    list_display = ('name', 'bar_code', 'is_active', 'creation_date', 'update_date')
+    search_fields = ('name', 'brand__name', 'category__name', 'model__name')
     list_filter = ('is_active',)
     inlines = [VariantProductInline, ProductImageInline]
-
-    def combined_info(self, obj):
-        return f'{obj.category} {obj.brand} {obj.model}'
-    combined_info.short_description = 'Descrição'
 
     def get_inline_instances(self, request, obj=None):
         inline_instances = []
