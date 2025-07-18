@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const search_icon = body.querySelector('.search_icon');
     const search_btn = body.querySelector('#search_btn');
 
-    if (form_search || input_search || search_icon ) {
+    if (form_search && input_search && search_icon) {
         function updateIcon() {
             search_icon.innerText = input_search.value ? 'close' : 'search';
         }
@@ -111,14 +111,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
         input_search.addEventListener('input', updateIcon);
     
-        search_icon.addEventListener('click', () => {
+        search_btn.addEventListener('click', (e) => {
             if (input_search.value) {
                 input_search.value = '';
                 updateIcon();
-                form_search.submit();
-            } else {
-                form_search.submit();
-            }
+            } 
+            
+            form_search.submit();
         });
     };
 });

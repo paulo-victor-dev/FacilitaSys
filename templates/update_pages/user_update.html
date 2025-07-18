@@ -36,18 +36,6 @@
                     <div class="field_error">{{ error }}</div>
                 {% endfor %}
             </div>
-
-            <div class="add_area">
-                <span>Documento</span>
-                
-                <div class="input_field {% if form.document.errors %}invalid{% endif %}">
-                    <input type="text" name="document" id="doc" maxlength="18" value="{{ form.document.value }}">
-                </div>
-        
-                {% for error in form.document.errors %}
-                    <div class="field_error">{{ error }}</div>
-                {% endfor %}
-            </div>
         </div>
 
         <div class="add_area">

@@ -15,14 +15,14 @@ class CustomUserManager(BaseUserManager):
         return user
     
     def create_user(self, email, password=None, **extra_fields):
-        extra_fields.setdefault('user_type', 'funcionario')
+        extra_fields.setdefault('user_type', 'operator')
         extra_fields.setdefault('is_superuser', False)
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_active', True)
         return self._create_user(email, password, **extra_fields)
     
     def create_superuser(self, email, password=None, **extra_fields):
-        extra_fields.setdefault('user_type', 'admin')
+        extra_fields.setdefault('user_type', 'adm')
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_active', True)
@@ -30,17 +30,14 @@ class CustomUserManager(BaseUserManager):
     
 class User(AbstractBaseUser, PermissionsMixin):
     USER_TYPE_CHOICES = (
-        ('admin', 'Administrador'),
-        ('funcionario', 'Funcionário'),
-        ('cliente', 'Cliente'),
+        ('adm', 'Administrador'),
+        ('operator', 'Operador'),
     )
 
     first_name = models.CharField(max_length=50, blank=True, verbose_name='Nome')
     last_name = models.CharField(max_length=50, blank=True, verbose_name='Sobrenome')
     
     email = models.EmailField(unique=True, verbose_name='Email')
-
-    document = models.CharField(max_length=18, unique=True, blank=True, null=True, verbose_name='Documento')
 
     is_active = models.BooleanField(
         default=False, 

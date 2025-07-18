@@ -20,7 +20,6 @@
    {% endif %}
 {% endblock %}
 
-
 {% block search %}
    <form method="get" id="form_search">
       {% csrf_token %}
@@ -30,7 +29,7 @@
             <input type="text" name="search" id="input_search" placeholder="Pesquisar..." value="{{ request.GET.search }}">
          </div>
          
-         <button type="submit" id="search_btn">
+         <button type="button" id="search_btn">
             <span class="search_icon material-icons-sharp">search</span>
          </button>
       </div>
@@ -52,50 +51,58 @@
 {% endblock %}
 
 {% block content %}
-   <table>
-      <thead>
-         <tr>
-            <th>NOME</th>
-            <th>EMAIL</th>
-            <th>DOCUMENTO</th>
-            <th>TIPO DE USUÁRIO</th>
-            <th>STATUS</th>
-            <th></th>
-         </tr>
-      </thead>
-      <tbody>
-         {% for user in users %}
+   <div class="table_area">
+      <table>
+         <thead>
             <tr>
-               <th>{{ user.get_full_name }}</th>
-               <th>{{ user.email }}</th>
-               <th>
-                  {% if user.document %}
-                     {{ user.document|cpf_cnpj_mask }}
+               <th>NOME</th>
+               <th>EMAIL</th>
+               <th>TIPO DE USUÁRIO</th>
+               <th>STATUS</th>
+               <th></th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for user in users %}
+               <tr>
+                  <th>{{ user.get_full_name }}</th>
+                  <th>{{ user.email }}</th>
+                  <th>{{ user.get_user_type_display }}</th>
+                  <th>
+                  {% if user.is_active %}
+                     <p class="status active">Ativo</p>
                   {% else %}
-                     -
+                     <p class="status inactive">Inativo</p>
                   {% endif %}
-               </th>
-               <th>{{ user.get_user_type_display }}</th>
-               <th>
-               {% if user.is_active %}
-                  <p class="status active">Ativo</p>
-               {% else %}
-                  <p class="status inactive">Inativo</p>
-               {% endif %}
-               </th>
-               <th class="th_icon_area">
-                  <a class="th_icon_area_link" href="{% url 'account:user_update' user.pk %}">
-                     <span class="th_icon material-icons-sharp">edit</span>
-                  </a>
-               </th>
-            </tr>
-         {% empty %}
-            <tr>
-               <th>
-                  <p>Nenhum usuário encontrado</p>
-               </th>
-            </tr>
-         {% endfor %}
-      </tbody>
-   </table>
+                  </th>
+                  <th class="th_icon_area">
+                     <a class="th_icon_area_link" href="{% url 'account:user_update' user.pk %}">
+                        <span class="th_icon material-icons-sharp">edit</span>
+                     </a>
+                  </th>
+               </tr>
+            {% empty %}
+               <tr>
+                  <th>
+                     <p>Nenhum usuário encontrado</p>
+                  </th>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </div>
+
+   <div class="pagination">
+      <div class="pag_icon">
+         <span class="disable material-icons-sharp">chevron_left</span>
+      </div>
+      
+      <div class="pag_numbers">
+         <span class="active">1</span>
+      </div>
+      
+      <div class="pag_icon">
+         <span class="material-icons-sharp">chevron_right</span>
+      </div>
+   </div>
 {% endblock %}

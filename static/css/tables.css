@@ -1,4 +1,9 @@
-table {
+.table_area {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.table_area table {
     width: 100%;
     text-align: left;
     border-collapse: collapse;
@@ -6,7 +11,7 @@ table {
     z-index: 1;
 }
 
-thead tr {
+.table_area table thead tr {
     position: sticky;
     font-size: 14px;
     font-weight: 500;
@@ -16,18 +21,18 @@ thead tr {
     color: var(--dark1);
 }
 
-tbody tr {
+.table_area table tbody tr {
     font-size: 14px;
     border-top: 1px solid var(--dark3);
     border-bottom: 1px solid var(--dark3);
     color: var(--dark1);
 }
 
-tbody tr:nth-child(even) {
+.table_area table tbody tr:nth-child(even) {
     background-color: var(--light2);
 }
 
-th {
+.table_area table th {
     position: relative;
     height: 30px;
     max-width: 200px;
@@ -36,7 +41,7 @@ th {
     text-overflow: ellipsis;
 }
 
-.th_icon_area {
+.table_area table .th_icon_area {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,7 +50,7 @@ th {
     text-align: center;
 }
 
-.th_icon_area_link {
+.table_area table .th_icon_area_link {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -58,30 +63,30 @@ th {
     background-color: var(--info2);
 }
 
-.th_icon_area_link:hover {
+.table_area table .th_icon_area_link:hover {
     background-color: var(--info1);
 }
 
-.th_icon_area_link .th_icon {
+.table_area table .th_icon_area_link .th_icon {
     color: var(--light1);
     font-size: 22px;
 }
 
-.status.active {
+.table_area table .status.active {
     text-align: center;
     border-radius: 5px;
     color: var(--success3);
     background-color: var(--success1);
 }
 
-.status.inactive {
+.table_area table .status.inactive {
     text-align: center;
     border-radius: 5px;
     color: var(--danger3);
     background-color: var(--danger4);
 }
 
-.status.pendent {
+.table_area table .status.pendent {
     text-align: center;
     border-radius: 5px;
     color: var(--warning2);

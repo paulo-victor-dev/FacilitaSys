@@ -128,6 +128,57 @@ aside.close ~ .content_area {
     }
 }
 
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin: 10px 0;
+    gap: 10px;
+
+    > .pag_icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    > .pag_icon span {
+        padding: 5px;
+        font-size: 28px;
+        border-radius: 8px;
+        color: var(--dark1);
+        cursor: pointer;
+        transition: color var(--transition-015), background-color var(--transition-015);
+    }
+
+    > .pag_icon span.disable {
+        pointer-events: none;
+        color: var(--dark3);
+    }
+
+    > .pag_icon span:hover {
+        color: var(--info1);
+        background-color: var(--light2);
+    }
+
+    > .pag_numbers span {
+        padding: 5px 15px;
+        border-radius: 8px;
+        color: var(--dark1);
+        cursor: pointer;
+        transition: color var(--transition-015), background-color var(--transition-015);
+    }
+
+    > .pag_numbers span.active {
+        color: var(--info1);
+        background-color: var(--light2);
+    }
+
+    > .pag_numbers span:hover {
+        color: var(--info1);
+        background-color: var(--light2);
+    }
+}
+
 /* Messages */
 .message_area {
     position: absolute;
@@ -157,3 +208,5 @@ aside.close ~ .content_area {
 .message_area.invalid {
     background-color: var(--danger1);
 }
+
+

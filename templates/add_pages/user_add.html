@@ -36,18 +36,6 @@
                     <div class="field_error">{{ error }}</div>
                 {% endfor %}
             </div>
-
-            <div class="add_area">
-                <span>Documento</span>
-                
-                <div class="input_field {% if form.document.errors %}invalid{% endif %}">
-                    <input type="text" name="document" id="doc" maxlength="18" value="{{ form.document.value|default_if_none:'' }}">
-                </div>
-        
-                {% for error in form.document.errors %}
-                    <div class="field_error">{{ error }}</div>
-                {% endfor %}
-            </div>
         </div>
 
         <div class="add_area_plus">
@@ -94,9 +82,8 @@
 
                 <div class="input_field">
                     <select name="user_type">
-                        <option value="admin">Administrador</option>
-                        <option value="funcionario">Funcionário</option>
-                        <option value="cliente" selected>Cliente</option>
+                        <option value="adm">Administrador</option>
+                        <option value="operator" selected>Operador</option>
                     </select>
                 </div>
 

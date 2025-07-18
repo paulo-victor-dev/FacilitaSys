@@ -38,8 +38,7 @@ class UserListView(LoginRequiredMixin, ListView):
             qs = qs.filter(
                 Q(first_name__icontains=search) |
                 Q(last_name__icontains=search) |
-                Q(email__icontains=search) |
-                Q(document__icontains=search)
+                Q(email__icontains=search)
             )
         return qs
 
@@ -90,14 +89,13 @@ class ExportUsersView(LoginRequiredMixin, View):
                 user.id,
                 user.get_full_name(),
                 user.email,
-                user.document,
                 user.get_user_type_display(),
                 'Ativo' if user.is_active else 'Inativo'
             ])
 
         df = pd.DataFrame(
             data,
-            columns=['ID', 'NOME', 'EMAIL', 'CPF/CNPJ', 'TIPO', 'STATUS']
+            columns=['ID', 'NOME', 'EMAIL', 'TIPO', 'STATUS']
         )
 
         buffer = io.BytesIO()

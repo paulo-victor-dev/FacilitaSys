@@ -113,7 +113,7 @@ aside.close .submenu {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 12px;
+        padding: 12px 14px;
         border-radius: 50%;
         color: var(--light1);
         font-size: 15px;

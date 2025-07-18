@@ -28,6 +28,7 @@ INSTALLED_APPS = [
 
     # My apps
     '_apps.account',
+    '_apps.customer',
     '_apps.product',
     '_apps.dashboard',
     '_apps.order',

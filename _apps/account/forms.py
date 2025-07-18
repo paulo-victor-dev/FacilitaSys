@@ -1,9 +1,9 @@
 from django import forms
 from django.contrib.auth import forms as auth_forms
 
-import re
+#import re
 
-from validate_docbr import CPF, CNPJ
+#from validate_docbr import CPF, CNPJ
 
 from .models import User
 
@@ -29,7 +29,7 @@ class LoginForm(auth_forms.AuthenticationForm):
 class UserCreationForm(auth_forms.UserCreationForm):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'document', 'email', 'password1', 'password2', 'user_type', 'is_active')
+        fields = ('first_name', 'last_name', 'email', 'password1', 'password2', 'user_type', 'is_active')
 
     def clean_first_name(self):
         first_name = self.cleaned_data.get('first_name')
@@ -37,18 +37,18 @@ class UserCreationForm(auth_forms.UserCreationForm):
             raise forms.ValidationError('Este campo é obrigatório.')
         return first_name
     
-    def clean_document(self):
-        document = self.cleaned_data.get('document')
+    # def clean_document(self):
+    #     document = self.cleaned_data.get('document')
 
-        if not document:
-            raise forms.ValidationError('Este campo é obrigatório.')
+    #     if not document:
+    #         raise forms.ValidationError('Este campo é obrigatório.')
         
-        doc_only_digits = re.sub(r'\D', '', document)
+    #     doc_only_digits = re.sub(r'\D', '', document)
 
-        if CPF().validate(doc_only_digits) or CNPJ().validate(doc_only_digits):
-            return doc_only_digits
-        else:
-            raise forms.ValidationError('CPF/CNPJ inválido.')
+    #     if CPF().validate(doc_only_digits) or CNPJ().validate(doc_only_digits):
+    #         return doc_only_digits
+    #     else:
+    #         raise forms.ValidationError('CPF/CNPJ inválido.')
     
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -59,7 +59,7 @@ class UserCreationForm(auth_forms.UserCreationForm):
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'document', 'email', 'user_type', 'is_active')
+        fields = ('first_name', 'last_name', 'email', 'user_type', 'is_active')
 
     def clean_first_name(self):
         first_name = self.cleaned_data.get('first_name')
@@ -67,18 +67,18 @@ class UserUpdateForm(forms.ModelForm):
             raise forms.ValidationError('Este campo é obrigatório.')
         return first_name
     
-    def clean_document(self):
-        document = self.cleaned_data.get('document')
+    # def clean_document(self):
+    #     document = self.cleaned_data.get('document')
 
-        if not document:
-            raise forms.ValidationError('Este campo é obrigatório.')
+    #     if not document:
+    #         raise forms.ValidationError('Este campo é obrigatório.')
         
-        doc_only_digits = re.sub(r'\D', '', document)
+    #     doc_only_digits = re.sub(r'\D', '', document)
 
-        if CPF().validate(doc_only_digits) or CNPJ().validate(doc_only_digits):
-            return doc_only_digits
-        else:
-            raise forms.ValidationError('CPF/CNPJ inválido.')
+    #     if CPF().validate(doc_only_digits) or CNPJ().validate(doc_only_digits):
+    #         return doc_only_digits
+    #     else:
+    #         raise forms.ValidationError('CPF/CNPJ inválido.')
     
     def clean_email(self):
         email = self.cleaned_data.get('email')
