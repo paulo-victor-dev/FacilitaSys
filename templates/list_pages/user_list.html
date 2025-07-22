@@ -43,7 +43,7 @@
       </a>
       
       <a href="{% url 'account:user_list_export' %}">
-         <span class="btn_area_icon material-icons-sharp">file_download</span>
+         <span class="btn_area_icon material-icons-sharp">file_upload</span>
 
          <span class="text">Exportar</span>
       </a>
@@ -55,10 +55,44 @@
       <table>
          <thead>
             <tr>
-               <th>NOME</th>
-               <th>EMAIL</th>
-               <th>TIPO DE USUÁRIO</th>
-               <th>STATUS</th>
+               <th>
+                  <div>
+                     <span class="text">NOME</span>
+
+                     <a href="?sort=first_name&order={{ current_order }}"
+                     title="Alterar ordenação">
+                        <span class="order_icon material-icons-sharp">keyboard_arrow_down</span>
+                     </a>
+                  </div>
+               </th>
+
+               <th>
+                  <div>
+                     <span class="text">EMAIL</span>
+                     <a href="?sort=email" title="Alterar ordenação">
+                        <span class="order_icon material-icons-sharp">keyboard_arrow_down</span>
+                     </a>
+                  </div>
+               </th>
+
+               <th>
+                  <div>
+                     <span class="text">TIPO DE USUÁRIO</span>
+                     <a href="?sort=user_type" title="Alterar ordenação">
+                        <span class="order_icon material-icons-sharp">keyboard_arrow_down</span>
+                     </a>
+                  </div>
+               </th>
+
+               <th>
+                  <div>
+                     <span class="text">STATUS</span>
+                     <a href="?sort=is_active&order=asc" title="Alterar ordenação">
+                        <span class="order_icon material-icons-sharp">keyboard_arrow_down</span>
+                     </a>
+                  </div>
+               </th>
+
                <th></th>
             </tr>
          </thead>
@@ -94,15 +128,44 @@
 
    <div class="pagination">
       <div class="pag_icon">
-         <span class="disable material-icons-sharp">chevron_left</span>
+         {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}&search={{ request.GET.search|urlencode }}">
+               <span class="material-icons-sharp">chevron_left</span>
+            </a>
+         
+         {% else %}
+            <span class="disable material-icons-sharp">chevron_left</span>
+
+         {% endif %}
       </div>
       
       <div class="pag_numbers">
-         <span class="active">1</span>
+         {% for num in page_range %}
+            {% if num == paginator.ELLIPSIS %}
+               <span class="elipse">...</span>
+
+            {% elif num == page_obj.number %}
+               <span class="active">{{ num }}</span>
+            
+            {% else %}
+               <a href="?page={{ num }}&search={{ request.GET.search|urlencode }}">
+                  <span>{{ num }}</span>
+               </a>
+
+            {% endif %}
+         {% endfor %}
       </div>
       
       <div class="pag_icon">
-         <span class="material-icons-sharp">chevron_right</span>
+         {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}&search={{ request.GET.search|urlencode }}">
+               <span class="material-icons-sharp">chevron_right</span>
+            </a>
+
+         {% else %}
+            <span class="disable material-icons-sharp">chevron_right</span>
+
+         {% endif %}
       </div>
    </div>
 {% endblock %}

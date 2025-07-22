@@ -21,6 +21,35 @@
     color: var(--dark1);
 }
 
+.table_area > table > thead > tr > th > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    > a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2px;
+        border-radius: 8px;
+        transition: background-color var(--transition-015);
+    }
+
+    > a > span {
+        color: var(--dark1);
+        transition: color var(--transition-015);
+    }
+
+    > a:hover {
+        background-color: var(--light2);
+    }
+
+    > a:hover span {
+        color: var(--info1);
+    }
+}
+
+
 .table_area table tbody tr {
     font-size: 14px;
     border-top: 1px solid var(--dark3);

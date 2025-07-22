@@ -146,7 +146,6 @@ aside.close ~ .content_area {
         font-size: 28px;
         border-radius: 8px;
         color: var(--dark1);
-        cursor: pointer;
         transition: color var(--transition-015), background-color var(--transition-015);
     }
 
@@ -164,8 +163,11 @@ aside.close ~ .content_area {
         padding: 5px 15px;
         border-radius: 8px;
         color: var(--dark1);
-        cursor: pointer;
         transition: color var(--transition-015), background-color var(--transition-015);
+    }
+
+    > .pag_numbers .elipse {
+        pointer-events: none;
     }
 
     > .pag_numbers span.active {

@@ -26,6 +26,7 @@ class LogoutView(auth_views.LogoutView):
 
 class UserListView(LoginRequiredMixin, ListView):
     model = User
+    paginate_by = 11
     template_name = 'list_pages/user_list.html'
     context_object_name = 'users'
 
@@ -40,7 +41,31 @@ class UserListView(LoginRequiredMixin, ListView):
                 Q(last_name__icontains=search) |
                 Q(email__icontains=search)
             )
-        return qs
+
+        sort = self.request.GET.get('sort')
+        order = self.request.GET.get('order')
+
+        if order == 'desc':
+            sort = f'-{sort}'
+
+        return qs.order_by(sort) if sort else qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['current_order'] = self.current_order
+        context['sort_links'] = ''
+
+        paginator = context.get('paginator')
+        page_obj = context.get('page_obj')
+
+        if paginator and page_obj:
+            context['page_range'] = paginator.get_elided_page_range(
+                number=page_obj.number,
+                on_each_side=1,
+                on_ends=1
+            )
+        return context
 
 
 class UserCreateView(LoginRequiredMixin, CreateView):

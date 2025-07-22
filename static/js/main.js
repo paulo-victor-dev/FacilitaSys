@@ -15,6 +15,8 @@ const body = document.querySelector("body"),
 
     input_doc = body.querySelector('#doc');
 
+    
+
 // Sidebar close events
 btn_toggle.addEventListener("click", () => {
     if (submenu1.classList.contains("open") || submenu2.classList.contains("open")) {
@@ -95,17 +97,18 @@ if (input_doc) {
     });
 };
 
-// Input_search events
+// Input events
 document.addEventListener('DOMContentLoaded', () => {
     const form_search = body.querySelector('#form_search');
     const input_search = body.querySelector('#input_search');
     const search_icon = body.querySelector('.search_icon');
     const search_btn = body.querySelector('#search_btn');
 
+
     if (form_search && input_search && search_icon) {
         function updateIcon() {
             search_icon.innerText = input_search.value ? 'close' : 'search';
-        }
+        };
     
         updateIcon();
     
@@ -119,5 +122,5 @@ document.addEventListener('DOMContentLoaded', () => {
             
             form_search.submit();
         });
-    };
+    }; 
 });
