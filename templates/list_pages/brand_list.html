@@ -3,11 +3,11 @@
 {% load filters %}
 
 {% block page_title %}
-   Produtos
+   Marcas
 {% endblock %}
 
 {% block content_title %}
-   Produtos
+   Marcas
 {% endblock %}
 
 {% block messages %}
@@ -36,13 +36,13 @@
    </form>
 
    <div class="btn_area">
-      <a href="#">
+      <a href="{% url 'account:user_create' %}">
          <span class="btn_area_icon material-icons-sharp">add</span>
          
          <span class="text">Cadastrar</span>
       </a>
       
-      <a href="{% url 'product:product_list_export' %}">
+      <a href="{% url 'account:user_list_export' %}">
          <span class="btn_area_icon material-icons-sharp">file_upload</span>
 
          <span class="text">Exportar</span>
@@ -57,30 +57,23 @@
             <tr>
                <th>#</th>
                <th>NOME</th>
-               <th>CÓD. BARRAS</th>
-               <th>QUANTIDADE</th>
-               <th>PREÇO</th>
-               <th>STATUS</th>
                <th></th>
             </tr>
          </thead>
          <tbody>
-            {% for product in products %}
+            {% for user in users %}
                <tr>
-                  <th>{{ product.id }}</th>
-                  <th>{{ product.name }}</th>
-                  <th>{{ product.bar_code }}</th>
-                  <th>{{ product.quantity }}</th>
-                  <th>R$ {{ product.price }}</th>
+                  <th>{{  }}</th>
+                  <th>{{  }}</th>
                   <th>
-                  {% if product.is_active %}
+                  {% if user.is_active %}
                      <p class="status active">Ativo</p>
                   {% else %}
                      <p class="status inactive">Inativo</p>
                   {% endif %}
                   </th>
                   <th class="th_icon_area">
-                     <a class="th_icon_area_link" href="#">
+                     <a class="th_icon_area_link" href="{% url 'account:user_update' user.pk %}">
                         <span class="th_icon material-icons-sharp">edit</span>
                      </a>
                   </th>
@@ -88,7 +81,7 @@
             {% empty %}
                <tr>
                   <th>
-                     <p>Nenhum produto encontrado</p>
+                     <p>Nenhum usuário encontrado</p>
                   </th>
                </tr>
             {% endfor %}

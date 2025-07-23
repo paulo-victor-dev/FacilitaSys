@@ -6,14 +6,14 @@ from .abstracts import *
 
 class Product(TimeStampModel, ActiveModel, models.Model):
     PRODUCT_TYPE_CHOICES = (
-        ('unidade', 'Un.'),
-        ('quilo', 'Kg.'),
-        ('peça', 'Pç.'),
+        ('un', 'Un.'),
+        ('kg', 'Kg.'),
+        ('pç', 'Pç.'),
     )
 
     PRODUCT_FORMAT_CHOICES = (
-        ('simples', 'Simples'),
-        ('com_variacao', 'Com variação')
+        ('simple', 'Simples'),
+        ('with_variant', 'Com variação')
     )
 
     bar_code = models.BigIntegerField(unique=True, verbose_name='Código de barras')
@@ -57,7 +57,6 @@ class Product(TimeStampModel, ActiveModel, models.Model):
     class Meta:
         verbose_name = 'Produto'
         verbose_name_plural = 'Produtos'
-        #ordering = ['category', 'brand', 'model']
 
 
 class ProductImage(models.Model):

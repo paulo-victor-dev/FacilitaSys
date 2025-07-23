@@ -18,32 +18,38 @@ from .forms import ProductForm
 
 class ProductListView(LoginRequiredMixin, ListView):
     model = Product
+    paginate_by = 11
     template_name = 'list_pages/product_list.html'
     context_object_name = 'products'
 
     def get_queryset(self):
-        queryset = Product.objects.annotate(
-            full_name=Concat(
-                F('category__name'),
-                Value(' '),
-                F('brand__name'),
-                Value(' '),
-                F('model__name'),
-                output_field=CharField()
-            )
-        )
+        qs = super().get_queryset()
 
-        search = self.request.GET.get('search')
-        search_filter = self.request.GET.get('filter')
+        search = self.request.GET.get('search', '')
 
-        if search and search_filter:
-            lookup = f'{search_filter}__icontains'
-
-            queryset = queryset.filter(
-                Q(**{lookup: search})
+        if search:
+            qs = qs.filter(
+                Q(id__icontains=search) |
+                Q(name__icontains=search) |
+                Q(bar_code__icontains=search)
             )
 
-        return queryset
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        paginator = context.get('paginator')
+        page_obj = context.get('page_obj')
+
+        if paginator and page_obj:
+            context['page_range'] = paginator.get_elided_page_range(
+                number=page_obj.number,
+                on_each_side=1,
+                on_ends=1
+            )
+
+        return context
 
 
 class ExportProductsView(LoginRequiredMixin, View):
@@ -54,17 +60,17 @@ class ExportProductsView(LoginRequiredMixin, View):
         for product in queryset:
             data.append([
                 product.id,
-                product,
+                product.name,
                 product.bar_code,
                 product.get_format_type_display(),
                 product.price,
-                product.stock,
+                product.quantity,
                 'Ativo' if product.is_active else 'Inativo'
             ])
 
         df = pd.DataFrame(
             data,
-            columns=['ID', 'DESCRIÇÃO', 'CÓD. BARRAS', 'TIPO', 'PREÇO', 'ESTOQUE', 'STATUS']
+            columns=['ID', 'NOME', 'CÓD. BARRAS', 'TIPO', 'QUANTIDADE', 'PREÇO', 'STATUS']
         )
 
         buffer = io.BytesIO()

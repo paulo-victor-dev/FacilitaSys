@@ -55,50 +55,18 @@
       <table>
          <thead>
             <tr>
-               <th>
-                  <div>
-                     <span class="text">NOME</span>
-
-                     <a href="?sort=first_name&order={{ current_order }}"
-                     title="Alterar ordenação">
-                        <span class="order_icon material-icons-sharp">keyboard_arrow_down</span>
-                     </a>
-                  </div>
-               </th>
-
-               <th>
-                  <div>
-                     <span class="text">EMAIL</span>
-                     <a href="?sort=email" title="Alterar ordenação">
-                        <span class="order_icon material-icons-sharp">keyboard_arrow_down</span>
-                     </a>
-                  </div>
-               </th>
-
-               <th>
-                  <div>
-                     <span class="text">TIPO DE USUÁRIO</span>
-                     <a href="?sort=user_type" title="Alterar ordenação">
-                        <span class="order_icon material-icons-sharp">keyboard_arrow_down</span>
-                     </a>
-                  </div>
-               </th>
-
-               <th>
-                  <div>
-                     <span class="text">STATUS</span>
-                     <a href="?sort=is_active&order=asc" title="Alterar ordenação">
-                        <span class="order_icon material-icons-sharp">keyboard_arrow_down</span>
-                     </a>
-                  </div>
-               </th>
-
+               <th>#</th>
+               <th>NOME</th>
+               <th>EMAIL</th>
+               <th>TIPO DE USUÁRIO</th>
+               <th>STATUS</th>
                <th></th>
             </tr>
          </thead>
          <tbody>
             {% for user in users %}
                <tr>
+                  <th>{{ user.id }}</th>
                   <th>{{ user.get_full_name }}</th>
                   <th>{{ user.email }}</th>
                   <th>{{ user.get_user_type_display }}</th>

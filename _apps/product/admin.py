@@ -20,10 +20,10 @@ class AttributeValueInline(admin.TabularInline):
 
 @admin.register(Variant)
 class VariantAdmin(admin.ModelAdmin):
-    list_display = ('_name', 'sku', 'is_active', 'creation_date', 'update_date')
-    search_fields = ('product__brand__name', 'product__category__name', 'product__model__name', 'sku')
+    list_display = ('id', '_name', 'is_active', 'creation_date', 'update_date')
+    search_fields = ('product__brand__name', 'product__category__name', 'product__model__name')
     list_filter = ('is_active', 'option')
-    readonly_fields = ('sku',)
+    readonly_fields = ('id',)
 
     def _name(self, obj):
         return obj.__str__()
@@ -41,11 +41,11 @@ class ProductAdmin(admin.ModelAdmin):
         inline_instances = []
         for inline_class in self.inlines:
             if inline_class is ProductImageInline:
-                if obj and obj.format_type != 'com_variacao':
+                if obj and obj.format_type != 'with_variant':
                     inline_instances.append(inline_class(self.model, self.admin_site))
 
             elif inline_class is VariantProductInline:
-                if obj and obj.format_type != 'simples':
+                if obj and obj.format_type != 'simple':
                     inline_instances.append(inline_class(self.model, self.admin_site))
 
             else:

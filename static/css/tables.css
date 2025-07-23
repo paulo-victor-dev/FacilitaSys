@@ -21,7 +21,7 @@
     color: var(--dark1);
 }
 
-.table_area > table > thead > tr > th > div {
+/* .table_area > table > thead > tr > th > div {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -47,8 +47,15 @@
     > a:hover span {
         color: var(--info1);
     }
-}
 
+    > a.active {
+        background-color: var(--light2);
+
+        > span {
+            color: var(--info1);
+        }
+    }
+} */
 
 .table_area table tbody tr {
     font-size: 14px;

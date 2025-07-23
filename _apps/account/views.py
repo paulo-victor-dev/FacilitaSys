@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.utils.http import urlencode
 
 from django.contrib.auth import views as auth_views
 from django.views.generic import View, ListView, CreateView, UpdateView, DeleteView
@@ -31,30 +32,22 @@ class UserListView(LoginRequiredMixin, ListView):
     context_object_name = 'users'
 
     def get_queryset(self):
-        qs = User.objects.all()
+        qs = super().get_queryset()
 
-        search = self.request.GET.get('search')
+        search = self.request.GET.get('search', '')
 
         if search:
             qs = qs.filter(
+                Q(id__icontains=search) |
                 Q(first_name__icontains=search) |
                 Q(last_name__icontains=search) |
                 Q(email__icontains=search)
             )
 
-        sort = self.request.GET.get('sort')
-        order = self.request.GET.get('order')
-
-        if order == 'desc':
-            sort = f'-{sort}'
-
-        return qs.order_by(sort) if sort else qs
+        return qs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        context['current_order'] = self.current_order
-        context['sort_links'] = ''
 
         paginator = context.get('paginator')
         page_obj = context.get('page_obj')
@@ -65,6 +58,7 @@ class UserListView(LoginRequiredMixin, ListView):
                 on_each_side=1,
                 on_ends=1
             )
+
         return context
 
 
