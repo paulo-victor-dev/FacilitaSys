@@ -2,20 +2,17 @@ from django.contrib import admin
 
 from .models.product import Product, ProductImage
 from .models.attributes import *
-from .models.variant import Variant 
+from .models.variant import Variant
 
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
-    extra = 1
 
 class VariantProductInline(admin.TabularInline):
     model = Variant
-    extra = 1
 
 class AttributeValueInline(admin.TabularInline):
     model = AttributeValue
-    extra = 1 
 
 
 @admin.register(Variant)
@@ -58,7 +55,7 @@ class ProductAdmin(admin.ModelAdmin):
 class AttributeAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
-    inlines = [AttributeValueInline]
+   
 
 
 @admin.register(AttributeValue)

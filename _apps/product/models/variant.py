@@ -1,15 +1,18 @@
 from django.db import models
 
 from .product import Product
-from .attributes import AttributeValue
 from .abstracts import *
-
+from .attributes import AttributeValue
 
 class Variant(TimeStampModel, ActiveModel, models.Model):
-    # Varaint identity
+    # Variant identity
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='variant_product', verbose_name='Produto')
 
-    option = models.ManyToManyField(AttributeValue, related_name='variant_option', verbose_name='Opções')
+    option = models.ManyToManyField(
+        AttributeValue,
+        through='VariantAttribute',
+        related_name='variant_option', 
+        verbose_name='Opções')
 
     # General infos
     price = models.DecimalField(default=0, max_digits=8, decimal_places=2, verbose_name='Preço')
@@ -26,3 +29,12 @@ class Variant(TimeStampModel, ActiveModel, models.Model):
     class Meta:
         verbose_name = 'Variação'
         verbose_name_plural = 'Variações'
+
+
+class VariantAttribute(TimeStampModel, ActiveModel, models.Model):
+    variant = models.ForeignKey(Variant, on_delete=models.CASCADE)
+
+    attribute_value = models.ForeignKey(AttributeValue, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('variant', 'attribute_value')
