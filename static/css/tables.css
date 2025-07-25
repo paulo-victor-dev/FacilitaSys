@@ -28,26 +28,37 @@
     color: var(--dark1);
 }
 
-.table_area table tbody .variant_text {
-    padding-left: 4px;
-    color: var(--info2);
+.table_area table tbody .name_area {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+    gap: 4px;
+
+    > .text {
+        display: block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    > .variant_text {
+        color: var(--info2);
+    }
 }
 
-.table_area table tbody .variant {
-    border-left: 4px solid var(--info2);
-}
 
-.table_area table tbody .normal:nth-child(even) {
+.table_area table tbody tr:nth-child(even) {
     background-color: var(--light2);
 }
 
 .table_area table th {
     position: relative;
     height: 30px;
-    max-width: 200px;
-    padding: 12px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    max-width: 190px;
+    padding: 10px;
+    white-space: nowrap;   
 }
 
 .table_area table .th_icon_area {

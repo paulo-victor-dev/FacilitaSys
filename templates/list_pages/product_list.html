@@ -57,7 +57,7 @@
             <tr>
                <th>#</th>
                <th>NOME</th>
-               <th>CÓD. BARRAS</th>
+               <th>SKU</th>
                <th>QUANTIDADE</th>
                <th>PREÇO</th>
                <th>STATUS</th>
@@ -66,15 +66,24 @@
          </thead>
          <tbody>
             {% for product in products %}
-               <tr class="normal">
+               <tr>
                   <th>{{ product.id }}</th>
                   <th>
-                     {{ product.name }}
-                     {% if product.variant_product %}
-                        <span class="variant_text">(Com variação)</span>
-                     {% endif %}
+                     <div class="name_area">
+                        <span class="text">{{ product }}</span>
+
+                        {% if product.num_variants > 0 %}
+                           <span class="variant_text">
+                              {% if product.num_variants == 1 %}
+                                 ({{ product.num_variants }} variação)
+                              {% else %}
+                                 ({{ product.num_variants }} variações)
+                              {% endif %}
+                           </span>
+                        {% endif %}
+                     </div>
                   </th>
-                  <th>{{ product.bar_code }}</th>
+                  <th>{{ product.sku }}</th>
                   <th>{{ product.quantity }}</th>
                   <th>R$ {{ product.price }}</th>
                   <th>
@@ -90,27 +99,6 @@
                      </a>
                   </th>
                </tr>
-               {% for variant in product.variant_product.all %}
-                  <tr class="variant">
-                     <th></th>
-                     <th>{{ variant }}</th>
-                     <th></th>
-                     <th>{{ variant.quantity }}</th>
-                     <th>R$ {{ variant.price }}</th>
-                     <th>
-                     {% if variant.is_active %}
-                        <p class="status active">Ativo</p>
-                     {% else %}
-                        <p class="status inactive">Inativo</p>
-                     {% endif %}
-                     </th>
-                     <th class="th_icon_area">
-                        <a class="th_icon_area_link" href="#">
-                           <span class="th_icon material-icons-sharp">edit</span>
-                        </a>
-                     </th>
-                  </tr>
-               {% endfor %}
             {% empty %}
                <tr>
                   <th>

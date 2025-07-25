@@ -11,12 +11,9 @@ class Product(TimeStampModel, ActiveModel, models.Model):
         ('pç', 'Pç.'),
     )
 
-    PRODUCT_FORMAT_CHOICES = (
-        ('simple', 'Simples'),
-        ('with_variant', 'Com variação')
-    )
+    sku = models.CharField(max_length=18, unique=True, verbose_name='SKU')
 
-    bar_code = models.BigIntegerField(unique=True, verbose_name='Código de barras')
+    bar_code = models.CharField(max_length=13, unique=True, verbose_name='Código de barras')
 
     # Product identity
     name = models.CharField(max_length=50, unique=True, verbose_name='Nome')
@@ -30,15 +27,8 @@ class Product(TimeStampModel, ActiveModel, models.Model):
     unit_type = models.CharField(
         max_length=50,
         choices=PRODUCT_TYPE_CHOICES,
-        default='unidade',
+        default='un',
         verbose_name='Tipo de unidade'
-    )
-
-    format_type = models.CharField(
-        max_length=50,
-        choices=PRODUCT_FORMAT_CHOICES,
-        default='simples',
-        verbose_name='Formato'
     )
 
     # General infos
@@ -52,11 +42,12 @@ class Product(TimeStampModel, ActiveModel, models.Model):
     promo_end = models.DateField(null=True, blank=True, verbose_name='Fim promoção') 
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.name} {self.brand if self.brand else ''}"
 
     class Meta:
         verbose_name = 'Produto'
         verbose_name_plural = 'Produtos'
+        ordering = ['-id']
 
 
 class ProductImage(models.Model):

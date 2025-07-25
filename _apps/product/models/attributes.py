@@ -36,7 +36,7 @@ class ProductModel(models.Model):
 
 
 class Attribute(models.Model):
-    name = models.CharField(max_length=50, unique=True, verbose_name='Atributo')
+    name = models.CharField(max_length=50, unique=True, verbose_name='Atributo da variante')
 
     def __str__(self):
         return self.name
@@ -47,9 +47,9 @@ class Attribute(models.Model):
 
 
 class AttributeValue(models.Model):
-    attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE, related_name='attribute_value', verbose_name='Atributo')
+    attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE, related_name='attribute_value', verbose_name='Atributo da variante')
 
-    value = models.CharField(max_length=50, unique=True, verbose_name='Opção')
+    value = models.CharField(max_length=50, unique=True, verbose_name='Valor do atributo')
 
     def __str__(self):
         return f'{self.attribute.name}: {self.value}'

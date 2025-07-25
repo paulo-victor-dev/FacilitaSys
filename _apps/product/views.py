@@ -1,8 +1,7 @@
 from django.views.generic import ListView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from django.db.models import Q, Value, F, CharField
-from django.db.models.functions import Concat
+from django.db.models import Q, Count
 
 from django.http import HttpResponse
 from django.contrib import messages
@@ -13,7 +12,6 @@ import pandas as pd
 import io
 
 from .models.product import Product
-from .forms import ProductForm
 
 
 class ProductListView(LoginRequiredMixin, ListView):
@@ -25,13 +23,15 @@ class ProductListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         qs = super().get_queryset()
 
+        qs = qs.annotate(num_variants=Count('variant_product', distinct=True))
+
         search = self.request.GET.get('search', '')
 
         if search:
             qs = qs.filter(
                 Q(id__icontains=search) |
                 Q(name__icontains=search) |
-                Q(bar_code__icontains=search)
+                Q(sku__icontains=search) 
             )
 
         return qs
@@ -88,19 +88,6 @@ class ExportProductsView(LoginRequiredMixin, View):
         response['Content-Disposition'] = 'attachement; filename="Relatório_Produtos.xlsx"'
 
         return response
-            
-
-class ProductCreateView(LoginRequiredMixin, View):
-    def post(self, request, *args, **kwargs):
-        form = ProductForm(request.POST)
-        
-        if form.is_valid():
-            form.save()
-            messages.success(self.request, 'Produto cadastrado com sucesso!')
-            return redirect(reverse_lazy('product:product_list'))
-        else:
-            messages.error(self.request, 'Erro em cadastrar o produto!')
-            return render(request, 'product_list.html', {'form': form})
 
         
         
