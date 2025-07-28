@@ -110,16 +110,21 @@ aside.close .submenu {
     gap: 14px;
 
     > .user_icon {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 12px 14px;
+        min-width: 45px;
+        min-height: 45px;
         border-radius: 50%;
+        background-color: var(--info1);
+        box-shadow: 0 0 5px 0 var(--box-shadow-01);
+    }
+
+    > .user_icon > span {
         color: var(--light1);
         font-size: 15px;
         font-weight: 600;
-        background-color: var(--info1);
-        box-shadow: 0 0 5px 0 var(--box-shadow-01);
     }
 
     > .user_details {

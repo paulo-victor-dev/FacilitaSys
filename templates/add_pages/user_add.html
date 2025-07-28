@@ -29,7 +29,7 @@
                 <span>Sobrenome</span>
                 
                 <div class="input_field {% if form.last_name.errors %}invalid{% endif %}">
-                    <input type="text" name="last_name" value="{{ form.first_name.value|default_if_none:'' }}">
+                    <input type="text" name="last_name" value="{{ form.last_name.value|default_if_none:'' }}">
                 </div>
         
                 {% for error in form.last_name.errors %}

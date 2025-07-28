@@ -1,27 +1,18 @@
 from django import forms
-from django.db.models import Count
-from django.core.exceptions import ValidationError
 
 from .models.product import Product
-from .models.variant import Variant
 
-class VariantForm(forms.ModelForm):
+class ProductCreationForm(forms.ModelForm):
     class Meta:
-        model = Variant
-        fields = '__all__'
+        model = Product
+        fields = ('name', 'bar_code', 'brand', 'category', 'model', 'unit_type', 'description', 'price', 'quantity', 'promo_price', 'promo_start', 'promo_end')
 
-    def clean(self):
-        cleaned = super().clean()
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        if not name:
+            raise forms.ValidationError('Este campo é obrigatório.')
+        
+        if Product.objects.filter(name=name).exists():
+            raise forms.ValidationError('Produto já cadastrado com esse nome.')
 
-        attrs = set(self.cleaned_data.get('variation', []).values_list('id', flat=True))
-        if not attrs:
-            return cleaned
-
-        qs = Variant.objects.filter(product=self.instance.product)\
-            .annotate(num=Count('variation'))\
-            .filter(num=len(attrs), variation__in=attrs)
-        if self.instance.pk:
-            qs = qs.exclude(pk=self.instance.pk)
-        if qs.exists():
-            raise ValidationError("Já existe variante com essas opções.")
-        return cleaned
+        return name

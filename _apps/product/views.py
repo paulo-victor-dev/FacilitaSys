@@ -1,17 +1,20 @@
-from django.views.generic import ListView, View
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+from django.utils.http import urlencode
+
+from django.views.generic import View, ListView, CreateView, UpdateView, DeleteView
 
 from django.db.models import Q, Count
 
 from django.http import HttpResponse
-from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
 
 import pandas as pd
 import io
 
 from .models.product import Product
+
+from .forms import ProductCreationForm
 
 
 class ProductListView(LoginRequiredMixin, ListView):
@@ -52,6 +55,25 @@ class ProductListView(LoginRequiredMixin, ListView):
         return context
 
 
+class ProductCreateView(LoginRequiredMixin, CreateView):
+    model = Product
+    form_class = ProductCreationForm
+    template_name = 'add_pages/product_add.html'
+    success_url = reverse_lazy('product:product_list')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Produto cadastrado com sucesso!')
+        return super().form_valid(form)
+
+
+class ProductUpdateView(LoginRequiredMixin, CreateView):
+    ...
+
+
+class ProductDeleteView(LoginRequiredMixin, CreateView):
+    ...
+
+
 class ExportProductsView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         queryset = Product.objects.all()
@@ -62,15 +84,14 @@ class ExportProductsView(LoginRequiredMixin, View):
                 product.id,
                 product.name,
                 product.bar_code,
-                product.get_format_type_display(),
-                product.price,
                 product.quantity,
+                product.price,
                 'Ativo' if product.is_active else 'Inativo'
             ])
 
         df = pd.DataFrame(
             data,
-            columns=['ID', 'NOME', 'CÓD. BARRAS', 'TIPO', 'QUANTIDADE', 'PREÇO', 'STATUS']
+            columns=['ID', 'NOME', 'CÓD. BARRAS', 'QUANTIDADE', 'PREÇO', 'STATUS']
         )
 
         buffer = io.BytesIO()
@@ -89,5 +110,4 @@ class ExportProductsView(LoginRequiredMixin, View):
 
         return response
 
-        
-        
+

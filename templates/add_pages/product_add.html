@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+   Cadastrar
+{% endblock %}
+
+{% block content_title %}
+   Cadastrar produto
+{% endblock %}
+
+{% block content %}
+    <form class="_form" method="post" action="{% url 'product:product_create' %}">
+        {% csrf_token %}
+
+        <div class="add_area_plus">
+            <div class="add_area">
+                <span>Nome</span>
+                
+                <div class="input_field {% if form.name.errors %}invalid{% endif %}">
+                    <input type="text" name="name" value="{{ form.name.value|default_if_none:'' }}">
+                </div>
+        
+                {% for error in form.name.errors %}
+                    <div class="field_error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="add_area">
+                <span>Código de barras</span>
+                
+                <div class="input_field {% if form.bar_code.errors %}invalid{% endif %}">
+                    <input type="text" name="bar_code" value="{{ form.bar_code.value|default_if_none:'' }}">
+                </div>
+        
+                {% for error in form.bar_code.errors %}
+                    <div class="field_error">{{ error }}</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="add_area_plus">
+            <div class="add_area">
+                <span>Marca</span>
+                
+                <div class="input_field">
+                    {{ form.brand }}
+                </div>
+    
+                {% for error in form.brand.errors %}
+                    <div class="field_error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="add_area">
+                <span>Categoria</span>
+                
+                <div class="input_field">
+                    {{ form.category }}
+                </div>
+    
+                {% for error in form.category.errors %}
+                    <div class="field_error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="add_area">
+                <span>Modelo</span>
+                
+                <div class="input_field">
+                    {{ form.model }}
+                </div>
+    
+                {% for error in form.model.errors %}
+                    <div class="field_error">{{ error }}</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="add_area_plus">
+            <div class="add_area">
+                <span>Preço</span>
+
+                <div class="input_field {% if form.price.errors %}invalid{% endif %}">
+                    <input type="number" name="price" value="{{ form.price.value|default_if_none:'' }}" min="0">
+                </div>
+
+                {% for error in form.price.errors %}
+                    <div class="field_error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="add_area">
+                <span>Quantidade</span>
+
+                <div class="input_field {% if form.quantity.errors %}invalid{% endif %}">
+                    <input type="number" name="quantity" value="{{ form.quantity.value|default_if_none:'' }}" min="0">
+                </div>
+
+                {% for error in form.quantity.errors %}
+                    <div class="field_error">{{ error }}</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="add_area">
+            <span>Descrição</span>
+
+            <div class="input_field {% if form.quantity.errors %}invalid{% endif %}">
+                <textarea name="description"></textarea>
+            </div>
+
+            
+
+            </textarea>
+
+            {% for error in form.quantity.errors %}
+                <div class="field_error">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="btns_area">
+            <div class="btn_group">
+                <button class="btn_submit" type="submit">Cadastrar</button>
+    
+                <a class="btn_cancel" href="{% url 'account:user_list' %}">Cancelar</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}
