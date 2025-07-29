@@ -26,8 +26,6 @@ class ProductListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         qs = super().get_queryset()
 
-        qs = qs.annotate(num_variants=Count('variant_product', distinct=True))
-
         search = self.request.GET.get('search', '')
 
         if search:

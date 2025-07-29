@@ -22,9 +22,6 @@ class Variant(TimeStampModel, ActiveModel, models.Model):
     price = models.DecimalField(default=0, max_digits=8, decimal_places=2, verbose_name='Preço')
 
     quantity = models.PositiveIntegerField(default=0, verbose_name='Quantidade')
-
-    # Variant image 
-    image = models.ImageField(upload_to='variant_images/', null=True, blank=True, verbose_name='Imagem')
         
     def __str__(self):
         variations = " ".join([str(var.value) for var in self.variation.all()])

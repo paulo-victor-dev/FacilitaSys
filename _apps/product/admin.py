@@ -1,13 +1,9 @@
 from django.contrib import admin
 
-from .models.product import Product, ProductImage
+from .models.product import Product
 from .models.attributes import *
 from .models.variant import Variant, VariantOption
 
-
-class ProductImageInline(admin.TabularInline):
-    model = ProductImage
-    extra = 1
 
 class VariantProductInline(admin.TabularInline):
     model = Variant
@@ -36,7 +32,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('_name', 'sku', 'bar_code', 'is_active', 'creation_date', 'update_date')
     search_fields = ('id', '_name', 'sku', 'bar_code')
     list_filter = ('is_active',)
-    inlines = [VariantProductInline, ProductImageInline]
+    inlines = [VariantProductInline]
 
     def _name(self, obj):
         return obj.__str__()

@@ -32,29 +32,28 @@ class Product(TimeStampModel, ActiveModel, models.Model):
     )
 
     # General infos
-    description = models.TextField(max_length=255, blank=True, verbose_name='Descrição')
-    price = models.DecimalField(default=0, max_digits=8, decimal_places=2, verbose_name='Preço')
-    quantity = models.PositiveIntegerField(default=0, null=True, blank=True, verbose_name='Quantidade')
+    description = models.TextField(max_length=255, blank=True, null=True, verbose_name='Descrição')
 
-    # Promo
-    promo_price = models.DecimalField(default=0, max_digits=8, decimal_places=2, null=True, blank=True, verbose_name='Preço promocional')
-    promo_start = models.DateField(null=True, blank=True, verbose_name='Início promoção')
-    promo_end = models.DateField(null=True, blank=True, verbose_name='Fim promoção') 
+    price = models.DecimalField(default=0, max_digits=8, decimal_places=2, verbose_name='Preço')
+
+    quantity = models.PositiveIntegerField(default=0, verbose_name='Quantidade')
 
     def __str__(self):
         return f"{self.name} {self.brand if self.brand else ''}"
+    
+    def save(self, *args, **kwargs):
+        if not self.sku:
+            name_tag = self.name[0:3].upper()
+
+            brand_tag = f'-{self.brand.name[0:3].upper()}' if self.brand else ''
+
+            self.sku = f'{name_tag}{brand_tag}'
+        
+        super().save(*args, **kwargs)
+            
 
     class Meta:
         verbose_name = 'Produto'
         verbose_name_plural = 'Produtos'
         ordering = ['-id']
-
-
-class ProductImage(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_image')
-    image = models.ImageField(upload_to='product_images/', null=True, blank=True, verbose_name='Imagens do produto')
-
-    class Meta:
-        verbose_name = 'Imagem do produto'
-        verbose_name_plural = 'Imagens do produto'
 

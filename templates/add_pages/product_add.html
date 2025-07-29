@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-    <form class="_form" method="post" action="{% url 'product:product_create' %}">
+    <form class="_form" method="post" action="{% url 'product:product_create' %}" enctype="multipart/form-data">
         {% csrf_token %}
 
         <div class="add_area_plus">
@@ -42,7 +42,7 @@
             <div class="add_area">
                 <span>Marca</span>
                 
-                <div class="input_field">
+                <div class="input_field {% if form.brand.errors %}invalid{% endif %}">
                     {{ form.brand }}
                 </div>
     
@@ -54,7 +54,7 @@
             <div class="add_area">
                 <span>Categoria</span>
                 
-                <div class="input_field">
+                <div class="input_field {% if form.category.errors %}invalid{% endif %}">
                     {{ form.category }}
                 </div>
     
@@ -66,7 +66,7 @@
             <div class="add_area">
                 <span>Modelo</span>
                 
-                <div class="input_field">
+                <div class="input_field {% if form.model.errors %}invalid{% endif %}">
                     {{ form.model }}
                 </div>
     
@@ -78,10 +78,24 @@
 
         <div class="add_area_plus">
             <div class="add_area">
+                <span>Tipo de unidade</span>
+
+                <div class="input_field {% if form.unit_type.errors %}invalid{% endif %}">
+                    {{ form.unit_type }}
+                </div>
+
+                {% for error in form.unit_type.errors %}
+                    <div class="field_error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="add_area">
                 <span>Preço</span>
 
                 <div class="input_field {% if form.price.errors %}invalid{% endif %}">
-                    <input type="number" name="price" value="{{ form.price.value|default_if_none:'' }}" min="0">
+                    <span>R$</span>
+
+                    <input type="number" name="price" step="0.01" value="{{ form.price.value|default_if_none:'' }}">
                 </div>
 
                 {% for error in form.price.errors %}
@@ -93,7 +107,7 @@
                 <span>Quantidade</span>
 
                 <div class="input_field {% if form.quantity.errors %}invalid{% endif %}">
-                    <input type="number" name="quantity" value="{{ form.quantity.value|default_if_none:'' }}" min="0">
+                    <input type="number" name="quantity" value="{{ form.quantity.value|default_if_none:'' }}">
                 </div>
 
                 {% for error in form.quantity.errors %}
@@ -105,15 +119,11 @@
         <div class="add_area">
             <span>Descrição</span>
 
-            <div class="input_field {% if form.quantity.errors %}invalid{% endif %}">
+            <div class="input_field {% if form.description.errors %}invalid{% endif %}">
                 <textarea name="description"></textarea>
             </div>
 
-            
-
-            </textarea>
-
-            {% for error in form.quantity.errors %}
+            {% for error in form.description.errors %}
                 <div class="field_error">{{ error }}</div>
             {% endfor %}
         </div>
@@ -122,7 +132,7 @@
             <div class="btn_group">
                 <button class="btn_submit" type="submit">Cadastrar</button>
     
-                <a class="btn_cancel" href="{% url 'account:user_list' %}">Cancelar</a>
+                <a class="btn_cancel" href="{% url 'product:product_list' %}">Cancelar</a>
             </div>
         </div>
     </form>
