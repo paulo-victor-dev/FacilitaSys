@@ -1,12 +1,12 @@
 from django import forms
 
 from .models.product import Product
-from.models.variant import Variant
+from.models.attributes import Brand, Category, ProductModel
 
-class ProductCreationForm(forms.ModelForm):
+class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ('name', 'bar_code', 'brand', 'category', 'model', 'unit_type', 'description', 'price', 'quantity')
+        fields = ('name', 'bar_code', 'sku', 'brand', 'category', 'model', 'unit_type', 'description', 'price', 'quantity')
 
     def clean_price(self):
         price = self.cleaned_data.get('price')
@@ -15,8 +15,18 @@ class ProductCreationForm(forms.ModelForm):
             raise forms.ValidationError('O preço não pode ser negativo.')
 
         return price
-        
-class VariantCreationForm(forms.ModelForm):
+
+class BrandForm(forms.ModelForm):
     class Meta:
-        model = Variant
-        fields = ('bar_code', 'variation', 'price', 'quantity')
+        model = Brand
+        fields = ('name',)
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ('name',)
+
+class ProductModelForm(forms.ModelForm):
+    class Meta:
+        model = ProductModel
+        fields = ('name',)

@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-    <form class="_form" method="post" action="{% url 'account:user_update' user.pk %}">
+    <form class="_form" method="post">
         {% csrf_token %}
 
         <div class="add_area_plus">

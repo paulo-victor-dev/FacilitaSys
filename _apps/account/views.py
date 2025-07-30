@@ -1,7 +1,6 @@
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from django.utils.http import urlencode
 
 from django.contrib.auth import views as auth_views
 from django.views.generic import View, ListView, CreateView, UpdateView, DeleteView
@@ -86,7 +85,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 
 class UserDeleteView(LoginRequiredMixin, DeleteView):
     model = User
-    template_name = 'delete_pages/user_confirm_delete.html'
+    template_name = 'delete_pages/user_delete.html'
     success_url = reverse_lazy('account:user_list')
 
     def form_valid(self, form):

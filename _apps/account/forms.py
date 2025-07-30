@@ -55,7 +55,8 @@ class UserCreationForm(auth_forms.UserCreationForm):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError('Este e-mail já está cadastrado.')
         return email
-    
+
+  
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User

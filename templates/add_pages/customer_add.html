@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+   Cadastrar
+{% endblock %}
+
+{% block content_title %}
+   Cadastrar cliente
+{% endblock %}
+
+{% block content %}
+    <form class="_form" method="post">
+        {% csrf_token %}
+
+        <div class="add_area">
+            <span>Nome</span>
+            
+            <div class="input_field {% if form.name.errors %}invalid{% endif %}">
+                {{ form.name }}
+            </div>
+    
+            {% for error in form.name.errors %}
+                <div class="field_error">{{ error }}</div>
+            {% endfor %}
+        </div>
+   
+        <div class="add_area_plus">
+            <div class="add_area">
+                <span>CPF</span>
+
+                <div class="input_field {% if form.name.errors %}invalid{% endif %}">
+                    {{ form.cpf }}
+                </div>
+
+                {% for error in form.cpf.errors %}
+                    <div class="field_error">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="add_area">
+                <span>Status</span>
+
+                <div class="input_field">
+                    <select name="is_active">
+                        <option value="active" selected>Ativa</option>
+                        <option value="inactive">Inativa</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="btns_area">
+            <div class="btn_group">
+                <button class="btn_submit" type="submit">Cadastrar</button>
+    
+                <a class="btn_cancel" href="{% url 'customer:customer_list' %}">Cancelar</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}

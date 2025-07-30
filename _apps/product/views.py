@@ -1,11 +1,10 @@
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from django.utils.http import urlencode
 
 from django.views.generic import View, ListView, CreateView, UpdateView, DeleteView
 
-from django.db.models import Q, Count
+from django.db.models import Q
 
 from django.http import HttpResponse
 
@@ -13,10 +12,11 @@ import pandas as pd
 import io
 
 from .models.product import Product
+from .models.attributes import Brand, Category, ProductModel 
 
-from .forms import ProductCreationForm
+from .forms import *
 
-
+# Product
 class ProductListView(LoginRequiredMixin, ListView):
     model = Product
     paginate_by = 11
@@ -52,25 +52,34 @@ class ProductListView(LoginRequiredMixin, ListView):
 
         return context
 
-
 class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
-    form_class = ProductCreationForm
+    form_class = ProductForm
     template_name = 'add_pages/product_add.html'
     success_url = reverse_lazy('product:product_list')
-
+    
     def form_valid(self, form):
         messages.success(self.request, 'Produto cadastrado com sucesso!')
         return super().form_valid(form)
 
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'update_pages/product_update.html'
+    success_url = reverse_lazy('product:product_list')
+    
+    def form_valid(self, form):
+        messages.success(self.request, 'Produto atualizado com sucesso!')
+        return super().form_valid(form)
 
-class ProductUpdateView(LoginRequiredMixin, CreateView):
-    ...
-
-
-class ProductDeleteView(LoginRequiredMixin, CreateView):
-    ...
-
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
+    model = Product
+    template_name = 'delete_pages/product_delete.html'
+    success_url = reverse_lazy('product:product_list')
+    
+    def form_valid(self, form):
+        messages.success(self.request, 'Produto deletado com sucesso!')
+        return super().form_valid(form)
 
 class ExportProductsView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
@@ -109,3 +118,36 @@ class ExportProductsView(LoginRequiredMixin, View):
         return response
 
 
+# Brand
+class BrandCreateView(LoginRequiredMixin, CreateView):
+    model = Brand
+    form_class = BrandForm
+    template_name = 'add_pages/brand_add.html'
+    success_url = reverse_lazy('product:product_create')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Marca cadastrada com sucesso!')
+        return super().form_valid(form)
+
+
+# Category
+class CategoryCreateView(LoginRequiredMixin, CreateView):
+    model = Category
+    form_class = CategoryForm
+    template_name = 'add_pages/category_add.html'
+    success_url = reverse_lazy('product:product_create')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Categoria cadastrada com sucesso!')
+        return super().form_valid(form)
+
+# Model
+class ProductModelCreateView(LoginRequiredMixin, CreateView):
+    model = ProductModel
+    form_class = ProductModelForm
+    template_name = 'add_pages/model_add.html'
+    success_url = reverse_lazy('product:product_create')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Modelo cadastrado com sucesso!')
+        return super().form_valid(form)

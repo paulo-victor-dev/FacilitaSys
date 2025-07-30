@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+   Cadastrar
+{% endblock %}
+
+{% block content_title %}
+   Cadastrar Categoria
+{% endblock %}
+
+{% block content %}
+    <form class="_form" method="post">
+        {% csrf_token %}
+
+        <div class="add_area">
+            <span>Nome</span>
+            
+            <div class="input_field {% if form.name.errors %}invalid{% endif %}">
+                <input type="text" name="name" value="{{ form.name.value|default_if_none:'' }}">
+            </div>
+    
+            {% for error in form.name.errors %}
+                <div class="field_error">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="btns_area">
+            <div class="btn_group">
+                <button class="btn_submit" type="submit">Cadastrar</button>
+    
+                <a class="btn_cancel" href="{% url 'product:product_create' %}">Cancelar</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}

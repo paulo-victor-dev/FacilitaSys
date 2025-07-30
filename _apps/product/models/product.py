@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 from .attributes import Brand, Category, ProductModel
 from .abstracts import *
@@ -40,20 +41,10 @@ class Product(TimeStampModel, ActiveModel, models.Model):
 
     def __str__(self):
         return f"{self.name} {self.brand if self.brand else ''}"
-    
-    def save(self, *args, **kwargs):
-        if not self.sku:
-            name_tag = self.name[0:3].upper()
-
-            brand_tag = f'-{self.brand.name[0:3].upper()}' if self.brand else ''
-
-            self.sku = f'{name_tag}{brand_tag}'
-        
-        super().save(*args, **kwargs)
-            
 
     class Meta:
         verbose_name = 'Produto'
         verbose_name_plural = 'Produtos'
+        unique_together = ('name', 'brand')
         ordering = ['-id']
 

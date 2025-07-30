@@ -32,7 +32,8 @@ aside.close ~ .content_area {
     height: 100%;
     border-radius: 10px;
     margin: 15px;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
     box-shadow: 0 0 8px var(--box-shadow-01);
     background-color: var(--light1);
 

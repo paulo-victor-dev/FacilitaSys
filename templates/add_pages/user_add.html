@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-    <form class="_form" method="post" action="{% url 'account:user_create' %}">
+    <form class="_form" method="post">
         {% csrf_token %}
 
         <div class="add_area_plus">
@@ -101,10 +101,6 @@
                         <option value="inactive">Inativa</option>
                     </select>
                 </div>
-
-                {% for error in form.user_type.errors %}
-                    <div class="field_error">{{ error }}</div>
-                {% endfor %}
             </div>
         </div>
 
