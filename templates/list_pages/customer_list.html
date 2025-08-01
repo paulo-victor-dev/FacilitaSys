@@ -42,7 +42,7 @@
          <span class="text">Cadastrar</span>
       </a>
       
-      <a href="#">
+      <a href="{% url 'customer:customer_list_export' %}">
          <span class="btn_area_icon material-icons-sharp">file_upload</span>
 
          <span class="text">Exportar</span>
@@ -58,6 +58,7 @@
                <th>#</th>
                <th>NOME</th>
                <th>CPF</th>
+               <th>EMAIL</th>
                <th>STATUS</th>
                <th></th>
             </tr>
@@ -68,6 +69,7 @@
                   <th>{{ customer.id }}</th>
                   <th>{{ customer }}</th>
                   <th>{{ customer.cpf }}</th>
+                  <th>{{ customer.email }}</th>
                   <th>
                   {% if customer.is_active %}
                      <p class="status active">Ativo</p>
@@ -76,7 +78,7 @@
                   {% endif %}
                   </th>
                   <th class="th_icon_area">
-                     <a class="th_icon_area_link" href="#">
+                     <a class="th_icon_area_link" href="{% url 'customer:customer_update' customer.pk %}">
                         <span class="th_icon material-icons-sharp">edit</span>
                      </a>
                   </th>

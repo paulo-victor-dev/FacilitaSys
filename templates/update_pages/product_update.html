@@ -129,6 +129,17 @@
         </div>
 
         <div class="add_area">
+            <span>Status</span>
+
+            <div class="input_field">
+                <select name="is_active">
+                    <option value="True" selected>Ativa</option>
+                    <option value="False">Inativa</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="add_area">
             <span>Descrição</span>
 
             <div class="input_field {% if form.description.errors %}invalid{% endif %}">

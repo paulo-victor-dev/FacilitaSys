@@ -28,7 +28,8 @@ class CustomerListView(LoginRequiredMixin, ListView):
             qs = qs.filter(
                 Q(id__icontains=search) |
                 Q(name__icontains=search) |
-                Q(cpf__icontains=search)
+                Q(cpf__icontains=search) |
+                Q(email__icontains=search)
             )
 
         return qs
@@ -47,9 +48,67 @@ class CustomerListView(LoginRequiredMixin, ListView):
             )
 
         return context
-    
+
+
 class CustomerCreateView(LoginRequiredMixin, CreateView):
     model = Customer
     form_class = CustomerForm
     template_name = 'add_pages/customer_add.html'
     success_url = reverse_lazy('customer:customer_list')
+
+
+class CustomerUpdateView(LoginRequiredMixin, UpdateView):
+    model = Customer
+    form_class = CustomerForm
+    template_name = 'update_pages/customer_update.html'
+    success_url = reverse_lazy('customer:customer_list')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Cliente atualizado com sucesso!')
+        return super().form_valid(form)
+    
+
+class CustomerDeleteView(LoginRequiredMixin, DeleteView):
+    model = Customer
+    template_name = 'delete_pages/customer_delete.html'
+    success_url = reverse_lazy('customer:customer_list')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Cliente excluído com sucesso!')
+        return super().form_valid(form)
+    
+
+class ExportCustomersView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        queryset = Customer.objects.all()
+
+        data = []
+        for customer in queryset:
+            data.append([
+                customer.id,
+                customer,
+                customer.cpf,
+                customer.email,
+                'Ativo' if customer.is_active else 'Inativo'
+            ])
+
+        df = pd.DataFrame(
+            data,
+            columns=['ID', 'NOME', 'CPF', 'EMAIL', 'STATUS']
+        )
+
+        buffer = io.BytesIO()
+
+        with pd.ExcelWriter(buffer, engine='openpyxl') as writer:
+            df.to_excel(writer, index=False, sheet_name='Clientes')
+
+        buffer.seek(0)
+
+        response = HttpResponse(
+            buffer.read(),
+            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        )
+        
+        response['Content-Disposition'] = 'attachement; filename="Relatório_Clientes.xlsx"'
+
+        return response

@@ -9,12 +9,14 @@ class Customer(TimeStampModel, ActiveModel, models.Model):
     )
 
     cpf = models.CharField(
-        max_length=11, 
+        max_length=14, 
         unique=True, 
         blank=True, 
         null=True, 
         verbose_name='CPF'
     )
+
+    email = models.EmailField(max_length=254, unique=True, verbose_name='Email')
 
     def __str__(self):
         return self.name

@@ -8,7 +8,7 @@ from .models import Customer
 class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ('name', 'cpf')
+        fields = ('name', 'cpf', 'email', 'is_active')
 
         def clean_cpf(self):
             cpf = self.cleaned_data.get('cpf')

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content_title %}
-   Cadastrar cliente
+   Editando - {{ customer }}
 {% endblock %}
 
 {% block content %}
@@ -56,8 +56,8 @@
 
                 <div class="input_field">
                     <select name="is_active">
-                        <option value="active" selected>Ativa</option>
-                        <option value="inactive">Inativa</option>
+                        <option value="True" selected>Ativa</option>
+                        <option value="False">Inativa</option>
                     </select>
                 </div>
             </div>
@@ -65,9 +65,13 @@
 
         <div class="btns_area">
             <div class="btn_group">
-                <button class="btn_submit" type="submit">Cadastrar</button>
+                <button class="btn_submit" type="submit">Atualizar</button>
     
                 <a class="btn_cancel" href="{% url 'customer:customer_list' %}">Cancelar</a>
+            </div>
+
+            <div class="btn_group">
+                <a class="btn_delete" href="{% url 'customer:customer_delete' customer.pk %}">Deletar</a>
             </div>
         </div>
     </form>
