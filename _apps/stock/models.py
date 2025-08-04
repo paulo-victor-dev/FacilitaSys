@@ -7,18 +7,18 @@ from _apps.supplier.models import Supplier
 
 class Flow(TimeStampModel, models.Model):
     FLOW_CHOICES = (
-        ('entrada', 'Entrada'),
-        ('saida', 'Saída'),
+        ('in', 'Entrada'),
+        ('out', 'Saída'),
     )
 
     ORIGIN_CHOICES = (
-        ('fornecedor', 'Fornecedor'),
+        ('supplier', 'Fornecedor'),
         ('manual', 'Manual'),
     )
 
     DESTINATION_CHOICES = (
-        ('cliente', 'Cliente final'),
-        ('estoque', 'Estoque'),
+        ('customer', 'Cliente'),
+        ('storage', 'Armazém'),
     )
 
     supplier = models.ForeignKey(
@@ -33,31 +33,31 @@ class Flow(TimeStampModel, models.Model):
     flow_type = models.CharField(
         max_length=50,
         choices=FLOW_CHOICES,
-        default='entrada',
+        default='in',
         verbose_name='Tipo de movimentação'
     )
 
     origin = models.CharField(
         max_length=50,
         choices=ORIGIN_CHOICES,
-        default='fornecedor',
+        default='supplier',
         verbose_name='Origem'
     )
 
     destination = models.CharField(
         max_length=50,
         choices=DESTINATION_CHOICES,
-        default='cliente',
+        default='customer',
         verbose_name='Destino'
     )
 
     def __str__(self):
-        return f'Movimentação ({self.id})'
+        return f'{self.id} - Movimentação de {self.flow_type}'
 
     class Meta:
         verbose_name = 'Movimentação'
         verbose_name_plural = 'Movimentações'
-        ordering = ['id']
+        ordering = ['-id']
 
 
 class FlowItem(models.Model):
