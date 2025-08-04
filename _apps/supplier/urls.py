@@ -9,10 +9,10 @@ urlpatterns = [
     path('supplier_list/', SupplierListView.as_view(), name='supplier_list'),
 
     # Export
-    # path('supplier_list/export/', ..., name='supplier_list_export'),
+    path('supplier_list/export/', ExportSuppliersView.as_view(), name='supplier_list_export'),
 
-    # # CRUD
-    # path('supplier_create/', ..., name='supplier_create'),
-    # path('supplier_update/<int:pk>/', ..., name='supplier_update'),
-    # path('supplier_delete/<int:pk>/', ..., name='supplier_delete'),
+    # CRUD
+    path('supplier_create/', SupplierCreateView.as_view(), name='supplier_create'),
+    path('supplier_update/<int:pk>/', SupplierUpdateView.as_view(), name='supplier_update'),
+    path('supplier_delete/<int:pk>/', SupplierDeleteView.as_view(), name='supplier_delete'),
 ]

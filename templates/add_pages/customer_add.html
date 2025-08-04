@@ -56,8 +56,13 @@
 
                 <div class="input_field">
                     <select name="is_active">
-                        <option value="active" selected>Ativa</option>
-                        <option value="inactive">Inativa</option>
+                        {% if customer.is_active %}
+                            <option value="True" selected>Ativa</option>
+                            <option value="False">Inativa</option>
+                        {% else %}
+                            <option value="True">Ativa</option>
+                            <option value="False" selected>Inativa</option>
+                        {% endif %}
                     </select>
                 </div>
             </div>

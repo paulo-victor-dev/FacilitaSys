@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content_title %}
-   Editando - {{ customer }}
+   Cadastrar fornecedor
 {% endblock %}
 
 {% block content %}
@@ -40,13 +40,13 @@
    
         <div class="add_area_plus">
             <div class="add_area">
-                <span>CPF</span>
+                <span>CNPJ</span>
 
                 <div class="input_field {% if form.name.errors %}invalid{% endif %}">
-                    {{ form.cpf }}
+                    {{ form.cnpj }}
                 </div>
 
-                {% for error in form.cpf.errors %}
+                {% for error in form.cnpj.errors %}
                     <div class="field_error">{{ error }}</div>
                 {% endfor %}
             </div>
@@ -56,7 +56,7 @@
 
                 <div class="input_field">
                     <select name="is_active">
-                        {% if customer.is_active %}
+                        {% if supplier.is_active %}
                             <option value="True" selected>Ativa</option>
                             <option value="False">Inativa</option>
                         {% else %}
@@ -70,13 +70,9 @@
 
         <div class="btns_area">
             <div class="btn_group">
-                <button class="btn_submit" type="submit">Atualizar</button>
+                <button class="btn_submit" type="submit">Cadastrar</button>
     
-                <a class="btn_cancel" href="{% url 'customer:customer_list' %}">Cancelar</a>
-            </div>
-
-            <div class="btn_group">
-                <a class="btn_delete" href="{% url 'customer:customer_delete' customer.pk %}">Deletar</a>
+                <a class="btn_cancel" href="{% url 'supplier:supplier_list' %}">Cancelar</a>
             </div>
         </div>
     </form>

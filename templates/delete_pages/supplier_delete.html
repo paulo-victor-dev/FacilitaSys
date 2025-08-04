@@ -5,21 +5,21 @@
 {% endblock %}
 
 {% block content_title %}
-    Excluindo - {{ customer }}
+    Excluindo - {{ supplier }}
 {% endblock %}
 
 {% block content %}
     <form class="_form" method="post">
         {% csrf_token %}
 
-        <span>Tem certeza que deseja remover <strong>"{{ customer }}"</strong>?</span>
+        <span>Tem certeza que deseja remover <strong>"{{ supplier }}"</strong>?</span>
 
         <div class="btn_group">
             <button class="btn_delete" type="submit">
                 Sim, tenho certeza
             </button>
     
-            <a class="btn_cancel" href="{% url 'customer:customer_update' customer.pk %}">
+            <a class="btn_cancel" href="{% url 'supplier:supplier_update' supplier.pk %}">
                 Não, voltar para a edição
             </a>
         </div>

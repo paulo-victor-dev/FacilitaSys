@@ -8,79 +8,130 @@
    Fornecedores
 {% endblock %}
 
+{% block messages %}
+   {% if messages %}
+      {% for message in messages %}
+         <div class="message_area">
+            <span>{{ message }}</span>
+         </div>
+      {% endfor %}
+   {% endif %}
+{% endblock %}
+
 {% block search %}
-   <form class="form_search">
+   <form method="get" id="form_search">
       {% csrf_token %}
 
-      <select class="filter_menu" name="filter">
-         <option value="name">Nome</option>
-         <option value="document" selected>CNPJ</option>
-         <option value="email">Email</option>
-      </select>
-
       <div class="search_group">
-         <input type="text" name="search" placeholder="Pesquisar..." value="{{ request.GET.search }}">
+         <div class="search_input_area">
+            <input type="text" name="search" id="input_search" placeholder="Pesquisar..." value="{{ request.GET.search }}">
+         </div>
          
-         <button type="submit">
+         <button type="button" id="search_btn">
             <span class="search_icon material-icons-sharp">search</span>
          </button>
       </div>
    </form>
 
    <div class="btn_area">
-      <button class="add_btn">
-         <span class="add_icon material-icons-sharp">add</span>
-      </button>
+      <a href="{% url 'supplier:supplier_create' %}">
+         <span class="btn_area_icon material-icons-sharp">add</span>
+         
+         <span class="text">Cadastrar</span>
+      </a>
       
-      <a class="report_btn" href="#">
-         <span class="report_icon material-icons-sharp">file_download</span>
+      <a href="{% url 'supplier:supplier_list_export' %}">
+         <span class="btn_area_icon material-icons-sharp">file_upload</span>
+
+         <span class="text">Exportar</span>
       </a>
    </div>
 {% endblock %}
 
 {% block content %}
-   <table>
-      <thead>
-         <tr>
-            <th>NOME</th>
-            <th>EMAIL</th>
-            <th>CNPJ</th>
-            <th>STATUS</th>
-            <th></th>
-         </tr>
-      </thead>
-      <tbody>
-         {% for supplier in suppliers %}
+   <div class="table_area">
+      <table>
+         <thead>
             <tr>
-               <th>{{ supplier.name }}</th>
-               <th>{{ supplier.email }}</th>
-               <th>
-                  {% if supplier.document %}
-                     {{ supplier.document }}
-                  {% else %}
-                     -
-                  {% endif %}
-               </th>
-               <th>
+               <th>#</th>
+               <th>NOME</th>
+               <th>CNPJ</th>
+               <th>EMAIL</th>
+               <th>STATUS</th>
+               <th></th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for supplier in suppliers %}
+               <tr>
+                  <th>{{ supplier.id }}</th>
+                  <th>{{ supplier }}</th>
+                  <th>{{ supplier.cnpj }}</th>
+                  <th>{{ supplier.email }}</th>
+                  <th>
                   {% if supplier.is_active %}
                      <p class="status active">Ativo</p>
                   {% else %}
                      <p class="status inactive">Inativo</p>
                   {% endif %}
-               </th>
-               <th class="th_icon_area">
-                  <a class="th_icon_area_link" href="#">
-                     <span class="th_icon material-icons-sharp">edit</span>
-                  </a>
-               </th>
-            </tr>
-         {% empty %}
-            <tr>
-               <th>
-                  <p>Nenhum fornecedor encontrado</p>
-               </th>
-            </tr>
+                  </th>
+                  <th class="th_icon_area">
+                     <a class="th_icon_area_link" href="{% url 'supplier:supplier_update' supplier.pk %}">
+                        <span class="th_icon material-icons-sharp">edit</span>
+                     </a>
+                  </th>
+               </tr>
+            {% empty %}
+               <tr>
+                  <th>
+                     <p>Nenhum fornecedor encontrado</p>
+                  </th>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </div>
+
+   <div class="pagination">
+      <div class="pag_icon">
+         {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}&search={{ request.GET.search|urlencode }}">
+               <span class="material-icons-sharp">chevron_left</span>
+            </a>
+         
+         {% else %}
+            <span class="disable material-icons-sharp">chevron_left</span>
+
+         {% endif %}
+      </div>
+      
+      <div class="pag_numbers">
+         {% for num in page_range %}
+            {% if num == paginator.ELLIPSIS %}
+               <span class="elipse">...</span>
+
+            {% elif num == page_obj.number %}
+               <span class="active">{{ num }}</span>
+            
+            {% else %}
+               <a href="?page={{ num }}&search={{ request.GET.search|urlencode }}">
+                  <span>{{ num }}</span>
+               </a>
+
+            {% endif %}
          {% endfor %}
-      </tbody>
-   </table>
+      </div>
+      
+      <div class="pag_icon">
+         {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}&search={{ request.GET.search|urlencode }}">
+               <span class="material-icons-sharp">chevron_right</span>
+            </a>
+
+         {% else %}
+            <span class="disable material-icons-sharp">chevron_right</span>
+
+         {% endif %}
+      </div>
+   </div>
 {% endblock %}

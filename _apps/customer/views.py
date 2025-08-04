@@ -56,6 +56,10 @@ class CustomerCreateView(LoginRequiredMixin, CreateView):
     template_name = 'add_pages/customer_add.html'
     success_url = reverse_lazy('customer:customer_list')
 
+    def form_valid(self, form):
+        messages.success(self.request, 'Cliente cadastrado com sucesso!')
+        return super().form_valid(form)
+
 
 class CustomerUpdateView(LoginRequiredMixin, UpdateView):
     model = Customer

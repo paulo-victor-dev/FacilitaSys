@@ -6,9 +6,9 @@ from _apps.product.models.abstracts import *
 class Supplier(TimeStampModel, ActiveModel, models.Model):
     name = models.CharField(max_length=100, verbose_name='Nome')
 
-    email = models.EmailField(max_length=254, blank=True, null=True, verbose_name='Email')
+    cnpj = models.CharField(max_length=14, unique=True, verbose_name='CNPJ')
 
-    document = models.CharField(max_length=14, unique=True, verbose_name='CNPJ')
+    email = models.EmailField(max_length=254, blank=True, null=True, verbose_name='Email')
 
     phone = PhoneNumberField(blank=True, null=True, verbose_name='Telefone')
 
