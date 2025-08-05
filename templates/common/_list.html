@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    {{ obj_page_title }}
+{% endblock %}
+
+{% block content_title %}
+   {{ obj_content_title }}
+{% endblock %}
+
+{% block search %}
+    {% include 'partials/_search.html' %}
+
+    {% include 'partials/_add_exp.html' %}
+{% endblock %}
+
+{% block content %}
+    {% include 'partials/_table.html' %}
+
+    {% include 'partials/_pagination.html' %}
+{% endblock %}
+
+

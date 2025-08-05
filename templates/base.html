@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Links -->
-    {% include 'base_includes/_links.html' %}
+    {% include 'partials/_links.html' %}
 
     <!-- Title -->
     <title>FacilitaSys | {% block page_title %}{% endblock %}</title>
@@ -14,16 +14,10 @@
     {% if user.is_authenticated %}
         <main class="main_area">
             <!-- Messages -->
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="message_area {% if message.tags == 'error' %}invalid{% endif %}">
-                        <span>{{ message }}</span>
-                    </div>
-                {% endfor %}
-            {% endif %}
+            {% include 'partials/_messages.html' %}
   
             <!-- Sidebar -->
-            {% include 'base_includes/_sidebar.html' %}
+            {% include 'partials/_sidebar.html' %}
       
             <!-- Content -->
             <div class="content_area">

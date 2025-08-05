@@ -1,0 +1,51 @@
+{% load filters %}
+
+<div class="table_area">
+    <table>
+        <thead>
+            <tr>
+                {% for header in headers %}
+                    <th>{{ header }}</th>
+                {% endfor %}
+
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for obj in objs %}
+                <tr>
+                    {% for field in fields %}
+                        {% if field == 'is_active' %}
+                            {% if obj.is_active %}    
+                                <th>
+                                    <p class="status active">Ativo</p>
+                                </th>
+                            {% else %}
+                                <th>
+                                    <p class="status inactive">Inativo</p>
+                                </th>
+                            {% endif %}
+
+                        {% else %}
+                            <th>{{ obj|get_field:field }}</th>
+                        {% endif %}
+                    {% endfor %}
+
+                    <th class="th_icon_area">
+                        <a class="th_icon_area_link" href="{% url urls.url_update obj.pk %}">
+                        <span class="th_icon material-icons-sharp">edit</span>
+                        </a>
+                    </th>
+                </tr>
+            {% empty %}
+                <tr>
+                    <th>
+                        <p>Nenhum registro encontrado</p>
+                    </th>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

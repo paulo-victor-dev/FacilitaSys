@@ -1,0 +1,13 @@
+<form method="get" id="form_search">
+    {% csrf_token %}
+
+    <div class="search_group">
+        <div class="search_input_area">
+            <input type="text" name="search" id="input_search" placeholder="Pesquisar..." value="{{ request.GET.search }}">
+        </div>
+        
+        <button type="button" id="search_btn">
+            <span class="search_icon material-icons-sharp">search</span>
+        </button>
+    </div>
+</form>
