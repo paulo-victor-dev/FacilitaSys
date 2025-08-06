@@ -67,6 +67,7 @@ class GenericListView(LoginRequiredMixin, ListView):
         obj = self.model._meta.model_name
 
         urls = {
+            'url_list': f'{app}:{obj}_list',
             'url_create': f'{app}:{obj}_create',
             'url_update': f'{app}:{obj}_update',
             'url_delete': f'{app}:{obj}_delete',
@@ -78,12 +79,36 @@ class GenericListView(LoginRequiredMixin, ListView):
 class GenericCreateView(LoginRequiredMixin, CreateView):
     template_name = 'common/_create.html'
     success_message = 'Registro criado com sucesso'
+    obj_page_title = 'Cadastrar'
+    obj_content_title = ''
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+
+        ctx['obj_page_title'] = self.obj_page_title
+        ctx['obj_content_title'] = self.obj_content_title
+        ctx['urls'] = self.get_crud_urls()
+
+        return ctx
 
     def get_success_url(self):
         app = self.model._meta.app_label
         obj = self.model._meta.model_name
         
-        return reverse_lazy(f'{app}:{obj}_list') 
+        return reverse_lazy(f'{app}:{obj}_list')
+
+    def get_crud_urls(self):
+        app = self.model._meta.app_label
+        obj = self.model._meta.model_name
+
+        urls = {
+            'url_list': f'{app}:{obj}_list',
+            'url_create': f'{app}:{obj}_create',
+            'url_update': f'{app}:{obj}_update',
+            'url_delete': f'{app}:{obj}_delete',
+            'url_export': f'{app}:{obj}_export',
+        }
+        return urls 
 
     def form_valid(self, form):
         messages.success(self.request, self.success_message)
@@ -93,12 +118,36 @@ class GenericCreateView(LoginRequiredMixin, CreateView):
 class GenericUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'common/_update.html'
     success_message = 'Registro atualizado com sucesso'
+    obj_page_title = 'Editar'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        obj = self.get_object()
+
+        ctx['obj_page_title'] = self.obj_page_title
+        ctx['obj_content_title'] = f'Editando - {obj.get_full_name() or obj}'
+        ctx['urls'] = self.get_crud_urls()
+
+        return ctx
 
     def get_success_url(self):
         app = self.model._meta.app_label
         obj = self.model._meta.model_name
         
         return reverse_lazy(f'{app}:{obj}_list') 
+    
+    def get_crud_urls(self):
+        app = self.model._meta.app_label
+        obj = self.model._meta.model_name
+
+        urls = {
+            'url_list': f'{app}:{obj}_list',
+            'url_create': f'{app}:{obj}_create',
+            'url_update': f'{app}:{obj}_update',
+            'url_delete': f'{app}:{obj}_delete',
+            'url_export': f'{app}:{obj}_export',
+        }
+        return urls
 
     def form_valid(self, form):
         messages.success(self.request, self.success_message)
@@ -108,13 +157,34 @@ class GenericUpdateView(LoginRequiredMixin, UpdateView):
 class GenericDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     template_name = 'common/_delete.html'
     success_message = 'Registro excluído com sucesso'
+    obj_page_title = 'Deletar'
     forbid_self_delete = False
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+
+        ctx['urls'] = self.get_crud_urls()
+
+        return ctx
 
     def get_success_url(self):
         app = self.model._meta.app_label
         obj = self.model._meta.model_name
         
         return reverse_lazy(f'{app}:{obj}_list') 
+
+    def get_crud_urls(self):
+        app = self.model._meta.app_label
+        obj = self.model._meta.model_name
+
+        urls = {
+            'url_list': f'{app}:{obj}_list',
+            'url_create': f'{app}:{obj}_create',
+            'url_update': f'{app}:{obj}_update',
+            'url_delete': f'{app}:{obj}_delete',
+            'url_export': f'{app}:{obj}_export',
+        }
+        return urls
 
     def form_valid(self, form):
         obj = self.get_object()

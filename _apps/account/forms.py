@@ -1,5 +1,5 @@
-from django import forms
 from django.contrib.auth import forms as auth_forms
+from django import forms
 
 from .models import User
 
@@ -22,7 +22,13 @@ class LoginForm(auth_forms.AuthenticationForm):
         return super().clean()
 
 
-class UserForm(auth_forms.UserCreationForm):
+class UserCreateForm(auth_forms.UserCreationForm):
+    is_active = forms.ChoiceField(
+        choices=[('True', 'Ativa'), ('False', 'Inativa')],
+        widget=forms.Select,
+        label='Status da conta'
+    )
+
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email', 'password1', 'password2', 'user_type', 'is_active')
@@ -38,3 +44,20 @@ class UserForm(auth_forms.UserCreationForm):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError('Este e-mail já está cadastrado.')
         return email
+    
+class UserUpdateForm(forms.ModelForm):
+    is_active = forms.ChoiceField(
+        choices=[('True', 'Ativa'), ('False', 'Inativa')],
+        widget=forms.Select,
+        label='Status da conta'
+    )
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email', 'user_type', 'is_active')
+
+        def clean_first_name(self):
+            first_name = self.cleaned_data.get('first_name')
+            if not first_name:
+                raise forms.ValidationError('Este campo é obrigatório.')
+            return first_name

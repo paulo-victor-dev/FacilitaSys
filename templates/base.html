@@ -28,9 +28,11 @@
                 </div>
 
                 <div class="content_body">
-                    <div class="search_area">
-                        {% block search %}{% endblock %}
-                    </div>
+                    {% if '_list' in request.resolver_match.url_name %}
+                        <div class="search_area">
+                            {% block search %}{% endblock %}
+                        </div>
+                    {% endif %}
 
                     <div class="content">
                         {% block content %}{% endblock %}

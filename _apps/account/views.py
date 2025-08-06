@@ -1,8 +1,8 @@
 from django.contrib.auth import views as auth_views
 
-from _core.utils.generic_views import *
+from utils.generic_views import *
 
-from .forms import LoginForm, UserForm
+from .forms import LoginForm, UserCreateForm, UserUpdateForm
 from .models import User
 
 
@@ -26,12 +26,13 @@ class UserListView(GenericListView):
 
 class UserCreateView(GenericCreateView):
     model = User
-    form_class = UserForm
+    form_class = UserCreateForm
+    obj_content_title = 'Cadastrar usuário'
 
 
 class UserUpdateView(GenericUpdateView):
     model = User
-    form_class = UserForm
+    form_class = UserUpdateForm
 
 
 class UserDeleteView(GenericDeleteView):

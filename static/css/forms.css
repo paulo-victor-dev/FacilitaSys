@@ -1,183 +1,139 @@
-._form {
+.common_form_area {
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 100%;
     height: 100%;
-    padding: 15px;
-    gap: 35px;
-}
-
-.add_area_plus {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    width: 100%;
-}
-
-.add_area {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    width: 100%;
-}
-
-.add_area span {
-    margin-left: 2px;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.input_field {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    border: 1px solid var(--box-shadow-03);
-    border-radius: 8px;
-}
-
-.input_field input {
-    width: 100%;
-    height: 100%;
-    padding: 8px;
-    border-radius: 8px;
-    border: none;
-}
-
-.input_field select {
-    display: flex;
-    width: 100%;
-    padding: 8px;
-    border-radius: 8px;
-    border: none;
-    font-size: 14px;
-}
-
-.input_field textarea {
-    resize: vertical;
-    width: 100%;
-    min-height: 150px;
-    max-height: 420px;
-    font-size: 14px;
-    margin-right: 5px;
-    padding: 8px;
-    border-radius: 8px;
-    border: none;
-}
-
-.input_field > span {
-    padding-left: 5px;
-    font-size: 14px;
-}
-
-.input_field > a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    border-radius: 0 7px 7px 0;
-    padding: 0 10px;
-    margin-left: 5px;
-    background-color: var(--success2);
+    padding: 15px 0 15px 10px;
 
     > span {
-        font-size: 18px;
-        color: var(--light1);
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 25px;
+    }
+
+    > form {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        padding: 0 50px;
     }
 }
 
-.input_field > a:hover {
-    background-color: var(--success3);
-}
-
-.add_area > .variant_field {
+.common_form_area > form > .field {
     display: flex;
-    background-color: red;
+    flex-direction: column;
+    justify-content: center;
+
+    > .field_input {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 35px;
+        padding: 5px;
+        border-radius: 8px;
+        background-color: var(--light2);
+    }
+
+    > .field_input > input {
+        border: none;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+    }
+
+    > .field_input > select {
+        cursor: pointer;
+        border: none;
+        width: 100%;
+        background-color: transparent;
+    }
+
+    > .field_input > textarea {
+        resize: none;
+        border: none;
+        width: 100%;
+        height: 100px;
+    }
+
+    > .field_error > span {
+        font-size: 15px;
+        color: var(--danger2);
+    }
+
+    > .field_input > input:focus,
+    > .field_input > select:focus,
+    > .field_input > textarea:focus {
+        outline: none;
+    }
+
+    > .field_input:focus-within {
+        border: 1px solid var(--dark2);
+    }
 }
 
 .btns_area {
     display: flex;
     justify-content: space-between;
     width: 100%;
-}
+    margin-bottom: 15px;
 
-.btn_group {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
+    > .btn_group {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
 
-.btn_submit {
-    border: none;
-    font-size: 15px;
-    font-weight: 500;
-    padding: 8px;
-    border-radius: 8px;
-    cursor: pointer;
-    color: var(--light1);
-    background-color: var(--success2);
-}
+    > .btn_group > .btn_submit {
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        color: var(--light1);
+        background-color: var(--success2);
+    }
 
-.btn_cancel {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
-    color: var(--light1);
-    background-color: var(--info1);
-}
+    > .btn_group > .btn_cancel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        color: var(--light1);
+        background-color: var(--info1);
+    }
 
-.btn_delete {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
-    color: var(--light1);
-    background-color: var(--danger1);
-}
+    > .btn_group > .btn_delete {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        color: var(--light1);
+        background-color: var(--danger1);
+    }
 
-.add_area .field_error {
-    font-size: 14px;
-    margin-left: 2px;
-    color: var(--danger2);
-}
-
-.input_field.invalid {
-    border: 1px solid var(--danger2);
-}
-
-/* Focus */
-.add_area input:focus,
-.input_field select:focus,
-.input_field textarea:focus {
-    outline: none;
-}
-
-.add_area .input_field:focus-within {
-    border: 1px solid var(--dark1);
-}
-
-/* Hover */
-.btn_submit:hover {
+    > .btn_group > .btn_submit:hover {
     background-color: var(--success3);
-}
+    }
 
-.btn_cancel:hover {
-    background-color: var(--info2);
-}
+    > .btn_group > .btn_cancel:hover {
+        background-color: var(--info2);
+    }
 
-.btn_delete:hover {
-    background-color: var(--danger3);
+    > .btn_group > .btn_delete:hover {
+        background-color: var(--danger3);
+    }
+
 }

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    {{ obj_page_title }}
+{% endblock %}
+
+{% block content_title %}
+   {{ obj_content_title }}
+{% endblock %}
+
+{% block content %}
+    {% include 'partials/forms/_update_form.html' %}
+{% endblock %}

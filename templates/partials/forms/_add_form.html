@@ -1,0 +1,33 @@
+<div class="common_form_area">
+    <span>Informações Gerais</span>
+    
+    <form method="post">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div class="field">
+                <span>{{ field.label }}</span>
+                    
+                <div class="field_input">
+                    {{ field }}
+                </div>
+
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <div class="field_error">
+                            <span>{{ error }}</span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        {% endfor %}
+        
+        <div class="btns_area">
+            <div class="btn_group">
+                <button class="btn_submit" type="submit">Cadastrar</button>
+                
+                <a class="btn_cancel" href="{% url urls.url_list %}">Cancelar</a>
+            </div>
+        </div>
+    </form>
+</div>

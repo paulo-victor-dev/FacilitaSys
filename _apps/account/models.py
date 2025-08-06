@@ -30,8 +30,8 @@ class CustomUserManager(BaseUserManager):
     
 class User(AbstractBaseUser, PermissionsMixin):
     USER_TYPE_CHOICES = (
-        ('adm', 'Administrador'),
         ('operator', 'Operador'),
+        ('adm', 'Administrador'),
     )
 
     first_name = models.CharField(max_length=50, blank=True, verbose_name='Nome')
