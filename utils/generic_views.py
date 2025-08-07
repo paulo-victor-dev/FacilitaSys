@@ -78,7 +78,7 @@ class GenericListView(LoginRequiredMixin, ListView):
 
 class GenericCreateView(LoginRequiredMixin, CreateView):
     template_name = 'common/_create.html'
-    success_message = 'Registro criado com sucesso'
+    success_message = 'Registro criado com sucesso!'
     obj_page_title = 'Cadastrar'
     obj_content_title = ''
 
@@ -117,7 +117,7 @@ class GenericCreateView(LoginRequiredMixin, CreateView):
 
 class GenericUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'common/_update.html'
-    success_message = 'Registro atualizado com sucesso'
+    success_message = 'Registro atualizado com sucesso!'
     obj_page_title = 'Editar'
 
     def get_context_data(self, **kwargs):
@@ -156,13 +156,16 @@ class GenericUpdateView(LoginRequiredMixin, UpdateView):
 
 class GenericDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     template_name = 'common/_delete.html'
-    success_message = 'Registro excluído com sucesso'
+    success_message = 'Registro excluído com sucesso!'
     obj_page_title = 'Deletar'
     forbid_self_delete = False
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
+        obj = self.get_object()
 
+        ctx['obj_page_title'] = self.obj_page_title
+        ctx['obj_content_title'] = f'Deletando - {obj.get_full_name() or obj}'
         ctx['urls'] = self.get_crud_urls()
 
         return ctx

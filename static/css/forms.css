@@ -72,8 +72,20 @@
     }
 }
 
+.common_form_area .delete_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    > .btns_area {
+        justify-content: center;
+    }
+}
+
 .btns_area {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 15px;

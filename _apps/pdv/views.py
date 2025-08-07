@@ -19,6 +19,6 @@ class PdvView(LoginRequiredMixin, View):
 
         }
 
-        return render(request, 'pdv.html', context)
+        return render(request, 'partials/_pdv.html', context)
     
 

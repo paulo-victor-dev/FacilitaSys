@@ -8,7 +8,7 @@ from .models import User
 
 class LoginView(auth_views.LoginView):
     authentication_form = LoginForm
-    template_name = 'login.html'
+    template_name = 'partials/_login.html'
 
 
 class LogoutView(auth_views.LogoutView):

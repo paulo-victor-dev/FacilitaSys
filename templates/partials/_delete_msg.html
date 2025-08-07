@@ -1,0 +1,19 @@
+<div class="common_form_area">
+    <form class="delete_form" method="post">
+        {% csrf_token %}
+
+        <span>Tem certeza que deseja remover <strong>"{{ object }}"</strong>?</span>
+
+        <div class="btns_area">
+            <div class="btn_group">
+                <button class="btn_delete" type="submit">
+                    Sim, tenho certeza
+                </button>
+    
+                <a class="btn_cancel" href="{% url urls.url_update object.pk %}">
+                    Não, voltar para a edição
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
