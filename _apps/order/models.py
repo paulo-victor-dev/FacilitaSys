@@ -1,30 +1,29 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 
-from _apps.account.models import User
+from _apps.customer.models import Customer
 from _apps.product.models.abstracts import *
 from _apps.product.models.product import Product
 
 
 class Order(TimeStampModel, models.Model):
     ORDER_STATUS = (
-        ('finalizado', 'Finalizado'),
-        ('pendente', 'Pendente'),
-        ('cancelado', 'Cancelado'),
+        ('finished', 'Finalizado'),
+        ('pendent', 'Pendente'),
+        ('canceled', 'Cancelado'),
     )
 
     customer = models.ForeignKey(
-        User, 
+        Customer, 
         on_delete=models.PROTECT,
-        related_name='order_user',
-        limit_choices_to={'user_type': 'cliente'},
+        related_name='order_customer',
         verbose_name='Cliente'
     )
 
     status = models.CharField(
         max_length=50, 
         choices=ORDER_STATUS,
-        default='pendente',
+        default='pendent',
         verbose_name='Status'
     )
 
@@ -32,20 +31,11 @@ class Order(TimeStampModel, models.Model):
 
     def __str__(self):
         return f'Pedido {self.id}'
-    
-    def clean(self):
-        super().clean()
-        if self.customer.user_type != 'cliente':
-            raise ValidationError('Só é possível cadastrar pedidos para usuários do tipo: "Cliente".')
-        
-    def save(self, *args, **kwargs):
-        self.full_clean()
-        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Pedido'
         verbose_name_plural = 'Pedidos'
-        ordering = ['id']
+        ordering = ['-id']
     
 
 class OrderItem(models.Model):
@@ -53,7 +43,7 @@ class OrderItem(models.Model):
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='orderItem_product')
 
-    quantity = models.PositiveIntegerField(default=1)
+    quantity = models.PositiveIntegerField(default=1, verbose_name='Quantidade')
 
     unit_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Preço do item')
 

@@ -9,7 +9,7 @@ urlpatterns = [
     path('customer_list/', CustomerListView.as_view(), name='customer_list'),
 
     # Export
-    path('customer_list/export/', ExportCustomersView.as_view(), name='customer_list_export'),
+    path('export/', ExportCustomersView.as_view(), name='customer_export'),
 
     # CRUD
     path('customer_create/', CustomerCreateView.as_view(), name='customer_create'),

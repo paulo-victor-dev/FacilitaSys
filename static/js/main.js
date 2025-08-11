@@ -2,19 +2,25 @@ const body = document.querySelector("body"),
 
     sidebar = body.querySelector("aside"),
     btn_toggle = sidebar.querySelector(".btn_toggle"),
-    arrow1 = sidebar.querySelector("#arrow1"),
-    arrow2 = sidebar.querySelector("#arrow2"),
-
-    submenu_btn1 = sidebar.querySelector("#submenu_btn1"),
-    submenu_btn2 = sidebar.querySelector("#submenu_btn2"),
-
-    submenu1 = sidebar.querySelector("#submenu1"),
-    submenu2 = sidebar.querySelector("#submenu2"),
 
     msg = body.querySelector('.message_area'),
 
     input_doc = body.querySelector('#doc');
 
+const submenuButtons = [
+    sidebar.querySelector("#submenu_btn1"),
+    sidebar.querySelector("#submenu_btn2"),
+];
+
+const submenus = [
+    sidebar.querySelector("#submenu1"),
+    sidebar.querySelector("#submenu2"),
+];
+
+const arrows = [
+    sidebar.querySelector("#arrow1"),
+    sidebar.querySelector("#arrow2"),
+];
     
 
 // Sidebar close events
@@ -49,24 +55,35 @@ btn_toggle.addEventListener("click", () => {
 });
 
 // Sidebar submenus events
-submenu_btn1.addEventListener("click", () => {
-   if (submenu2.classList.contains("open")) {
-        submenu2.classList.remove("open");
-        arrow2.classList.remove("rotate");
-    };
+function closeOthers(currentIndex) {
+    submenus.forEach((submenu, i) => {
+        if (i !== currentIndex && submenu.classList.contains("open")) {
+            submenu.classList.remove("open");
+            arrows[i].classList.remove("rotate");
+        }
+    });
+}
 
-    submenu1.classList.toggle("open");
-    arrow1.classList.toggle("rotate");
+submenuButtons.forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+        closeOthers(index);
+        submenus[index].classList.toggle("open");
+        arrows[index].classList.toggle("rotate");
+    });
 });
 
-submenu_btn2.addEventListener("click", () => {
-    if (submenu1.classList.contains("open")) {
-        submenu1.classList.remove("open");
-        arrow1.classList.remove("rotate");
-    };
-    
-    submenu2.classList.toggle("open");
-    arrow2.classList.toggle("rotate");
+document.addEventListener("click", (event) => {
+    if(
+        !sidebar.contains(event.target) &&
+        !submenuButtons.some(btn => btn.contains(event.target))
+    ) {
+        submenus.forEach((submenu, i) => {
+            if (submenu.classList.contains("open")) {
+                submenu.classList.remove("open");
+                arrows[i].classList.remove("rotate");
+            }
+        });
+    }
 });
 
 // Message events

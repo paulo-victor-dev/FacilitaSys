@@ -11,13 +11,13 @@ from django.http import HttpResponse
 
 import io, pandas as pd
 
+from .generic_forms import GenericForm
+
 
 class GenericListView(LoginRequiredMixin, ListView):
     paginate_by = 11
     template_name = 'common/_list.html'
     context_object_name = 'objs'
-    obj_page_title = ''
-    obj_content_title = ''
 
     headers = []
     fields = []
@@ -47,8 +47,8 @@ class GenericListView(LoginRequiredMixin, ListView):
         ctx['fields'] = self.fields
         ctx['urls'] = self.get_crud_urls()
 
-        ctx['obj_page_title'] = self.obj_page_title
-        ctx['obj_content_title'] = self.obj_content_title
+        ctx['obj_page_title'] = self.get_model_name(plural=True)
+        ctx['obj_content_title'] = self.get_model_name(plural=True)
 
         paginator = ctx.get('paginator')
         page_obj = ctx.get('page_obj')
@@ -62,6 +62,9 @@ class GenericListView(LoginRequiredMixin, ListView):
 
         return ctx
     
+    def get_model_name(self, plural=False):
+        return self.model._meta.verbose_name if not plural else self.model._meta.verbose_name_plural
+
     def get_crud_urls(self):
         app = self.model._meta.app_label
         obj = self.model._meta.model_name
@@ -77,16 +80,21 @@ class GenericListView(LoginRequiredMixin, ListView):
     
 
 class GenericCreateView(LoginRequiredMixin, CreateView):
+    form_class = GenericForm
     template_name = 'common/_create.html'
     success_message = 'Registro criado com sucesso!'
-    obj_page_title = 'Cadastrar'
-    obj_content_title = ''
+
+    def get_form_class(self):
+        class _DynamicForm(GenericForm):
+            class Meta(GenericForm.Meta):
+                model = self.model
+        return _DynamicForm
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
 
-        ctx['obj_page_title'] = self.obj_page_title
-        ctx['obj_content_title'] = self.obj_content_title
+        ctx['obj_page_title'] = 'Cadastrar'
+        ctx['obj_content_title'] = f'Cadastrar {self.get_model_name()}'
         ctx['urls'] = self.get_crud_urls()
 
         return ctx
@@ -96,6 +104,9 @@ class GenericCreateView(LoginRequiredMixin, CreateView):
         obj = self.model._meta.model_name
         
         return reverse_lazy(f'{app}:{obj}_list')
+
+    def get_model_name(self, plural=False):
+        return self.model._meta.verbose_name if not plural else self.model._meta.verbose_name_plural
 
     def get_crud_urls(self):
         app = self.model._meta.app_label
@@ -116,16 +127,22 @@ class GenericCreateView(LoginRequiredMixin, CreateView):
 
 
 class GenericUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = GenericForm
     template_name = 'common/_update.html'
     success_message = 'Registro atualizado com sucesso!'
-    obj_page_title = 'Editar'
+
+    def get_form_class(self):
+        class _DynamicForm(GenericForm):
+            class Meta(GenericForm.Meta):
+                model = self.model
+        return _DynamicForm
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         obj = self.get_object()
 
-        ctx['obj_page_title'] = self.obj_page_title
-        ctx['obj_content_title'] = f'Editando - {obj.get_full_name() or obj}'
+        ctx['obj_page_title'] = 'Editar'
+        ctx['obj_content_title'] = f'Editando - {getattr(obj, 'get_full_name', lambda: None)() or obj}'
         ctx['urls'] = self.get_crud_urls()
 
         return ctx
@@ -135,7 +152,7 @@ class GenericUpdateView(LoginRequiredMixin, UpdateView):
         obj = self.model._meta.model_name
         
         return reverse_lazy(f'{app}:{obj}_list') 
-    
+
     def get_crud_urls(self):
         app = self.model._meta.app_label
         obj = self.model._meta.model_name
@@ -157,15 +174,15 @@ class GenericUpdateView(LoginRequiredMixin, UpdateView):
 class GenericDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     template_name = 'common/_delete.html'
     success_message = 'Registro excluído com sucesso!'
-    obj_page_title = 'Deletar'
     forbid_self_delete = False
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         obj = self.get_object()
 
-        ctx['obj_page_title'] = self.obj_page_title
-        ctx['obj_content_title'] = f'Deletando - {obj.get_full_name() or obj}'
+        ctx['obj_page_title'] = 'Deletar'
+        ctx['obj_content_title'] = f'Deletando - {getattr(obj, 'get_full_name', lambda: None)() or obj}'
+        ctx['obj_name'] = getattr(obj, 'get_full_name', lambda: None)() or obj
         ctx['urls'] = self.get_crud_urls()
 
         return ctx

@@ -8,7 +8,7 @@ from .models import User
 
 class LoginView(auth_views.LoginView):
     authentication_form = LoginForm
-    template_name = 'partials/_login.html'
+    template_name = 'partials/pages/login.html'
 
 
 class LogoutView(auth_views.LogoutView):
@@ -20,14 +20,11 @@ class UserListView(GenericListView):
     headers = ['#', 'NOME', 'EMAIL', 'TIPO DE USUÁRIO', 'STATUS']
     fields = ['id', 'get_full_name', 'email', 'get_user_type_display', 'is_active']
     search_fields = ['id', 'first_name', 'last_name', 'email']
-    obj_page_title = 'Usuários'
-    obj_content_title = 'Usuários'
 
 
 class UserCreateView(GenericCreateView):
     model = User
     form_class = UserCreateForm
-    obj_content_title = 'Cadastrar usuário'
 
 
 class UserUpdateView(GenericUpdateView):

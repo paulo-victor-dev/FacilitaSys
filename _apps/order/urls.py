@@ -9,8 +9,10 @@ urlpatterns = [
     path('order_list/', OrderListView.as_view(), name='order_list'),
 
     # Export
-    path('order_list/export/', ExportOrdersView.as_view(), name='order_list_export'),
+    path('export/', ExportOrdersView.as_view(), name='order_export'),
 
-    # Detail
-    path('detail/<int:pk>/', OrderDetailView.as_view(), name='order_detail'),
+    # CRUD
+    path('order_create/', OrderCreateView.as_view(), name='order_create'),
+    path('order_update/<int:pk>/', OrderUpdateView.as_view(), name='order_update'),
+    path('order_delete/<int:pk>/', OrderDeleteView.as_view(), name='order_delete'),
 ]

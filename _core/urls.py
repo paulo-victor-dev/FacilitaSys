@@ -25,8 +25,6 @@ urlpatterns = [
     
     path('stock/', include(('_apps.stock.urls', 'stock'), namespace='stock')),
 
-    path('pdv/', include(('_apps.pdv.urls', 'pdv'), namespace='pdv')),
-
     path('customer/', include(('_apps.customer.urls', 'customer'), namespace='customer')),
 ]
 

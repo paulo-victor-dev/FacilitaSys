@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     '_apps.order',
     '_apps.supplier',
     '_apps.stock',
-    '_apps.pdv',
 
     # External apps
     'phonenumber_field',

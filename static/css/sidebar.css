@@ -76,8 +76,6 @@ aside.close .submenu {
     > li > a > .title {
         padding-right: 10px;
     }
-
-   
 }
 
 .btn_toggle {
@@ -258,6 +256,7 @@ aside.close .submenu {
     > li > a > .title {
         padding-left: 12px;
         color: var(--secondary1);
+        text-wrap: nowrap;
         transition: color var(--transition-025);
     }
 

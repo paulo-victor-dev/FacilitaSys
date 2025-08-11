@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Links -->
-    {% include 'partials/_links.html' %}
+    {% include 'partials/components/_links.html' %}
 
     <!-- Title -->
     <title>FacilitaSys | {% block page_title %}{% endblock %}</title>
@@ -14,10 +14,10 @@
     {% if user.is_authenticated %}
         <main class="main_area">
             <!-- Messages -->
-            {% include 'partials/_messages.html' %}
+            {% include 'partials/components/_messages.html' %}
   
             <!-- Sidebar -->
-            {% include 'partials/_sidebar.html' %}
+            {% include 'partials/components/_sidebar.html' %}
       
             <!-- Content -->
             <div class="content_area">
