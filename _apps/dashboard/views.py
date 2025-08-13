@@ -4,5 +4,5 @@ from django.views.generic import TemplateView
 
 
 class DashboardView(LoginRequiredMixin, TemplateView):
-    template_name = 'partials/_dashboard.html'
+    template_name = 'partials/pages/dashboard.html'
  

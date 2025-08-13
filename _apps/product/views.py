@@ -1,58 +1,18 @@
-from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib import messages
-
-from django.views.generic import View, ListView, CreateView, UpdateView, DeleteView
-
-from django.db.models import Q
-
-from django.http import HttpResponse
-
-import pandas as pd
-import io
+from utils.generic_views import *
 
 from .models.product import Product
 from .models.attributes import Brand, Category, ProductModel 
 
-from .forms import *
+from .forms import ProductForm
 
 # Product
-class ProductListView(LoginRequiredMixin, ListView):
+class ProductListView(GenericListView):
     model = Product
-    paginate_by = 11
-    template_name = 'list_pages/product_list.html'
-    context_object_name = 'products'
+    headers = ['#', 'NOME', 'SKU', 'PREÇO', 'QUANTIDADE', 'STATUS']
+    fields = ['id', '__str__', 'sku', 'price', 'quantity', 'is_active']
+    search_fields = ['id', '__str__', 'sku']
 
-    def get_queryset(self):
-        qs = super().get_queryset()
-
-        search = self.request.GET.get('search', '')
-
-        if search:
-            qs = qs.filter(
-                Q(id__icontains=search) |
-                Q(name__icontains=search) |
-                Q(sku__icontains=search) 
-            )
-
-        return qs
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        paginator = context.get('paginator')
-        page_obj = context.get('page_obj')
-
-        if paginator and page_obj:
-            context['page_range'] = paginator.get_elided_page_range(
-                number=page_obj.number,
-                on_each_side=1,
-                on_ends=1
-            )
-
-        return context
-
-class ProductCreateView(LoginRequiredMixin, CreateView):
+class ProductCreateView(GenericCreateView):
     model = Product
     form_class = ProductForm
     template_name = 'add_pages/product_add.html'
@@ -62,7 +22,7 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
         messages.success(self.request, 'Produto cadastrado com sucesso!')
         return super().form_valid(form)
 
-class ProductUpdateView(LoginRequiredMixin, UpdateView):
+class ProductUpdateView(GenericUpdateView):
     model = Product
     form_class = ProductForm
     template_name = 'update_pages/product_update.html'
@@ -72,7 +32,7 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         messages.success(self.request, 'Produto atualizado com sucesso!')
         return super().form_valid(form)
 
-class ProductDeleteView(LoginRequiredMixin, DeleteView):
+class ProductDeleteView(GenericDeleteView):
     model = Product
     template_name = 'delete_pages/product_delete.html'
     success_url = reverse_lazy('product:product_list')
@@ -81,7 +41,7 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
         messages.success(self.request, 'Produto deletado com sucesso!')
         return super().form_valid(form)
 
-class ExportProductsView(LoginRequiredMixin, View):
+class ExportProductsView(GenericExportView):
     def get(self, request, *args, **kwargs):
         queryset = Product.objects.all()
 
@@ -119,35 +79,69 @@ class ExportProductsView(LoginRequiredMixin, View):
 
 
 # Brand
-class BrandCreateView(LoginRequiredMixin, CreateView):
+class BrandListView(GenericListView):
     model = Brand
-    form_class = BrandForm
-    template_name = 'add_pages/brand_add.html'
-    success_url = reverse_lazy('product:product_create')
+    headers = ['#', 'NOME', 'STATUS']
+    fields = ['id', 'name', 'is_active']
+    search_fields = ['id', 'name']
 
-    def form_valid(self, form):
-        messages.success(self.request, 'Marca cadastrada com sucesso!')
-        return super().form_valid(form)
+class BrandCreateView(GenericCreateView):
+    model = Brand
+    
+class BrandUpdateView(GenericUpdateView):
+    model = Brand
+
+class BrandDeleteView(GenericDeleteView):
+    model = Brand
+    forbid_self_delete = True
+
+class ExportBrandsView(GenericExportView):
+    model = Brand
+    headers = ['#', 'NOME']
+    fields = ['id', 'name']
 
 
 # Category
-class CategoryCreateView(LoginRequiredMixin, CreateView):
+class CategoryListView(GenericListView):
     model = Category
-    form_class = CategoryForm
-    template_name = 'add_pages/category_add.html'
-    success_url = reverse_lazy('product:product_create')
+    headers = ['#', 'NOME', 'STATUS']
+    fields = ['id', 'name', 'is_active']
+    search_fields = ['id', 'name']
 
-    def form_valid(self, form):
-        messages.success(self.request, 'Categoria cadastrada com sucesso!')
-        return super().form_valid(form)
+class CategoryCreateView(GenericCreateView):
+    model = Category
+
+class CategoryUpdateView(GenericUpdateView):
+    model = Category
+
+class CategoryDeleteView(GenericDeleteView):
+    model = Category
+    forbid_self_delete = True
+
+class ExportCategorysView(GenericExportView):
+    model = Category
+    headers = ['#', 'NOME']
+    fields = ['id', 'name']
+
 
 # Model
-class ProductModelCreateView(LoginRequiredMixin, CreateView):
+class ProductModelListView(GenericListView):
     model = ProductModel
-    form_class = ProductModelForm
-    template_name = 'add_pages/model_add.html'
-    success_url = reverse_lazy('product:product_create')
+    headers = ['#', 'NOME', 'STATUS']
+    fields = ['id', 'name', 'is_active']
+    search_fields = ['id', 'name']
 
-    def form_valid(self, form):
-        messages.success(self.request, 'Modelo cadastrado com sucesso!')
-        return super().form_valid(form)
+class ProductModelCreateView(GenericCreateView):
+    model = ProductModel
+
+class ProductModelUpdateView(GenericUpdateView):
+    model = ProductModel
+
+class ProductModelDeleteView(GenericDeleteView):
+    model = ProductModel
+    forbid_self_delete = True
+
+class ExportProductModelsView(GenericExportView):
+    model = ProductModel
+    headers = ['#', 'NOME']
+    fields = ['id', 'name']

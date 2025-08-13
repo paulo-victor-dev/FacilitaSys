@@ -21,8 +21,8 @@ class CustomerUpdateView(GenericUpdateView):
 
 class CustomerDeleteView(GenericDeleteView):
     model = Customer
-    forbid_self_delete = True 
-    
+    forbid_self_delete = True
+ 
 
 class ExportCustomersView(GenericExportView):
     model = Customer
