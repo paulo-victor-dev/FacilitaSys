@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     '_apps.dashboard',
     '_apps.order',
     '_apps.supplier',
-    '_apps.stock',
+    '_apps.flow',
 
     # External apps
     'phonenumber_field',

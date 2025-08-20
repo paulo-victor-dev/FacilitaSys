@@ -52,7 +52,7 @@ class Flow(TimeStampModel, models.Model):
     )
 
     def __str__(self):
-        return f'{self.id} - Movimentação de {self.flow_type}'
+        return f'Movimentação {self.id} - {self.get_flow_type_display()}'
 
     class Meta:
         verbose_name = 'Movimentação'

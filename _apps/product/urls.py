@@ -13,9 +13,9 @@ urlpatterns = [
 
     # Export
     path('export/', ExportProductsView.as_view(), name='product_export'),
-    path('export/', ExportBrandsView.as_view(), name='brand_export'),
-    path('export/', ExportCategorysView.as_view(), name='category_export'),
-    path('export/', ExportProductModelsView.as_view(), name='productmodel_export'),
+    path('export/brand/', ExportBrandsView.as_view(), name='brand_export'),
+    path('export/category/', ExportCategorysView.as_view(), name='category_export'),
+    path('export/model/', ExportProductModelsView.as_view(), name='productmodel_export'),
 
     # CRUD Product
     path('product_create/', ProductCreateView.as_view(), name='product_create'),

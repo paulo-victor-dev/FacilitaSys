@@ -15,67 +15,19 @@ class ProductListView(GenericListView):
 class ProductCreateView(GenericCreateView):
     model = Product
     form_class = ProductForm
-    template_name = 'add_pages/product_add.html'
-    success_url = reverse_lazy('product:product_list')
     
-    def form_valid(self, form):
-        messages.success(self.request, 'Produto cadastrado com sucesso!')
-        return super().form_valid(form)
-
 class ProductUpdateView(GenericUpdateView):
     model = Product
     form_class = ProductForm
-    template_name = 'update_pages/product_update.html'
-    success_url = reverse_lazy('product:product_list')
-    
-    def form_valid(self, form):
-        messages.success(self.request, 'Produto atualizado com sucesso!')
-        return super().form_valid(form)
 
 class ProductDeleteView(GenericDeleteView):
     model = Product
-    template_name = 'delete_pages/product_delete.html'
-    success_url = reverse_lazy('product:product_list')
+    forbid_self_delete = True
     
-    def form_valid(self, form):
-        messages.success(self.request, 'Produto deletado com sucesso!')
-        return super().form_valid(form)
-
 class ExportProductsView(GenericExportView):
-    def get(self, request, *args, **kwargs):
-        queryset = Product.objects.all()
-
-        data = []
-        for product in queryset:
-            data.append([
-                product.id,
-                product.name,
-                product.bar_code,
-                product.quantity,
-                product.price,
-                'Ativo' if product.is_active else 'Inativo'
-            ])
-
-        df = pd.DataFrame(
-            data,
-            columns=['ID', 'NOME', 'CÓD. BARRAS', 'QUANTIDADE', 'PREÇO', 'STATUS']
-        )
-
-        buffer = io.BytesIO()
-
-        with pd.ExcelWriter(buffer, engine='openpyxl') as writer:
-            df.to_excel(writer, index=False, sheet_name='Produtos')
-
-        buffer.seek(0)
-
-        response = HttpResponse(
-            buffer.read(),
-            content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-        )
-        
-        response['Content-Disposition'] = 'attachement; filename="Relatório_Produtos.xlsx"'
-
-        return response
+    model = Product
+    headers = ['#', 'NOME', 'SKU', 'PREÇO', 'QUANTIDADE', 'STATUS']
+    fields = ['id', '__str__', 'sku', 'price', 'quantity', 'is_active']
 
 
 # Brand

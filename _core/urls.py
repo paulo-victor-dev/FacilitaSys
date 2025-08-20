@@ -23,7 +23,7 @@ urlpatterns = [
 
     path('supplier/', include(('_apps.supplier.urls', 'supplier'), namespace='supplier')),
     
-    path('stock/', include(('_apps.stock.urls', 'stock'), namespace='stock')),
+    path('flow/', include(('_apps.flow.urls', 'flow'), namespace='flow')),
 
     path('customer/', include(('_apps.customer.urls', 'customer'), namespace='customer')),
 ]

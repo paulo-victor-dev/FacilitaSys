@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
-class StockConfig(AppConfig):
+class FlowConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = '_apps.stock'
-    verbose_name = 'Estoque'
+    name = '_apps.flow'
+    verbose_name = 'Movimentações'
