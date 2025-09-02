@@ -81,14 +81,23 @@ class GenericListView(LoginRequiredMixin, ListView):
 
 class GenericCreateView(LoginRequiredMixin, CreateView):
     form_class = GenericForm
+    form_fields = None
     template_name = 'common/_create.html'
     success_message = 'Registro criado com sucesso!'
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        if self.form_fields:
+            kwargs['fields'] = self.form_fields
+        return kwargs
+    
     def get_form_class(self):
-        class _DynamicForm(GenericForm):
-            class Meta(GenericForm.Meta):
+        form_class = self.form_class
+
+        class DynamicForm(form_class):
+            class Meta(form_class.Meta):
                 model = self.model
-        return _DynamicForm
+        return DynamicForm
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -128,14 +137,23 @@ class GenericCreateView(LoginRequiredMixin, CreateView):
 
 class GenericUpdateView(LoginRequiredMixin, UpdateView):
     form_class = GenericForm
+    form_fields = None
     template_name = 'common/_update.html'
     success_message = 'Registro atualizado com sucesso!'
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        if self.form_fields:
+            kwargs['fields'] = self.form_fields
+        return kwargs
+    
     def get_form_class(self):
-        class _DynamicForm(GenericForm):
-            class Meta(GenericForm.Meta):
+        form_class = self.form_class
+
+        class DynamicForm(form_class):
+            class Meta(form_class.Meta):
                 model = self.model
-        return _DynamicForm
+        return DynamicForm
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)

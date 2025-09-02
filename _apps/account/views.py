@@ -24,7 +24,7 @@ class UserListView(GenericListView):
 
 class UserCreateView(GenericCreateView):
     model = User
-    form_class = UserCreateForm
+    form_fields = ['first_name', 'last_name', 'email', 'password', 'user_type', 'is_active']
 
 
 class UserUpdateView(GenericUpdateView):

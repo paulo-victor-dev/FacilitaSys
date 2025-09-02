@@ -2,6 +2,7 @@ from django.contrib.auth import forms as auth_forms
 from django import forms
 
 from .models import User
+from utils.generic_forms import GenericForm
 
 
 class LoginForm(auth_forms.AuthenticationForm):
@@ -22,36 +23,25 @@ class LoginForm(auth_forms.AuthenticationForm):
         return super().clean()
 
 
-class UserCreateForm(auth_forms.UserCreationForm):
-    is_active = forms.ChoiceField(
-        choices=[('True', 'Ativa'), ('False', 'Inativa')],
-        widget=forms.Select,
-        label='Status da conta'
-    )
-
+class UserCreateForm(auth_forms.UserCreationForm):    
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email', 'password1', 'password2', 'user_type', 'is_active')
+        fields = ('first_name', 'last_name', 'email', 'password', 'user_type', 'is_active')
 
-    def clean_first_name(self):
-        first_name = self.cleaned_data.get('first_name')
-        if not first_name:
-            raise forms.ValidationError('Este campo é obrigatório.')
-        return first_name
+    # def clean_first_name(self):
+    #     first_name = self.cleaned_data.get('first_name')
+    #     if not first_name:
+    #         raise forms.ValidationError('Este campo é obrigatório.')
+    #     return first_name
     
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if User.objects.filter(email=email).exists():
-            raise forms.ValidationError('Este e-mail já está cadastrado.')
-        return email
+    # def clean_email(self):
+    #     email = self.cleaned_data.get('email')
+    #     if User.objects.filter(email=email).exists():
+    #         raise forms.ValidationError('Este e-mail já está cadastrado.')
+    #     return email
     
-class UserUpdateForm(forms.ModelForm):
-    is_active = forms.ChoiceField(
-        choices=[('True', 'Ativa'), ('False', 'Inativa')],
-        widget=forms.Select,
-        label='Status da conta'
-    )
 
+class UserUpdateForm(GenericForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email', 'user_type', 'is_active')
