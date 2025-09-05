@@ -12,7 +12,6 @@ class SupplierListView(GenericListView):
 
 class SupplierCreateView(GenericCreateView):
     model = Supplier
-    form_class = SupplierForm
 
 
 class SupplierUpdateView(GenericUpdateView):
