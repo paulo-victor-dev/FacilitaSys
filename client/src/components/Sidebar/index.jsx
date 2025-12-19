@@ -17,22 +17,22 @@ export default function Sidebar() {
                     </Link>
                 </SidebarItem>
 
-                <SidebarItem active={pathname === ROUTES.users}>
-                    <Link to={ROUTES.users}>
+                <SidebarItem active={pathname === ROUTES.user}>
+                    <Link to={ROUTES.user}>
                         <span className="sidebar-icon material-symbols-outlined">person</span>
                         <span className="sidebar-item-name">Usuários</span>
                     </Link>
                 </SidebarItem>
 
-                <SidebarItem active={pathname === ROUTES.products}>
-                    <Link to={ROUTES.products}>
+                <SidebarItem active={pathname === ROUTES.product}>
+                    <Link to={ROUTES.product}>
                         <span className="sidebar-icon material-symbols-outlined">package_2</span>
                         <span className="sidebar-item-name">Produtos</span>
                     </Link>
                 </SidebarItem>
 
-                <SidebarItem active={pathname === ROUTES.suppliers}>
-                    <Link to={ROUTES.suppliers}>
+                <SidebarItem active={pathname === ROUTES.supplier}>
+                    <Link to={ROUTES.supplier}>
                         <span className="sidebar-icon material-symbols-outlined">factory</span>
                         <span className="sidebar-item-name">Fornecedores</span>
                     </Link>

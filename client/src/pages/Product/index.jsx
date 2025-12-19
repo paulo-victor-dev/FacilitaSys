@@ -1,6 +1,6 @@
 import MainLayout from "../../layouts/MainLayout";
 
-export default function Products() {
+export default function Product() {
     return (
         <MainLayout>
             <p>Products</p>

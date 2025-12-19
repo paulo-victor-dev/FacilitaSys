@@ -1,8 +1,8 @@
 export const ROUTES = {
     dashboard: "/",
-    users: "/users",
-    products: "/products",
-    suppliers: "/suppliers",
+    user: "/user",
+    product: "/product",
+    supplier: "/supplier",
     login: "/login",
     register: "/register",
     notFound: "*",
