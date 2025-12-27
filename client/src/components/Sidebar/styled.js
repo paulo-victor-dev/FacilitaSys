@@ -4,69 +4,62 @@ import { colors } from "../../styles/colors";
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
-
     width: 300px;
-    padding: 10px 20px;
-    border-right: 1px solid ${colors.shadow};
-    background: ${colors.light};
+    padding: 20px;
+    background: none;
 
     ul {
         display: flex;
-        align-items: start;
-        justify-content: start;
-        flex: 1;
         flex-direction: column;
-        gap: 5px;
-        background-color: transparent;
-    }
-
+        flex: 1;
+        gap: 15px;
+        margin-top: 50px;
+    } 
 `;
 
-export const SidebarItem = styled.li`
+export const Li = styled.li`
     display: flex;
     align-items: center;
-    justify-content: start;
-    width: 100%;
-    height: 40px;
-
+    height: 50px;
+    border-radius: 10px;
+    transition: all 0.2s;
+    
     a {
         display: flex;
         align-items: center;
         justify-content: start;
-
+        font-weight: 600;
         width: 100%;
         height: 100%;
-
-        border-radius: 5px;
-        gap: 10px;
+        gap: 15px;
         padding: 0 10px;
-    }
-
-    a:hover {
-        background-color: ${colors.shadow};
-    }
-
-    ${({ active }) => 
-        active &&
-        css`
-            a {
-                background-color: ${colors.shadow};
-            }
-
-            a .sidebar-item-name,
-            a .sidebar-icon {
-                color: ${colors.primary};
-            }
-        `
-    }
-
-    .sidebar-icon, .sidebar-item-name {
-        font-size: 18px;
-        font-weight: 500;
         color: ${colors.dark};
     }
 
-    .sidebar-icon {
-        font-size: 25px;
+    &:hover {
+        background-color: ${colors.light};
+        box-shadow: 0 0 6px 1px ${colors.shadow};
+    }
+
+    &:hover .sidebar-title {
+        color: ${colors.primary};
+    }
+
+    &:hover .sidebar-icon {
+        color: ${colors.primary};
+    }
+
+    ${({active}) => 
+        active &&
+        css`
+           & {
+            background-color: ${colors.light};
+            box-shadow: 0 0 6px 1px ${colors.shadow};
+           }
+
+           .sidebar-title, .sidebar-icon {
+            color: ${colors.primary};
+           }
+        `
     }
 `;

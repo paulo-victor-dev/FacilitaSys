@@ -5,8 +5,31 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 50px;
-    padding: 0 20px;
-    border-bottom: 1px solid ${colors.shadow};
-    background-color: ${colors.light};
+
+    .title {
+        font-size: 22px;
+        font-weight: 600;
+        color: ${colors.primary};
+    }
+
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        gap: 8px;
+        padding: 10px;
+        border-radius: 10px;
+
+        font-size: 14px;
+        font-weight: 600;
+
+        color: ${colors.light};
+        background-color: ${colors.primary};
+        transition: opacity 0.2s;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
 `;

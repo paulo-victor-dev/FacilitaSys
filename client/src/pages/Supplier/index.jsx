@@ -1,36 +1,28 @@
 import { useState, useEffect } from "react";
+import * as supplierApi from "../../services/supplier.api";
 import MainLayout from "../../layouts/MainLayout";
-import { listSupplier } from "../../services/supplier.api";
 
 export default function Supplier() {
-    const [supplierList, setSupplierList] = useState([]);
+    const [itensList, setItensList] = useState([]);
     
     const pageData = {
         title: "Fornecedores",
-        
-        tableData: {
-            objectsList: supplierList,
-        },
-
-        filterData: {
-            filteredList: "",
-            fn: ""
-        },
-
-        buttonData: {   
+        btnData: {
             text: "Fornecedor",
-            fn: ()=>console.log("Teste fornecedor")
-        }
+            btnFn: () => alert("Clicou"),
+        },
+        itensList: itensList,
+        tableHeaders: ["Nome", "Status", "Data Criação"]
     }
 
     useEffect(() => {
-        async function fetchSuppliers() {
-            const resp = await listSupplier();
-            setSupplierList(resp);
+        async function fetchSupllierApi() {
+            const resp = await supplierApi.listSupplier();
+            setItensList(resp);
         }
 
-        fetchSuppliers();
-    }, []);
-
+        fetchSupllierApi();
+    }, [])
+        
     return <MainLayout pageData={pageData}/>;
 }

@@ -1,9 +1,9 @@
 import MainLayout from "../../layouts/MainLayout";
 
 export default function Product() {
-    return (
-        <MainLayout>
-            <p>Products</p>
-        </MainLayout>
-    );
+    const pageData = {
+            title: "Produtos",
+        }
+        
+        return <MainLayout pageData={pageData}/>;
 }

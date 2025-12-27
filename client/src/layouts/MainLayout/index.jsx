@@ -2,36 +2,29 @@ import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 import Filter from "../../components/Filter";
 import Table from "../../components/Table";
-import * as styled from "./styled";
+import Paginator from "../../components/Paginator";
+import { LayoutContainer } from "./styled";
+import { useState } from "react";
 
 export default function MainLayout({ pageData }) {
-    const {title, buttonData} = pageData;
+    const {title, btnData, itensList, tableHeaders} = pageData;
+
+    const [filteredList, setFilteredList] = useState([]);
 
     return (
-        <styled.LayoutContainer>
+        <LayoutContainer>
             <Sidebar />
-            <styled.Main>
-                <Header />
+            <main>
+                <Header title={title} btnData={btnData}/>
 
-                <styled.Content>
-                    <styled.ContentHeader>
-                        <span className="header-title">{title}</span>
+                <div className="divider"/>
 
-                        <button onClick={buttonData.fn}>
-                            <span class="material-symbols-outlined">add</span>
+                <Filter />
+        
+                <Table itensList={itensList} tableHeaders={tableHeaders}/>
 
-                            <span className="btn-text">
-                                {`Novo ${buttonData.text}`}
-                            </span>
-                        </button>
-                    </styled.ContentHeader>
-
-                    <styled.ContentBody>
-                        <Filter />
-                        <Table />
-                    </styled.ContentBody>
-                </styled.Content>
-            </styled.Main>
-        </styled.LayoutContainer>
+                <Paginator />
+            </main>
+        </LayoutContainer>
     );
 }

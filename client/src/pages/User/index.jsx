@@ -1,9 +1,11 @@
 import MainLayout from "../../layouts/MainLayout";
 
 export default function Users() {
-    return (
-        <MainLayout>
-            <p>Users</p>
-        </MainLayout>
-    );
+    const pageData = {
+            title: "Usuários",
+        }
+        
+        return (
+            <MainLayout pageData={pageData}/>
+        );
 }

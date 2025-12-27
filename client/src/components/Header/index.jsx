@@ -1,11 +1,16 @@
-import User from "./User";
 import { Container } from "./styled";
 
-export default function Header() {
+export default function Header({ title, btnData }) {
+    const {text, btnFn} = btnData;
+
     return (
         <Container>
-            <span className="menu-icon material-symbols-outlined">menu</span>
-            <User />
+            <span className="title">{title}</span>
+
+            <button onClick={btnFn}>
+                <span className="material-symbols-outlined">add</span>
+                <span>{`Novo ${text}`}</span>
+            </button>
         </Container>
     );
 }
